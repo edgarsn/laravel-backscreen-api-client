@@ -5,7 +5,7 @@ This package helps you to make API calls to TET Media Services API v5.
 https://api.cloudycdn.services/api/v5/docs
 
 ## Requirements
-- Laravel 9.0+
+- Laravel 9.0+, 10.0+
 - PHP 8.1+
 
 ## Installation
