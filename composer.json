@@ -54,10 +54,10 @@
 	"extra": {
 		"laravel": {
 			"providers": [
-				"Newman\\LaravelTsmApiClient\\ServiceProvider"
+				"Newman\\LaravelTmsApiClient\\ServiceProvider"
 			],
 			"aliases": {
-				"TmsApi": "Newman\\LaravelTsmApiClient\\Support\\Facades\\TmsApi"
+				"TmsApi": "Newman\\LaravelTmsApiClient\\Support\\Facades\\TmsApi"
 			}
 		}
 	},
