@@ -1,6 +1,6 @@
-# Laravel TET Media Services API Client
+# Laravel Backscreen API Client
 
-This package helps you to make API calls to TET Media Services API v5.
+This package helps you to make API calls to Backscreen (a.k.a: Videosher, TET Media Services) API v5.
 
 https://api.cloudycdn.services/api/v5/docs
 
