@@ -201,6 +201,55 @@ $endpoint->orderDir(OrderDirectionEnum::ASC);
 $response = TmsApi::client('default')->run($endpoint);
 ```
 
+### Endpoint: `/Media/Create`
+
+https://api.cloudycdn.services/api/v5/docs#/operations/Media/Create
+
+Create media.
+
+**Accepted Auth Methods:** `Basic`, `Bearer token`
+
+```php
+use Newman\LaravelTmsApiClient\Endpoints\Media\Create as MediaCreate;
+use Newman\LaravelTmsApiClient\EndpointSupport\Callback;
+use Newman\LaravelTmsApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
+use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelTmsApiClient\Endpoints\Media\Create\Files;
+use Newman\LaravelTmsApiClient\Endpoints\Media\Create\Tags;
+
+$endpoint = new MediaCreate('123');
+
+// Optional
+$endpoint->catId(542);
+$endpoint->name('Name of media');
+$endpoint->description('Description of media');
+$endpoint->pgRating('PG-13');
+$endpoint->autoTranscode(1);
+$endpoint->embedPlayerId(123);
+$endpoint->embedAdId(234);
+$endpoint->embedProtectionId(345);
+$endpoint->metadata([
+    'key' => 'value'
+]);
+$endpoint->timezone('Europe/Riga');
+
+$files = new MediaCreate\Files();
+$files->url('https://mysite.com');
+$files->username('username');
+$files->password('secret');
+$files->bitrate(3000);
+$files->lang('LV');
+$endpoint->files($files);
+
+$tags = new MediaCreate\Tags();
+$tags->set(['tag1', 'tag2']);
+$tags->add(['tag3']);
+
+$endpoint->callback(new Callback('https://mysite.com', CallbackHttpMethodEnum::POST));
+
+$response = TmsApi::client('default')->run($endpoint);
+```
+
 ### Endpoint: `/Media/Update`
 
 https://api.cloudycdn.services/api/v5/docs#/operations/Media/Update
