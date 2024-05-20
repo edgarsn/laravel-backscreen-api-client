@@ -162,16 +162,18 @@ class CreateTest extends TestCase
         $files->bitrate(3000);
         $files->lang('lv');
 
-        $endpoint->files($files);
+        $endpoint->files([$files]);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
             'asset_id' => "123",
             'files' => [
-                'url' => 'https://mysite.com',
-                'username' => 'username',
-                'password'=> 'password',
-                'bitrate'=> 3000,
-                'lang'=> 'lv',
+                [
+                    'url' => 'https://mysite.com',
+                    'username' => 'username',
+                    'password'=> 'password',
+                    'bitrate'=> 3000,
+                    'lang'=> 'lv',
+                ]
             ],
         ]);
     }
@@ -180,7 +182,7 @@ class CreateTest extends TestCase
         $endpoint = new Create('123');
 
         $files = new Files();
-        $endpoint->files($files);
+        $endpoint->files([$files]);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
             'asset_id' => "123",
