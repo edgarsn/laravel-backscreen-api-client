@@ -75,13 +75,17 @@ class UpdateTest extends TestCase
     {
         $endpoint = new Update(new ByMediaId(1234));
 
-        $endpoint->callback(new Callback('https://mysite.com', CallbackHttpMethodEnum::POST));
+        $endpoint->callback([
+            new Callback('https://mysite.com', CallbackHttpMethodEnum::POST)
+        ]);
 
         $this->makeBasicAuthEndpointTest($endpoint, [], [
             'id' => 1234,
             'callback' => [
-                'url' => 'https://mysite.com',
-                'method' => CallbackHttpMethodEnum::POST->value,
+                [
+                    'url' => 'https://mysite.com',
+                    'method' => CallbackHttpMethodEnum::POST->value,
+                ]
             ],
         ]);
     }

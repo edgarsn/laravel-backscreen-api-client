@@ -24,7 +24,8 @@ class Update extends AbstractEndpoint implements EndpointContract
 
     protected ?Images $images = null;
 
-    protected ?Callback $callback = null;
+    /** @var Callback[]|null */
+    protected ?array $callback = null;
 
     public function __construct(protected ByContract $by)
     {
@@ -51,7 +52,8 @@ class Update extends AbstractEndpoint implements EndpointContract
         return $this;
     }
 
-    public function callback(?Callback $callback): static
+    /** @param Callback[]|null $callback */
+    public function callback(?array $callback): static
     {
         $this->callback = $callback;
 
@@ -107,7 +109,18 @@ class Update extends AbstractEndpoint implements EndpointContract
         }
 
         if ($this->callback !== null) {
-            $data['callback'] = $this->callback->compileAsArray();
+            $callbacks = [];
+
+            foreach ($this->callback as $value) {
+                $callback = $value->compileAsArray();
+                if (!empty($callback)) {
+                    $callbacks[] = $callback;
+                }
+            }
+
+            if (!empty($callbacks)) {
+                $data['callback'] = $callbacks;
+            }
         }
 
         $http->withData($data);
