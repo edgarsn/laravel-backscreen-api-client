@@ -224,13 +224,17 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('123');
 
-        $endpoint->callback(new Callback('https://mysite.com', CallbackHttpMethodEnum::POST));
+        $endpoint->callback([
+            new Callback('https://mysite.com', CallbackHttpMethodEnum::POST)
+        ]);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
             'asset_id' => '123',
             'callback' => [
-                'url' => 'https://mysite.com',
-                'method' => CallbackHttpMethodEnum::POST->value,
+                [
+                    'url' => 'https://mysite.com',
+                    'method' => CallbackHttpMethodEnum::POST->value,
+                ]
             ],
         ]);
     }
