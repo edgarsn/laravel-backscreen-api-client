@@ -43,7 +43,8 @@ class Create extends AbstractEndpoint implements EndpointContract
 
     protected ?string $timezone = null;
 
-    protected ?Files $files = null;
+    /** @var Files[]|null $files */
+    protected ?array $files = null;
 
     protected ?Tags $tags = null;
 
@@ -137,7 +138,10 @@ class Create extends AbstractEndpoint implements EndpointContract
         return $this;
     }
 
-    public function files(?Files $files): static
+    /**
+     * @param Files[]|null $files
+     */
+    public function files(?array $files): static
     {
         $this->files = $files;
 
@@ -241,7 +245,14 @@ class Create extends AbstractEndpoint implements EndpointContract
         }
 
         if ($this->files !== null) {
-            $files = $this->files->compileAsArray();
+            $files = [];
+
+            foreach ($this->files as $value) {
+                $file = $value->compileAsArray();
+                if (!empty($file)) {
+                    $files[] = $file;
+                }
+            }
 
             if (!empty($files)) {
                 $data['files'] = $files;
