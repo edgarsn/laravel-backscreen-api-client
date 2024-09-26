@@ -24,6 +24,17 @@ class Delete extends AbstractEndpoint implements EndpointContract
     }
 
     /**
+     * @param int $id
+     * @return $this
+     */
+    public function id(int $id): static
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
      * @param ?bool $delete_media
      * @return $this
      */
@@ -78,11 +89,11 @@ class Delete extends AbstractEndpoint implements EndpointContract
         $query['id'] = $this->id;
 
         if ($this->delete_media !== null) {
-            $query['delete_media'] = $this->delete_media;
+            $query['delete_media'] = $this->delete_media ? 1 : 0;
         }
 
         if ($this->force !== null) {
-            $query['force'] = $this->force;
+            $query['force'] = $this->force ? 1 : 0;
         }
 
         $http->withData($query);
