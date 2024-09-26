@@ -585,6 +585,326 @@ use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
 $response = TmsApi::client('default')->run(new UserLogout());
 ```
 
+## `/Live`
+
+### Endpoint: `/Live/List`
+
+https://api.cloudycdn.services/api/v5/docs#/operations/Live/List
+
+Retrieve a list of livestream.
+
+**Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
+
+```php
+use Newman\LaravelTmsApiClient\Endpoints\Live\LiveList;
+use Newman\LaravelTmsApiClient\EndpointSupport\Enums\OrderDirectionEnum;
+use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+
+$endpoint = new LiveList();
+
+$endpoint->id(123);
+$endpoint->id([123, 456]);
+$endpoint->id('123');
+
+$endpoint->idFrom(123);
+$endpoint->idTo(123);
+$endpoint->imagesFallback(true);
+$endpoint->limit(123);
+$endpoint->name('name');
+$endpoint->offset(123);
+
+$endpoint->createdFrom(1674074046);
+$endpoint->createdFrom('2023-01-18 12:34:56');
+$endpoint->createdFrom(\Carbon\Carbon::now()->addHour());
+
+$endpoint->createdPeriod(LiveList\PeriodEnum::LAST_HOUR);
+
+$endpoint->createdTo(1674074046);
+$endpoint->createdTo('2023-01-18 12:34:56');
+$endpoint->createdTo(\Carbon\Carbon::now()->addHour());
+
+$endpoint->orderBy(LiveList\OrderByEnum::CREATED_AT);
+$endpoint->orderDir(OrderDirectionEnum::ASC);
+
+$endpoint->return(LiveList\ReturnEnum::CATEGORY);
+$endpoint->return([LiveList\ReturnEnum::CATEGORY, LiveList\ReturnEnum::PREVIEW]);
+
+$endpoint->updatedFrom(1674074046);
+$endpoint->updatedFrom('2023-01-18 12:34:56');
+$endpoint->updatedFrom(\Carbon\Carbon::now()->addHour());
+
+$endpoint->updatedPeriod(LiveList\PeriodEnum::LAST_HOUR);
+
+$endpoint->updatedTo(1674074046);
+$endpoint->updatedTo('2023-01-18 12:34:56');
+$endpoint->updatedTo(\Carbon\Carbon::now()->addHour());
+
+$response = TmsApi::client('default')->run($endpoint);
+```
+
+### Endpoint: `/Live/Create`
+
+https://api.cloudycdn.services/api/v5/docs#/operations/Live/Create
+
+Create a livestream.
+
+**Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
+
+```php
+use Newman\LaravelTmsApiClient\Endpoints\Live\Create;
+use Newman\LaravelTmsApiClient\EndpointSupport\Images;
+use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+
+$endpoint = new Create('New Livestream');
+
+$endpoint->name('Different Livestream');
+$endpoint->catId(1);
+$endpoint->multiLanguages(true);
+$endpoint->customOrigin('https://example.com');
+
+$publish = new Create\Publish();
+$publish->prefix('prefix');
+$endpoint->publish($publish);
+
+$endpoint->embedPlayerId(1);
+$endpoint->embedAdId(1);
+$endpoint->embedProtectionId(1);
+
+$embed = new Create\Embed();
+$embed->enablePublic(true);
+$embed->publicPassword('password');
+$embed->enablePreview(true);
+$endpoint->embed($embed);
+
+$security = new Create\Security();
+$security->encryptionMethod(Create\Enums\EncryptionMethodEnum::AES);
+$security->useToken(true);
+$security->tokenDuration(Create\Enums\TokenDurationEnum::ONE_HOUR);
+$endpoint->security($security);
+
+$recording = new Create\Recording\Recording();
+$recording->autoDelete(true);
+$recording->autoDeleteMedia(true);
+$recording->savePassed(true);
+$recording->deleteAfterHours(1);
+$recording->marginStartSeconds(1);
+$recording->marginEndSeconds(1);
+$recording->fileNamingPattern('pattern');
+
+$nimbus = new Create\Recording\Nimbus();
+$nimbus->syncInterval(1);
+$nimbus->channelId(1);
+$nimbus->manifestId(1);
+$recording->nimbus($nimbus);
+
+$epg = new Create\Recording\EPG();
+$epg->hoursBefore(1);
+$epg->hoursAfter(1);
+$epg->round(0);
+$recording->epg($epg);
+
+$endpoint->recording($recording);
+
+$images = new Images();
+$images->thumbnail(base64_encode('FILE_CONTENTS'));
+$images->placeholder(base64_encode('FILE_CONTENTS'));
+$images->playbutton(base64_encode('FILE_CONTENTS'));
+$images->logo(base64_encode('FILE_CONTENTS'));
+$endpoint->images($images);
+
+$availability = new Create\Availability();
+$availability->scheduleStart(1674074046);
+$availability->scheduleStart('2023-01-18 12:34:56');
+$availability->scheduleStart(\Carbon\Carbon::now()->addHour());
+$availability->scheduleEnd(1674074046);
+$availability->scheduleEnd('2023-01-18 12:34:56');
+$availability->scheduleEnd(\Carbon\Carbon::now()->addHour());
+$endpoint->availability($availability);
+
+$input = new Create\Input\Input();
+$input->transcode(true);
+$input->trancoderId(1);
+$input->protocol(Create\Enums\ProtocolEnum::SRT);
+$input->srtPassPhrase('passphrase');
+$input->srtKeyLength(16);
+$input->serverPort(443);
+$input->serverApp('app');
+$input->autoShutdown(1);
+$input->videoPid('videoPID123');
+
+$latvianLanguage = new Create\Input\AudioLanguage();
+$latvianLanguage->language('lat');
+$latvianLanguage->pid('123');
+$latvianLanguage->languageName('Latvian');
+$input->audioLanguages([$latvianLanguage]);
+
+$endpoint->input($input);
+$endpoint->timezone('Europe/Riga');
+
+$response = TmsApi::client('default')->run($endpoint);
+```
+
+### Endpoint: `/Live/Update`
+
+https://api.cloudycdn.services/api/v5/docs#/operations/Live/Update
+
+Update an existing livestream.
+
+**Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
+
+```php
+use Newman\LaravelTmsApiClient\Endpoints\Live\Update;
+use Newman\LaravelTmsApiClient\Endpoints\Live\Create;
+use Newman\LaravelTmsApiClient\EndpointSupport\Images;
+use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+
+$endpoint = new Update(123);
+
+$endpoint->id(1234);
+$endpoint->name('Different Livestream');
+$endpoint->catId(1);
+$endpoint->multiLanguages(true);
+$endpoint->customOrigin('https://example.com');
+
+$publish = new Create\Publish();
+$publish->prefix('prefix');
+$endpoint->publish($publish);
+
+$endpoint->embedPlayerId(1);
+$endpoint->embedAdId(1);
+$endpoint->embedProtectionId(1);
+
+$embed = new Create\Embed();
+$embed->enablePublic(true);
+$embed->publicPassword('password');
+$embed->enablePreview(true);
+$endpoint->embed($embed);
+
+$security = new Create\Security();
+$security->encryptionMethod(Create\Enums\EncryptionMethodEnum::AES);
+$security->useToken(true);
+$security->tokenDuration(Create\Enums\TokenDurationEnum::ONE_HOUR);
+$endpoint->security($security);
+
+$recording = new Create\Recording\Recording();
+$recording->autoDelete(true);
+$recording->autoDeleteMedia(true);
+$recording->savePassed(true);
+$recording->deleteAfterHours(1);
+$recording->marginStartSeconds(1);
+$recording->marginEndSeconds(1);
+$recording->fileNamingPattern('pattern');
+
+$nimbus = new Create\Recording\Nimbus();
+$nimbus->syncInterval(1);
+$nimbus->channelId(1);
+$nimbus->manifestId(1);
+$recording->nimbus($nimbus);
+
+$epg = new Create\Recording\EPG();
+$epg->hoursBefore(1);
+$epg->hoursAfter(1);
+$epg->round(0);
+$recording->epg($epg);
+
+$endpoint->recording($recording);
+
+$images = new Images();
+$images->thumbnail(base64_encode('FILE_CONTENTS'));
+$images->placeholder(base64_encode('FILE_CONTENTS'));
+$images->playbutton(base64_encode('FILE_CONTENTS'));
+$images->logo(base64_encode('FILE_CONTENTS'));
+$endpoint->images($images);
+
+$availability = new Create\Availability();
+$availability->scheduleStart(1674074046);
+$availability->scheduleStart('2023-01-18 12:34:56');
+$availability->scheduleStart(\Carbon\Carbon::now()->addHour());
+$availability->scheduleEnd(1674074046);
+$availability->scheduleEnd('2023-01-18 12:34:56');
+$availability->scheduleEnd(\Carbon\Carbon::now()->addHour());
+$endpoint->availability($availability);
+
+$input = new Create\Input\Input();
+$input->transcode(true);
+$input->trancoderId(1);
+$input->protocol(Create\Enums\ProtocolEnum::SRT);
+$input->srtPassPhrase('passphrase');
+$input->srtKeyLength(1);
+$input->serverPort(443);
+$input->serverApp('app');
+$input->autoShutdown(1);
+$input->videoPid('videoPID123');
+
+$latvianLanguage = new Create\Input\AudioLanguage();
+$latvianLanguage->language('lat');
+$latvianLanguage->pid('123');
+$latvianLanguage->languageName('Latvian');
+$input->audioLanguages([$latvianLanguage]);
+
+$endpoint->input($input);
+$endpoint->timezone('Europe/Riga');
+
+$response = TmsApi::client('default')->run($endpoint);
+```
+
+### Endpoint: `/Live/On`
+
+https://api.cloudycdn.services/api/v5/docs#/operations/Live/On
+
+Turn on an existing livestream.
+
+**Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
+
+```php
+use Newman\LaravelTmsApiClient\Endpoints\Live\On;
+use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+
+$endpoint = new On(123);
+
+$endpoint->id(1234);
+
+$response = TmsApi::client('default')->run($endpoint);
+```
+
+### Endpoint: `/Live/Off`
+
+https://api.cloudycdn.services/api/v5/docs#/operations/Live/Off
+
+Turn Off an existing livestream.
+
+**Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
+
+```php
+use Newman\LaravelTmsApiClient\Endpoints\Live\Off;
+use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+
+$endpoint = new Off(123);
+
+$endpoint->id(1234);
+
+$response = TmsApi::client('default')->run($endpoint);
+```
+
+### Endpoint: `/Live/Record`
+
+https://api.cloudycdn.services/api/v5/docs#/operations/Live/Record
+
+Start recording an existing livestream.
+
+**Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
+
+```php
+use Newman\LaravelTmsApiClient\Endpoints\Live\Record;
+use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+
+$endpoint = new Record(123);
+
+$endpoint->id(1234);
+
+$response = TmsApi::client('default')->run($endpoint);
+```
+
 # :handshake: Contributing
 
 We'll appreciate your collaboration to this package.

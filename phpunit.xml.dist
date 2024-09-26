@@ -17,6 +17,9 @@
         <testsuite name="Endpoints">
             <directory suffix="Test.php">./tests/Endpoints</directory>
         </testsuite>
+        <testsuite name="EndpointSupport">
+            <directory suffix="Test.php">./tests/EndpointSupport</directory>
+        </testsuite>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
