@@ -35,6 +35,20 @@ class CompilesPropertiesConcernTest extends TestCase
             'created_at' => '2023-01-19 15:41:43',
             'is_published' => 0,
             'status_enum' => StatusEnum::INGESTED->value,
+            'child' => [
+                'name' => 'Name',
+                'description' => 'Description',
+            ],
+            'children' => [
+                [
+                    'name' => 'Name',
+                    'description' => 'Description',
+                ],
+                [
+                    'name' => 'Name',
+                    'description' => 'Description',
+                ]
+            ]
         ], $testClass->compileAsArray());
     }
 }

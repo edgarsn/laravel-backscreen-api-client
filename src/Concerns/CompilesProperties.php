@@ -44,6 +44,14 @@ trait CompilesProperties
                     $value = $value ? 1 : 0;
                 } else if ($value instanceof CarbonInterface) {
                     $value = $value->toDateTimeString();
+                } else if (is_object($value) && method_exists($value, 'compileAsArray')) {
+                    $value = $value->compileAsArray();
+                } else if (is_array($value)) {
+                    $formatted = [];
+                    foreach ($value as $item) {
+                        $formatted[] = is_object($item) && method_exists($item, 'compileAsArray') ? $item->compileAsArray() : $item;
+                    }
+                    $value = $formatted;
                 }
 
                 $data[$property->name] = $value;

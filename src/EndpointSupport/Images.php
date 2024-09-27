@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Media\Update;
+namespace Newman\LaravelTmsApiClient\EndpointSupport;
 
 use Newman\LaravelTmsApiClient\Concerns\CompilesProperties;
 

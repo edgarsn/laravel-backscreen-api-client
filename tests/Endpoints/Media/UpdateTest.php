@@ -9,6 +9,7 @@ use Newman\LaravelTmsApiClient\Endpoints\Media\Update\ByAssetId;
 use Newman\LaravelTmsApiClient\Endpoints\Media\Update\ByMediaId;
 use Newman\LaravelTmsApiClient\EndpointSupport\Callback;
 use Newman\LaravelTmsApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
+use Newman\LaravelTmsApiClient\EndpointSupport\Images;
 use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
 
 class UpdateTest extends TestCase
@@ -52,7 +53,7 @@ class UpdateTest extends TestCase
     {
         $endpoint = new Update(new ByMediaId(1234));
 
-        $images = new Update\Images();
+        $images = new Images();
         $images->thumbnail('aW1hZ2ViYXNlNjRfMQ==');
 
         $endpoint->images($images);
@@ -64,7 +65,7 @@ class UpdateTest extends TestCase
             ],
         ]);
 
-        $endpoint->images(new Update\Images());
+        $endpoint->images(new Images());
 
         $this->makeBasicAuthEndpointTest($endpoint, [], [
             'id' => 1234,

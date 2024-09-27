@@ -19,10 +19,20 @@ class TestClassWithPropertiesAndExceptProperties
     protected ?Carbon $created_at = null;
     protected ?bool $is_published = false;
     protected ?StatusEnum $status_enum = StatusEnum::INGESTED;
+    protected ?TestClassWithProperties $child = null;
+    /**
+     * @var array<TestClassWithProperties>|null $children 
+     */
+    protected ?array $children = null;
 
     public function __construct()
     {
         $this->created_at = Carbon::create(2023, 1, 19, 15, 41, 43);
+        $this->child = new TestClassWithProperties();
+
+        for ($i = 0; $i < 2; $i++) {
+            $this->children[] = new TestClassWithProperties();
+        }
     }
 
     public function compilesAsArrayExceptProperties(): array

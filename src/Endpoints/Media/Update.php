@@ -7,8 +7,8 @@ namespace Newman\LaravelTmsApiClient\Endpoints\Media;
 use Newman\LaravelTmsApiClient\AbstractEndpoint;
 use Newman\LaravelTmsApiClient\Contracts\EndpointContract;
 use Newman\LaravelTmsApiClient\Endpoints\Media\Update\ByContract;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Update\Images;
 use Newman\LaravelTmsApiClient\EndpointSupport\Callback;
+use Newman\LaravelTmsApiClient\EndpointSupport\Images;
 use Newman\LaravelTmsApiClient\Enums\HttpMethodEnum;
 use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
 
