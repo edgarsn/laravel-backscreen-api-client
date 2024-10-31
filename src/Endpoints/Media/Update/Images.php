@@ -80,12 +80,18 @@ class Images
             return false;
         }
 
-        $decoded = base64_decode($value, true);
+        if (!str_contains($value, 'data:') || !str_contains($value, 'base64,')) {
+            return false;
+        }
+
+        $base64 = substr($value, strpos($value, 'base64,') + strlen('base64,'));
+
+        $decoded = base64_decode($base64, true);
 
         if ($decoded === false) {
             return false;
         }
 
-        return base64_encode($decoded) === $value;
+        return base64_encode($decoded) === $base64;
     }
 }

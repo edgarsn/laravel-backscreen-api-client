@@ -13,20 +13,51 @@ class ImagesTest extends TestCase
     {
         $images = new Images();
 
-        $images->thumbnail('aW1hZ2ViYXNlNjRfMQ==')
-            ->placeholder('aW1hZ2ViYXNlNjRfMg==')
-            ->playbutton('aW1hZ2ViYXNlNjRfMw==')
-            ->logo('aW1hZ2ViYXNlNjRfNA==');
+        $encodedImage = 'data:image/png;base64,' . base64_encode('imagebase64_1');
+
+        $images->thumbnail($encodedImage)
+            ->placeholder($encodedImage)
+            ->playbutton($encodedImage)
+            ->logo($encodedImage);
 
         $this->assertEquals([
-            'thumbnail' => 'aW1hZ2ViYXNlNjRfMQ==',
-            'placeholder' => 'aW1hZ2ViYXNlNjRfMg==',
-            'playbutton' => 'aW1hZ2ViYXNlNjRfMw==',
-            'logo' => 'aW1hZ2ViYXNlNjRfNA==',
+            'thumbnail' => $encodedImage,
+            'placeholder' => $encodedImage,
+            'playbutton' => $encodedImage,
+            'logo' => $encodedImage,
         ], $images->compileAsArray());
     }
 
     public function test_with_non_base64(): void
+    {
+        $images = new Images();
+
+        try {
+            $images->thumbnail('data:image/png;base64,imagebase64_1');
+        } catch (\InvalidArgumentException $e) {
+            $this->assertEquals('thumbnail must be a base64 encoded string', $e->getMessage());
+        }
+
+        try {
+            $images->placeholder('data:image/png;base64,imagebase64_1');
+        } catch (\InvalidArgumentException $e) {
+            $this->assertEquals('placeholder must be a base64 encoded string', $e->getMessage());
+        }
+
+        try {
+            $images->playbutton('data:image/png;base64,imagebase64_1');
+        } catch (\InvalidArgumentException $e) {
+            $this->assertEquals('playbutton must be a base64 encoded string', $e->getMessage());
+        }
+
+        try {
+            $images->logo('data:image/png;base64,imagebase64_1');
+        } catch (\InvalidArgumentException $e) {
+            $this->assertEquals('logo must be a base64 encoded string', $e->getMessage());
+        }
+    }
+
+    public function test_without_metadata(): void
     {
         $images = new Images();
 
