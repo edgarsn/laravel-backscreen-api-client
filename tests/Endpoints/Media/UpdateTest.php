@@ -11,6 +11,7 @@ use Newman\LaravelTmsApiClient\EndpointSupport\Callback;
 use Newman\LaravelTmsApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
 use Newman\LaravelTmsApiClient\EndpointSupport\Images;
 use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelTmsApiClient\Endpoints\Media\Update\Images as UpdateImages;
 
 class UpdateTest extends TestCase
 {
@@ -54,14 +55,14 @@ class UpdateTest extends TestCase
         $endpoint = new Update(new ByMediaId(1234));
 
         $images = new Images();
-        $images->thumbnail('aW1hZ2ViYXNlNjRfMQ==');
+        $images->thumbnail('data:image/png;base64,aW1hZ2ViYXNlNjRfMQ==');
 
         $endpoint->images($images);
 
         $this->makeBasicAuthEndpointTest($endpoint, [], [
             'id' => 1234,
             'images' => [
-                'thumbnail' => 'aW1hZ2ViYXNlNjRfMQ==',
+                'thumbnail' => 'data:image/png;base64,aW1hZ2ViYXNlNjRfMQ==',
             ],
         ]);
 
