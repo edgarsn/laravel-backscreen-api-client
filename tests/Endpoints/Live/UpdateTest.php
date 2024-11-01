@@ -287,20 +287,20 @@ class UpdateTest extends TestCase
         $endpoint = new Update(1);
 
         $images = new Images();
-        $images->thumbnail(base64_encode('thumbnail'));
-        $images->placeholder(base64_encode('placeholder'));
-        $images->playbutton(base64_encode('playbutton'));
-        $images->logo(base64_encode('logo'));
+        $images->thumbnail('data:image/png;base64,' . base64_encode('thumbnail'));
+        $images->placeholder('data:image/png;base64,' . base64_encode('placeholder'));
+        $images->playbutton('data:image/png;base64,' . base64_encode('playbutton'));
+        $images->logo('data:image/png;base64,' . base64_encode('logo'));
 
         $endpoint->images($images);
 
         $this->makeBasicAuthEndpointTest($endpoint, [], [
             'id' => 1,
             'images' => [
-                'thumbnail' => base64_encode('thumbnail'),
-                'placeholder' => base64_encode('placeholder'),
-                'playbutton' => base64_encode('playbutton'),
-                'logo' => base64_encode('logo'),
+                'thumbnail' => 'data:image/png;base64,' . base64_encode('thumbnail'),
+                'placeholder' => 'data:image/png;base64,' . base64_encode('placeholder'),
+                'playbutton' => 'data:image/png;base64,' . base64_encode('playbutton'),
+                'logo' => 'data:image/png;base64,' . base64_encode('logo'),
             ]
         ]);
     }
