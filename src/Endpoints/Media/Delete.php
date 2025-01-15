@@ -66,6 +66,6 @@ class Delete extends AbstractEndpoint implements EndpointContract
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {
-        $http->withData(['id' => $this->mediaIds]);
+        $http->withQuery(['id' => $this->mediaIds]);
     }
 }
