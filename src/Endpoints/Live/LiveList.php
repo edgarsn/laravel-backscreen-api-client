@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Live;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Live;
 
 use Carbon\CarbonInterface;
-use Newman\LaravelTmsApiClient\AbstractEndpoint;
-use Newman\LaravelTmsApiClient\Contracts\EndpointContract;
-use Newman\LaravelTmsApiClient\Endpoints\Live\LiveList\OrderByEnum;
-use Newman\LaravelTmsApiClient\Endpoints\Live\LiveList\PeriodEnum;
-use Newman\LaravelTmsApiClient\Endpoints\Live\LiveList\ReturnEnum;
-use Newman\LaravelTmsApiClient\EndpointSupport\Enums\OrderDirectionEnum;
-use Newman\LaravelTmsApiClient\Enums\HttpMethodEnum;
-use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
+use Newman\LaravelBackscreenApiClient\AbstractEndpoint;
+use Newman\LaravelBackscreenApiClient\Contracts\EndpointContract;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\LiveList\OrderByEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\LiveList\PeriodEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\LiveList\ReturnEnum;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\OrderDirectionEnum;
+use Newman\LaravelBackscreenApiClient\Enums\HttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\HttpClient\PendingRequest;
 
 /**
  * @link https://api.cloudycdn.services/api/v5/docs#/operations/Live/List

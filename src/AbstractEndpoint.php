@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient;
+namespace Newman\LaravelBackscreenApiClient;
 
-use Newman\LaravelTmsApiClient\Enums\AuthMethodEnum;
-use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
+use Newman\LaravelBackscreenApiClient\Enums\AuthMethodEnum;
+use Newman\LaravelBackscreenApiClient\HttpClient\PendingRequest;
 
 abstract class AbstractEndpoint
 {

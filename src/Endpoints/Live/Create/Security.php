@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Live\Create;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Live\Create;
 
-use Newman\LaravelTmsApiClient\Concerns\CompilesProperties;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Enums\EncryptionMethodEnum;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Enums\TokenDurationEnum;
+use Newman\LaravelBackscreenApiClient\Concerns\CompilesProperties;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Enums\EncryptionMethodEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Enums\TokenDurationEnum;
 
 class Security
 {

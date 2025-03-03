@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Live\Create;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Live\Create;
 
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Publish;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Publish;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class PublishTest extends TestCase
 {

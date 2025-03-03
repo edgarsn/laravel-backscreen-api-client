@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Support\Facades;
+namespace Newman\LaravelBackscreenApiClient\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Newman\LaravelTmsApiClient\Contracts\AuthMethodContract;
-use Newman\LaravelTmsApiClient\Contracts\ClientContract;
-use Newman\LaravelTmsApiClient\Contracts\TmsApiContract;
-use Newman\LaravelTmsApiClient\Support\TmsApiFake;
+use Newman\LaravelBackscreenApiClient\Contracts\AuthMethodContract;
+use Newman\LaravelBackscreenApiClient\Contracts\ClientContract;
+use Newman\LaravelBackscreenApiClient\Contracts\TmsApiContract;
+use Newman\LaravelBackscreenApiClient\Support\TmsApiFake;
 
 /**
  * @method static ClientContract client(string $name)

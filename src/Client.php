@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient;
+namespace Newman\LaravelBackscreenApiClient;
 
 use Exception;
 use Illuminate\Http\Client\Response;
-use Newman\LaravelTmsApiClient\Contracts\AuthMethodContract;
-use Newman\LaravelTmsApiClient\Contracts\ClientContract;
-use Newman\LaravelTmsApiClient\Contracts\EndpointContract;
-use Newman\LaravelTmsApiClient\Enums\HttpMethodEnum;
-use Newman\LaravelTmsApiClient\Exceptions\TmsAuthMethodNotAllowed;
-use Newman\LaravelTmsApiClient\HttpClient\HttpFactory;
-use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
+use Newman\LaravelBackscreenApiClient\Contracts\AuthMethodContract;
+use Newman\LaravelBackscreenApiClient\Contracts\ClientContract;
+use Newman\LaravelBackscreenApiClient\Contracts\EndpointContract;
+use Newman\LaravelBackscreenApiClient\Enums\HttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\Exceptions\TmsAuthMethodNotAllowed;
+use Newman\LaravelBackscreenApiClient\HttpClient\HttpFactory;
+use Newman\LaravelBackscreenApiClient\HttpClient\PendingRequest;
 
 class Client implements ClientContract
 {

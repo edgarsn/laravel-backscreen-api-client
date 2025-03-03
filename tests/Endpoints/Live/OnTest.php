@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Live;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Live;
 
-use Newman\LaravelTmsApiClient\Endpoints\Live\On;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\On;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class OnTest extends TestCase
 {

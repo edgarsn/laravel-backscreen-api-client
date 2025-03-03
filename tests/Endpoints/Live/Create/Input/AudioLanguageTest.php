@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Live\Create;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Live\Create\Input;
 
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Input\AudioLanguage;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Input\AudioLanguage;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class AudioLanguageTest extends TestCase
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\HttpClient;
+namespace Newman\LaravelBackscreenApiClient\HttpClient;
 
 use Illuminate\Http\Client\Factory;
 

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Media;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Media;
 
 use Carbon\Carbon;
-use Newman\LaravelTmsApiClient\Endpoints\Media\MediaList;
-use Newman\LaravelTmsApiClient\EndpointSupport\Enums\OrderDirectionEnum;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\OrderDirectionEnum;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class MediaListTest extends TestCase
 {

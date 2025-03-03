@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Media\Update;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Media\Update;
 
-use Newman\LaravelTmsApiClient\Endpoints\Media\Update\Images;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\Images;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class ImagesTest extends TestCase
 {

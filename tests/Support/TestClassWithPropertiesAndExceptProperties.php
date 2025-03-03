@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Support;
+namespace Newman\LaravelBackscreenApiClient\Tests\Support;
 
 use Carbon\Carbon;
-use Newman\LaravelTmsApiClient\Concerns\CompilesProperties;
-use Newman\LaravelTmsApiClient\Endpoints\Media\MediaList\StatusEnum;
+use Newman\LaravelBackscreenApiClient\Concerns\CompilesProperties;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\StatusEnum;
 
 class TestClassWithPropertiesAndExceptProperties
 {

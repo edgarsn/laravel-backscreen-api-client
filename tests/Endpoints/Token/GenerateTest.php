@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Token;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Token;
 
 use Carbon\Carbon;
-use Newman\LaravelTmsApiClient\Endpoints\Token\Generate;
-use Newman\LaravelTmsApiClient\Endpoints\Token\Generate\SubitemTypeEnum;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Token\Generate;
+use Newman\LaravelBackscreenApiClient\Endpoints\Token\Generate\SubitemTypeEnum;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class GenerateTest extends TestCase
 {

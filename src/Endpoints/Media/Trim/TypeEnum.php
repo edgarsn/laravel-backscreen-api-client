@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Media\Trim;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Media\Trim;
 
 enum TypeEnum: string
 {

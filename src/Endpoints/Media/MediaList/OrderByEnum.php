@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Media\MediaList;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList;
 
 enum OrderByEnum: string
 {

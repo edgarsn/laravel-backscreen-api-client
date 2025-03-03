@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Media;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Media;
 
-use Newman\LaravelTmsApiClient\Endpoints\Media\Create;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Create\Files;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Create\Tags;
-use Newman\LaravelTmsApiClient\EndpointSupport\Callback;
-use Newman\LaravelTmsApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Files;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Tags;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Callback;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class CreateTest extends TestCase
 {

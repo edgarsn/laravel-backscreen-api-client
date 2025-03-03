@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Support;
+namespace Newman\LaravelBackscreenApiClient\Tests\Support;
 
-use Newman\LaravelTmsApiClient\AbstractEndpoint;
-use Newman\LaravelTmsApiClient\Contracts\EndpointContract;
-use Newman\LaravelTmsApiClient\Enums\HttpMethodEnum;
-use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
+use Newman\LaravelBackscreenApiClient\AbstractEndpoint;
+use Newman\LaravelBackscreenApiClient\Contracts\EndpointContract;
+use Newman\LaravelBackscreenApiClient\Enums\HttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\HttpClient\PendingRequest;
 
 class GetTestEndpoint extends AbstractEndpoint implements EndpointContract
 {

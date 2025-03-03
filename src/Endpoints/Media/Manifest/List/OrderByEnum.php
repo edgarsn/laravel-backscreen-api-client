@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Media\Manifest\List;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Media\Manifest\List;
 
 enum OrderByEnum: string
 {

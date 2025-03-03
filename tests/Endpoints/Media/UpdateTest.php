@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Media;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Media;
 
-use Newman\LaravelTmsApiClient\Endpoints\Media\Update;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Update\ByAssetId;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Update\ByMediaId;
-use Newman\LaravelTmsApiClient\EndpointSupport\Callback;
-use Newman\LaravelTmsApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
-use Newman\LaravelTmsApiClient\EndpointSupport\Images;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\ByAssetId;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\ByMediaId;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Callback;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Images;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class UpdateTest extends TestCase
 {

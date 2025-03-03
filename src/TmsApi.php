@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient;
+namespace Newman\LaravelBackscreenApiClient;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
-use Newman\LaravelTmsApiClient\Auth\BasicAuthMethod;
-use Newman\LaravelTmsApiClient\Auth\NullAuthMethod;
-use Newman\LaravelTmsApiClient\Contracts\AuthMethodContract;
-use Newman\LaravelTmsApiClient\Contracts\ClientContract;
-use Newman\LaravelTmsApiClient\Contracts\TmsApiContract;
-use Newman\LaravelTmsApiClient\Exceptions\InvalidTmsApiClientException;
+use Newman\LaravelBackscreenApiClient\Auth\BasicAuthMethod;
+use Newman\LaravelBackscreenApiClient\Auth\NullAuthMethod;
+use Newman\LaravelBackscreenApiClient\Contracts\AuthMethodContract;
+use Newman\LaravelBackscreenApiClient\Contracts\ClientContract;
+use Newman\LaravelBackscreenApiClient\Contracts\TmsApiContract;
+use Newman\LaravelBackscreenApiClient\Exceptions\InvalidTmsApiClientException;
 
 class TmsApi implements TmsApiContract
 {

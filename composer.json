@@ -1,6 +1,6 @@
 {
 	"name": "newman/laravel-tms-api-client",
-	"description": "Laravel TMS Api client.",
+	"description": "Laravel Backscreen Api client.",
 	"keywords": [
 		"laravel",
 		"tms",
@@ -35,12 +35,12 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Newman\\LaravelTmsApiClient\\": "src/"
+			"Newman\\LaravelBackscreenApiClient\\": "src/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Newman\\LaravelTmsApiClient\\Tests\\": "tests/"
+			"Newman\\LaravelBackscreenApiClient\\Tests\\": "tests/"
 		}
 	},
 	"scripts": {
@@ -54,10 +54,10 @@
 	"extra": {
 		"laravel": {
 			"providers": [
-				"Newman\\LaravelTmsApiClient\\ServiceProvider"
+				"Newman\\LaravelBackscreenApiClient\\ServiceProvider"
 			],
 			"aliases": {
-				"TmsApi": "Newman\\LaravelTmsApiClient\\Support\\Facades\\TmsApi"
+				"TmsApi": "Newman\\LaravelBackscreenApiClient\\Support\\Facades\\TmsApi"
 			}
 		}
 	},

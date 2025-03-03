@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Media\Create;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Media\Create;
 
-use Newman\LaravelTmsApiClient\Concerns\CompilesProperties;
+use Newman\LaravelBackscreenApiClient\Concerns\CompilesProperties;
 
 class Files
 {

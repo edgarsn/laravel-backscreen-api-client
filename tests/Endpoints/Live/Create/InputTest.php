@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Live\Create;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Live\Create;
 
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Enums\ProtocolEnum;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Input\AudioLanguage;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Input\Input;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Input\Packager;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Enums\ProtocolEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Input\AudioLanguage;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Input\Input;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Input\Packager;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class InputTest extends TestCase
 {

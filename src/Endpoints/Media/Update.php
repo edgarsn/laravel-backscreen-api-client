@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Media;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Media;
 
-use Newman\LaravelTmsApiClient\AbstractEndpoint;
-use Newman\LaravelTmsApiClient\Contracts\EndpointContract;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Update\ByContract;
-use Newman\LaravelTmsApiClient\EndpointSupport\Callback;
-use Newman\LaravelTmsApiClient\EndpointSupport\Images;
-use Newman\LaravelTmsApiClient\Enums\HttpMethodEnum;
-use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
+use Newman\LaravelBackscreenApiClient\AbstractEndpoint;
+use Newman\LaravelBackscreenApiClient\Contracts\EndpointContract;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\ByContract;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Callback;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Images;
+use Newman\LaravelBackscreenApiClient\Enums\HttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\HttpClient\PendingRequest;
 
 /**
  * @link https://api.cloudycdn.services/api/v5/docs#/operations/Media/Update

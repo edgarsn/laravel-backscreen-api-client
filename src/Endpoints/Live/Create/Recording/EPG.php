@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Live\Create\Recording;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Recording;
 
-use Newman\LaravelTmsApiClient\Concerns\CompilesProperties;
+use Newman\LaravelBackscreenApiClient\Concerns\CompilesProperties;
 
 class EPG
 {

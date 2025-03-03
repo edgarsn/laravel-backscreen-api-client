@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Unit\Auth;
+namespace Newman\LaravelBackscreenApiClient\Tests\Unit\Auth;
 
 use Illuminate\Support\Arr;
-use Newman\LaravelTmsApiClient\Auth\BasicAuthMethod;
-use Newman\LaravelTmsApiClient\Enums\AuthMethodEnum;
-use Newman\LaravelTmsApiClient\HttpClient\HttpFactory;
-use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
-use Newman\LaravelTmsApiClient\Tests\TestCase;
+use Newman\LaravelBackscreenApiClient\Auth\BasicAuthMethod;
+use Newman\LaravelBackscreenApiClient\Enums\AuthMethodEnum;
+use Newman\LaravelBackscreenApiClient\HttpClient\HttpFactory;
+use Newman\LaravelBackscreenApiClient\HttpClient\PendingRequest;
+use Newman\LaravelBackscreenApiClient\Tests\TestCase;
 
 class BasicAuthMethodTest extends TestCase
 {

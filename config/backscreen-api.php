@@ -16,8 +16,8 @@ return [
         'default' => [
             // Basic Auth credentials (Required)
             'auth' => [
-                'username' => env('TMS_DEFAULT_USERNAME'),
-                'password' => env('TMS_DEFAULT_PASSWORD'),
+                'username' => env('BACKSCREEN_DEFAULT_USERNAME'),
+                'password' => env('BACKSCREEN_DEFAULT_PASSWORD'),
             ],
 
             // Default HTTP settings (Optional)

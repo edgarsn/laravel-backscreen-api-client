@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Media\Manifest;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Media\Manifest;
 
-use Newman\LaravelTmsApiClient\Endpoints\Media\Manifest\Delete;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Manifest\Delete;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class DeleteTest extends TestCase
 {

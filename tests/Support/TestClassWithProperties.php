@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Support;
+namespace Newman\LaravelBackscreenApiClient\Tests\Support;
 
-use Newman\LaravelTmsApiClient\Concerns\CompilesProperties;
+use Newman\LaravelBackscreenApiClient\Concerns\CompilesProperties;
 
 class TestClassWithProperties
 {

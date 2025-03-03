@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests;
+namespace Newman\LaravelBackscreenApiClient\Tests;
 
-use Newman\LaravelTmsApiClient\ServiceProvider;
+use Newman\LaravelBackscreenApiClient\ServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra

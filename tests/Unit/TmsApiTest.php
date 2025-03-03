@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Unit;
+namespace Newman\LaravelBackscreenApiClient\Tests\Unit;
 
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
-use Newman\LaravelTmsApiClient\Auth\ApiKeyAuthMethod;
-use Newman\LaravelTmsApiClient\Client;
-use Newman\LaravelTmsApiClient\Contracts\ClientContract;
-use Newman\LaravelTmsApiClient\Exceptions\InvalidTmsApiClientException;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
-use Newman\LaravelTmsApiClient\Tests\Support\GetTestEndpoint;
-use Newman\LaravelTmsApiClient\Tests\TestCase;
+use Newman\LaravelBackscreenApiClient\Auth\ApiKeyAuthMethod;
+use Newman\LaravelBackscreenApiClient\Client;
+use Newman\LaravelBackscreenApiClient\Contracts\ClientContract;
+use Newman\LaravelBackscreenApiClient\Exceptions\InvalidTmsApiClientException;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Tests\Support\GetTestEndpoint;
+use Newman\LaravelBackscreenApiClient\Tests\TestCase;
 
 class TmsApiTest extends TestCase
 {

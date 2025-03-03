@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Unit;
+namespace Newman\LaravelBackscreenApiClient\Tests\Unit;
 
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Arr;
-use Newman\LaravelTmsApiClient\Auth\BasicAuthMethod;
-use Newman\LaravelTmsApiClient\Auth\BearerAuthMethod;
-use Newman\LaravelTmsApiClient\Client;
-use Newman\LaravelTmsApiClient\Exceptions\TmsAuthMethodNotAllowed;
-use Newman\LaravelTmsApiClient\Tests\Support\GetTestEndpoint;
-use Newman\LaravelTmsApiClient\Tests\Support\PostTestBearerOnlyEndpoint;
-use Newman\LaravelTmsApiClient\Tests\TestCase;
+use Newman\LaravelBackscreenApiClient\Auth\BasicAuthMethod;
+use Newman\LaravelBackscreenApiClient\Auth\BearerAuthMethod;
+use Newman\LaravelBackscreenApiClient\Client;
+use Newman\LaravelBackscreenApiClient\Exceptions\TmsAuthMethodNotAllowed;
+use Newman\LaravelBackscreenApiClient\Tests\Support\GetTestEndpoint;
+use Newman\LaravelBackscreenApiClient\Tests\Support\PostTestBearerOnlyEndpoint;
+use Newman\LaravelBackscreenApiClient\Tests\TestCase;
 use Psr\Http\Message\RequestInterface;
 
 class ClientTest extends TestCase

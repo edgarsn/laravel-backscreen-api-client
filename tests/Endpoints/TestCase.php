@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints;
 
 use Illuminate\Http\Client\Response;
-use Newman\LaravelTmsApiClient\Auth\ApiKeyAuthMethod;
-use Newman\LaravelTmsApiClient\Auth\BasicAuthMethod;
-use Newman\LaravelTmsApiClient\Auth\BearerAuthMethod;
-use Newman\LaravelTmsApiClient\Auth\NullAuthMethod;
-use Newman\LaravelTmsApiClient\Client;
-use Newman\LaravelTmsApiClient\Contracts\ClientContract;
-use Newman\LaravelTmsApiClient\Contracts\EndpointContract;
+use Newman\LaravelBackscreenApiClient\Auth\ApiKeyAuthMethod;
+use Newman\LaravelBackscreenApiClient\Auth\BasicAuthMethod;
+use Newman\LaravelBackscreenApiClient\Auth\BearerAuthMethod;
+use Newman\LaravelBackscreenApiClient\Auth\NullAuthMethod;
+use Newman\LaravelBackscreenApiClient\Client;
+use Newman\LaravelBackscreenApiClient\Contracts\ClientContract;
+use Newman\LaravelBackscreenApiClient\Contracts\EndpointContract;
 
-abstract class TestCase extends \Newman\LaravelTmsApiClient\Tests\TestCase
+abstract class TestCase extends \Newman\LaravelBackscreenApiClient\Tests\TestCase
 {
     protected function makeBasicAuthEndpointTest(EndpointContract $endpoint, array $query = [], array|string|null $body = null, ?array $fakeResponse = null): Response
     {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\HttpClient;
+namespace Newman\LaravelBackscreenApiClient\HttpClient;
 
-use Newman\LaravelTmsApiClient\Enums\HttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\Enums\HttpMethodEnum;
 
 class PendingRequest extends \Illuminate\Http\Client\PendingRequest
 {

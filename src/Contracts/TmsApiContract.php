@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Contracts;
+namespace Newman\LaravelBackscreenApiClient\Contracts;
 
 interface TmsApiContract
 {

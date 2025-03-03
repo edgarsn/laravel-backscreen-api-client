@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient;
+namespace Newman\LaravelBackscreenApiClient;
 
-use Newman\LaravelTmsApiClient\Contracts\ClientContract;
-use Newman\LaravelTmsApiClient\Contracts\TmsApiContract;
+use Newman\LaravelBackscreenApiClient\Contracts\ClientContract;
+use Newman\LaravelBackscreenApiClient\Contracts\TmsApiContract;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
@@ -22,7 +22,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/tms-api.php', 'tms-api');
+        $this->mergeConfigFrom(__DIR__.'/../config/backscreen-api.php', 'backscreen-api');
 
         $this->app->singleton(TmsApiContract::class, TmsApi::class);
         $this->app->singleton(ClientContract::class, Client::class);
@@ -35,8 +35,8 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/tms-api.php' => config_path('tms-api.php'),
-            ], 'tms-api-config');
+                __DIR__.'/../config/backscreen-api.php' => config_path('backscreen-api.php'),
+            ], 'backscreen-api-config');
         }
     }
 }

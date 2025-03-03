@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Token;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Token;
 
 use Carbon\CarbonInterface;
-use Newman\LaravelTmsApiClient\AbstractEndpoint;
-use Newman\LaravelTmsApiClient\Contracts\EndpointContract;
-use Newman\LaravelTmsApiClient\Endpoints\Token\Generate\ItemTypeEnum;
-use Newman\LaravelTmsApiClient\Endpoints\Token\Generate\SubitemTypeEnum;
-use Newman\LaravelTmsApiClient\Enums\HttpMethodEnum;
-use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
+use Newman\LaravelBackscreenApiClient\AbstractEndpoint;
+use Newman\LaravelBackscreenApiClient\Contracts\EndpointContract;
+use Newman\LaravelBackscreenApiClient\Endpoints\Token\Generate\ItemTypeEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Token\Generate\SubitemTypeEnum;
+use Newman\LaravelBackscreenApiClient\Enums\HttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\HttpClient\PendingRequest;
 
 /**
  * @link https://api.cloudycdn.services/api/v5/docs#/operations/Token/Generate

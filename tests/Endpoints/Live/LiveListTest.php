@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Live;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Live;
 
 use Carbon\Carbon;
-use Newman\LaravelTmsApiClient\Endpoints\Live\LiveList;
-use Newman\LaravelTmsApiClient\Endpoints\Live\LiveList\OrderByEnum;
-use Newman\LaravelTmsApiClient\Endpoints\Live\LiveList\PeriodEnum;
-use Newman\LaravelTmsApiClient\Endpoints\Live\LiveList\ReturnEnum;
-use Newman\LaravelTmsApiClient\EndpointSupport\Enums\OrderDirectionEnum;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\LiveList;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\LiveList\OrderByEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\LiveList\PeriodEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\LiveList\ReturnEnum;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\OrderDirectionEnum;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class LiveListTest extends TestCase
 {
