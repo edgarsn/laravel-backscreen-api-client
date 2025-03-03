@@ -5,8 +5,10 @@ This package helps you to make API calls to Backscreen (a.k.a: Videosher, TET Me
 https://api.cloudycdn.services/api/v5/docs
 
 ## Requirements
-- Laravel 9.0+, 10.0+, 11.0+
-- PHP 8.1+
+- Laravel 11.0+, 12.0+
+- PHP 8.2+
+
+For laravel versions 9.0, 10.0, see 1.x branch.
 
 ## Installation
 Require the package via Composer:
