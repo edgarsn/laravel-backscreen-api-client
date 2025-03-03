@@ -17,10 +17,7 @@ class CloneMedia extends AbstractEndpoint implements EndpointContract
 {
     protected ?string $name = null;
 
-    public function __construct(protected int $media_id, protected string $asset_id)
-    {
-
-    }
+    public function __construct(protected int $media_id, protected string $asset_id) {}
 
     public function name(?string $name): static
     {
@@ -41,8 +38,6 @@ class CloneMedia extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -51,8 +46,6 @@ class CloneMedia extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -61,15 +54,12 @@ class CloneMedia extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {
         $data = [
             'id' => $this->media_id,
-            'asset_id' => $this->asset_id
+            'asset_id' => $this->asset_id,
         ];
 
         if ($this->name !== null) {

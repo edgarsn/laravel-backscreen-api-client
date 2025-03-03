@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Live\Create;
+
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Recording\Nimbus;
 use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
 
@@ -10,7 +11,7 @@ class NimbusTest extends TestCase
 {
     public function test(): void
     {
-        $nimbus = new Nimbus();
+        $nimbus = new Nimbus;
 
         try {
             $nimbus->syncInterval(2);

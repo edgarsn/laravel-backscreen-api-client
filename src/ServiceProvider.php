@@ -11,8 +11,6 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
      * Bootstrap any package services.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -24,7 +22,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/tms-api.php', 'tms-api');
+        $this->mergeConfigFrom(__DIR__.'/../config/tms-api.php', 'tms-api');
 
         $this->app->singleton(TmsApiContract::class, TmsApi::class);
         $this->app->singleton(ClientContract::class, Client::class);
@@ -37,7 +35,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/tms-api.php' => config_path('tms-api.php'),
+                __DIR__.'/../config/tms-api.php' => config_path('tms-api.php'),
             ], 'tms-api-config');
         }
     }

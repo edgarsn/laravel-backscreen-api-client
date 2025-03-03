@@ -13,14 +13,9 @@ use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
  */
 class NullAuthMethod implements AuthMethodContract
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
-    public function applyCredentials(PendingRequest $request): void
-    {
-
-    }
+    public function applyCredentials(PendingRequest $request): void {}
 
     public function getAuthMethod(): AuthMethodEnum
     {

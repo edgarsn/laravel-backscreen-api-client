@@ -11,5 +11,6 @@ class TestClassWithProperties
     use CompilesProperties;
 
     protected ?string $name = 'Name';
+
     protected ?string $description = 'Description';
 }

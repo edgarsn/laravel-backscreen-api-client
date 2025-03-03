@@ -14,7 +14,6 @@ interface ClientContract
     /**
      * Customize HTTP timeout for client.
      *
-     * @param int $seconds
      * @return $this
      */
     public function timeout(int $seconds): static;
@@ -22,7 +21,6 @@ interface ClientContract
     /**
      * Customize HTTP connect timeout for client.
      *
-     * @param int $seconds
      * @return $this
      */
     public function connectTimeout(int $seconds): static;
@@ -30,7 +28,6 @@ interface ClientContract
     /**
      * Append HTTP Client middleware.
      *
-     * @param callable $middleware
      * @return $this
      */
     public function withMiddleware(callable $middleware): static;
@@ -38,16 +35,12 @@ interface ClientContract
     /**
      * Run Endpoint.
      *
-     * @param EndpointContract $endpoint
-     * @return Response
      * @throws \Exception
      */
     public function run(EndpointContract $endpoint): Response;
 
     /**
      * Build & Get HTTP factory.
-     *
-     * @return HttpFactory
      */
     public function buildHttpFactory(): HttpFactory;
 }

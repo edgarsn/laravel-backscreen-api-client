@@ -11,6 +11,6 @@ class LogoutTest extends TestCase
 {
     public function test(): void
     {
-        $this->makeBearerAuthEndpointTest(new Logout(), [], '');
+        $this->makeBearerAuthEndpointTest(new Logout, [], '');
     }
 }

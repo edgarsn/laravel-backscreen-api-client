@@ -25,13 +25,13 @@ class ClientTest extends TestCase
         $factory = $client->buildHttpFactory();
         $factory->preventStrayRequests();
         $factory->fake([
-            'api.cloudycdn.services/api/v5/Test?status=ingested' => $factory->response(['msg' => '', 'code' => 0])
+            'api.cloudycdn.services/api/v5/Test?status=ingested' => $factory->response(['msg' => '', 'code' => 0]),
         ]);
 
         $response = $client
             ->timeout(10)
             ->connectTimeout(20)
-            ->run(new GetTestEndpoint());
+            ->run(new GetTestEndpoint);
 
         $this->assertTrue($response->successful());
         $this->assertEquals(['msg' => '', 'code' => 0], $response->json());
@@ -44,12 +44,12 @@ class ClientTest extends TestCase
         $factory = $client->buildHttpFactory();
         $factory->preventStrayRequests();
         $factory->fake([
-            'api.cloudycdn.services/api/v5/Test/Create' => $factory->response(['msg' => 'Created', 'code' => 0])
+            'api.cloudycdn.services/api/v5/Test/Create' => $factory->response(['msg' => 'Created', 'code' => 0]),
         ]);
 
         $this->expectException(TmsAuthMethodNotAllowed::class);
 
-        $client->run(new PostTestBearerOnlyEndpoint());
+        $client->run(new PostTestBearerOnlyEndpoint);
     }
 
     public function test_it_posts_data(): void
@@ -70,7 +70,7 @@ class ClientTest extends TestCase
             }
         });
 
-        $response = $client->run(new PostTestBearerOnlyEndpoint());
+        $response = $client->run(new PostTestBearerOnlyEndpoint);
 
         $this->assertTrue($response->successful());
         $this->assertEquals(['msg' => 'Created', 'code' => 0], $response->json());
@@ -83,7 +83,7 @@ class ClientTest extends TestCase
         $factory = $client->buildHttpFactory();
         $factory->preventStrayRequests();
         $factory->fake([
-            'api.cloudycdn.services/api/v5/Test?status=ingested' => $factory->response(['msg' => '', 'code' => 0])
+            'api.cloudycdn.services/api/v5/Test?status=ingested' => $factory->response(['msg' => '', 'code' => 0]),
         ]);
 
         $response = $client
@@ -94,7 +94,7 @@ class ClientTest extends TestCase
                     return $request;
                 })
             )
-            ->run(new GetTestEndpoint());
+            ->run(new GetTestEndpoint);
 
         $this->assertEquals('Value', Arr::get($response->transferStats->getRequest()->getHeader('X-Example'), 0));
     }

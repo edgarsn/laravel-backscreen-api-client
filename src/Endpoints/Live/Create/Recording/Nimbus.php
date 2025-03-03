@@ -11,15 +11,17 @@ class Nimbus
     use CompilesProperties;
 
     protected ?int $sync_interval = null;
+
     protected ?int $channel_id = null;
+
     protected ?int $manifest_id = null;
 
     public function syncInterval(int $sync_interval): static
     {
         $allowedValues = [0, 1, 5, 15, 30, 60, 120, 240];
-        
-        if (!in_array($sync_interval, $allowedValues)) {
-            throw new \InvalidArgumentException('sync_interval must be one of: ' . implode(', ', $allowedValues));
+
+        if (! in_array($sync_interval, $allowedValues)) {
+            throw new \InvalidArgumentException('sync_interval must be one of: '.implode(', ', $allowedValues));
         }
 
         $this->sync_interval = $sync_interval;

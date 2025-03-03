@@ -22,9 +22,7 @@ class Login extends AbstractEndpoint implements EndpointContract
      */
     protected ?array $return = null;
 
-    public function __construct(protected string $email, protected string $password)
-    {
-    }
+    public function __construct(protected string $email, protected string $password) {}
 
     public function twoFaCode(?string $code): static
     {
@@ -34,7 +32,7 @@ class Login extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param array<string>|null $return
+     * @param  array<string>|null  $return
      * @return $this
      */
     public function return(?array $return): static
@@ -56,8 +54,6 @@ class Login extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -66,8 +62,6 @@ class Login extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -76,9 +70,6 @@ class Login extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {

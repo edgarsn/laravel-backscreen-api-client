@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Newman\LaravelTmsApiClient\Endpoints\Live\Create\Enums;
 
-enum TokenDurationEnum: string {
+enum TokenDurationEnum: string
+{
     case ONE_HOUR = '1h';
     case THREE_HOUR = '3h';
     case SIX_HOUR = '6h';

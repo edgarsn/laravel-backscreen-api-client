@@ -13,12 +13,12 @@ class MediaListTest extends TestCase
 {
     public function test_without_parameters(): void
     {
-        $this->makeBasicAuthEndpointTest(new MediaList());
+        $this->makeBasicAuthEndpointTest(new MediaList);
     }
 
     public function test_with_ids(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->ids([1, 2]);
 
@@ -27,9 +27,9 @@ class MediaListTest extends TestCase
         ]);
     }
 
-    public function test_with_assetIds(): void
+    public function test_with_asset_ids(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->assetIds(['99_abc', '10_def']);
 
@@ -38,10 +38,9 @@ class MediaListTest extends TestCase
         ]);
     }
 
-
-    public function test_with_categoryIds(): void
+    public function test_with_category_ids(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->categoryIds([1, 2]);
 
@@ -52,7 +51,7 @@ class MediaListTest extends TestCase
 
     public function test_with_created_from(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         // unix
         $endpoint->createdFrom(1674135633);
@@ -78,7 +77,7 @@ class MediaListTest extends TestCase
 
     public function test_with_created_to(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         // unix
         $endpoint->createdTo(1674135633);
@@ -104,7 +103,7 @@ class MediaListTest extends TestCase
 
     public function test_with_updated_from(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         // unix
         $endpoint->updatedFrom(1674135633);
@@ -130,7 +129,7 @@ class MediaListTest extends TestCase
 
     public function test_with_updated_to(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         // unix
         $endpoint->updatedTo(1674135633);
@@ -156,7 +155,7 @@ class MediaListTest extends TestCase
 
     public function test_with_published(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->published(true);
 
@@ -171,9 +170,9 @@ class MediaListTest extends TestCase
         ]);
     }
 
-    public function test_with_publisherStatus(): void
+    public function test_with_publisher_status(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->publisherStatus(MediaList\PublisherStatusEnum::SCHEDULED);
 
@@ -182,9 +181,9 @@ class MediaListTest extends TestCase
         ]);
     }
 
-    public function test_with_onlyAvailable(): void
+    public function test_with_only_available(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->onlyAvailable(true);
 
@@ -201,7 +200,7 @@ class MediaListTest extends TestCase
 
     public function test_with_search(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->search('lorem ipsum');
 
@@ -212,7 +211,7 @@ class MediaListTest extends TestCase
 
     public function test_with_status(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->status(MediaList\StatusEnum::APPROVED);
 
@@ -229,7 +228,7 @@ class MediaListTest extends TestCase
 
     public function test_with_tags(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->tags(['lorem', 'ipsum']);
 
@@ -240,7 +239,7 @@ class MediaListTest extends TestCase
 
     public function test_with_limit(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->limit(5);
 
@@ -251,7 +250,7 @@ class MediaListTest extends TestCase
 
     public function test_with_limit_out_of_bounds_exception(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $this->expectException(\OutOfBoundsException::class);
         $this->expectExceptionMessage('Limit must be between 1 and 50.');
@@ -261,7 +260,7 @@ class MediaListTest extends TestCase
 
     public function test_with_offset(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->offset(5);
 
@@ -270,9 +269,9 @@ class MediaListTest extends TestCase
         ]);
     }
 
-    public function test_with_orderBy(): void
+    public function test_with_order_by(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->orderBy(MediaList\OrderByEnum::CREATED_AT);
 
@@ -281,9 +280,9 @@ class MediaListTest extends TestCase
         ]);
     }
 
-    public function test_with_orderDir(): void
+    public function test_with_order_dir(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->orderDir(OrderDirectionEnum::ASC);
 
@@ -292,9 +291,9 @@ class MediaListTest extends TestCase
         ]);
     }
 
-    public function test_with_imagesFallback(): void
+    public function test_with_images_fallback(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->imagesFallback(true);
 
@@ -311,7 +310,7 @@ class MediaListTest extends TestCase
 
     public function test_with_return(): void
     {
-        $endpoint = new MediaList();
+        $endpoint = new MediaList;
 
         $endpoint->return(['actions', 'tech_status']);
 

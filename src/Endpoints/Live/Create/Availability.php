@@ -12,6 +12,7 @@ class Availability
     use CompilesProperties;
 
     protected string|int|CarbonInterface|null $schedule_start = null;
+
     protected string|int|CarbonInterface|null $schedule_end = null;
 
     public function scheduleStart(string|int|CarbonInterface $schedule_start): static

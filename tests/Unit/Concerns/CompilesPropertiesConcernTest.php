@@ -13,7 +13,7 @@ class CompilesPropertiesConcernTest extends TestCase
 {
     public function test(): void
     {
-        $testClass = new TestClassWithProperties();
+        $testClass = new TestClassWithProperties;
 
         $this->assertEquals([], $testClass->compilesAsArrayExceptProperties());
 
@@ -25,7 +25,7 @@ class CompilesPropertiesConcernTest extends TestCase
 
     public function test_with_excepted_properties(): void
     {
-        $testClass = new TestClassWithPropertiesAndExceptProperties();
+        $testClass = new TestClassWithPropertiesAndExceptProperties;
 
         $this->assertEquals(['status'], $testClass->compilesAsArrayExceptProperties());
 
@@ -47,8 +47,8 @@ class CompilesPropertiesConcernTest extends TestCase
                 [
                     'name' => 'Name',
                     'description' => 'Description',
-                ]
-            ]
+                ],
+            ],
         ], $testClass->compileAsArray());
     }
 }

@@ -11,16 +11,11 @@ interface AuthMethodContract
 {
     /**
      * Applies credentials to request specific to this autentication method.
-     *
-     * @param PendingRequest $request
-     * @return void
      */
     public function applyCredentials(PendingRequest $request): void;
 
     /**
      * Authentication implementation method name.
-     *
-     * @return AuthMethodEnum
      */
     public function getAuthMethod(): AuthMethodEnum;
 }

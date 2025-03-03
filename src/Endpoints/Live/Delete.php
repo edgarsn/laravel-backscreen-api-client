@@ -15,7 +15,9 @@ use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
 class Delete extends AbstractEndpoint implements EndpointContract
 {
     protected int $id;
+
     protected ?bool $delete_media = null;
+
     protected ?bool $force = null;
 
     public function __construct(int $id)
@@ -24,7 +26,6 @@ class Delete extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param int $id
      * @return $this
      */
     public function id(int $id): static
@@ -35,7 +36,6 @@ class Delete extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param ?bool $delete_media
      * @return $this
      */
     public function deleteMedia(?bool $delete_media): static
@@ -46,7 +46,6 @@ class Delete extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param ?bool $force
      * @return $this
      */
     public function force(?bool $force): static
@@ -58,8 +57,6 @@ class Delete extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -68,8 +65,6 @@ class Delete extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -78,9 +73,6 @@ class Delete extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {

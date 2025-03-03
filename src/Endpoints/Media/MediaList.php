@@ -77,7 +77,7 @@ class MediaList extends AbstractEndpoint implements EndpointContract
     protected ?array $return = null;
 
     /**
-     * @param array<int>|null $ids
+     * @param  array<int>|null  $ids
      * @return $this
      */
     public function ids(?array $ids): static
@@ -88,7 +88,7 @@ class MediaList extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param array<string>|null $asset_ids
+     * @param  array<string>|null  $asset_ids
      * @return $this
      */
     public function assetIds(?array $asset_ids): static
@@ -99,7 +99,7 @@ class MediaList extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param array<int>|null $ids
+     * @param  array<int>|null  $ids
      * @return $this
      */
     public function categoryIds(?array $ids): static
@@ -166,18 +166,18 @@ class MediaList extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param StatusEnum|array<StatusEnum>|null $status
+     * @param  StatusEnum|array<StatusEnum>|null  $status
      * @return $this
      */
     public function status(StatusEnum|array|null $status): static
     {
-        $this->status = $status === null ? null : (!is_array($status) ? [$status] : $status);
+        $this->status = $status === null ? null : (! is_array($status) ? [$status] : $status);
 
         return $this;
     }
 
     /**
-     * @param array<string>|null $tags
+     * @param  array<string>|null  $tags
      * @return $this
      */
     public function tags(?array $tags): static
@@ -227,7 +227,7 @@ class MediaList extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param array<string>|null $return
+     * @param  array<string>|null  $return
      * @return $this
      */
     public function return(?array $return): static
@@ -239,8 +239,6 @@ class MediaList extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -249,8 +247,6 @@ class MediaList extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -259,9 +255,6 @@ class MediaList extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {
@@ -312,7 +305,7 @@ class MediaList extends AbstractEndpoint implements EndpointContract
         }
 
         if ($this->status !== null) {
-            $query['status'] = array_map(fn(StatusEnum $status) => $status->value, $this->status);
+            $query['status'] = array_map(fn (StatusEnum $status) => $status->value, $this->status);
         }
 
         if ($this->tags !== null) {

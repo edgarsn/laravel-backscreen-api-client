@@ -30,7 +30,6 @@ class PendingRequest extends \Illuminate\Http\Client\PendingRequest
     /**
      * Specifies HTTP method to use.
      *
-     * @param HttpMethodEnum $httpMethod
      * @return $this
      */
     public function useMethod(HttpMethodEnum $httpMethod): static
@@ -43,7 +42,6 @@ class PendingRequest extends \Illuminate\Http\Client\PendingRequest
     /**
      * Endpoint to call, e.g. "/token/generate".
      *
-     * @param string $endpoint
      * @return $this
      */
     public function setEndpoint(string $endpoint): static
@@ -56,7 +54,7 @@ class PendingRequest extends \Illuminate\Http\Client\PendingRequest
     /**
      * Specify authentication query parameters. Should only be used from AuthMethod implementation.
      *
-     * @param array<string, mixed> $query
+     * @param  array<string, mixed>  $query
      * @return $this
      */
     public function setAuthQueryParams(array $query): static
@@ -69,7 +67,7 @@ class PendingRequest extends \Illuminate\Http\Client\PendingRequest
     /**
      * Add optional query parameters to request.
      *
-     * @param array<string, mixed> $query
+     * @param  array<string, mixed>  $query
      * @return $this
      */
     public function withQuery(array $query): static
@@ -82,7 +80,7 @@ class PendingRequest extends \Illuminate\Http\Client\PendingRequest
     /**
      * Data to POST/PUT/DELETE.
      *
-     * @param array<string, mixed> $data
+     * @param  array<string, mixed>  $data
      * @return $this
      */
     public function withData(array $data): static
@@ -94,8 +92,6 @@ class PendingRequest extends \Illuminate\Http\Client\PendingRequest
 
     /**
      * Retrieve HTTP method to use.
-     *
-     * @return HttpMethodEnum
      */
     public function getHttpMethod(): HttpMethodEnum
     {
@@ -104,8 +100,6 @@ class PendingRequest extends \Illuminate\Http\Client\PendingRequest
 
     /**
      * Retrieve Endpoint to call, e.g. "/token/generate"
-     *
-     * @return string
      */
     public function getEndpoint(): string
     {
@@ -136,7 +130,6 @@ class PendingRequest extends \Illuminate\Http\Client\PendingRequest
      * Get body format used for this request.
      *
      * @codeCoverageIgnore
-     * @return string
      */
     public function getBodyFormat(): string
     {

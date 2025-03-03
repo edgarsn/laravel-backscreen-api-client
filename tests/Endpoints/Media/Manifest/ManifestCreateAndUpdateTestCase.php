@@ -45,7 +45,7 @@ abstract class ManifestCreateAndUpdateTestCase extends TestCase
         ]);
     }
 
-    public function test_with_startAt(): void
+    public function test_with_start_at(): void
     {
         $endpoint = $this->getEndpoint();
 
@@ -57,7 +57,7 @@ abstract class ManifestCreateAndUpdateTestCase extends TestCase
         ]);
     }
 
-    public function test_with_endAt(): void
+    public function test_with_end_at(): void
     {
         $endpoint = $this->getEndpoint();
 
@@ -81,7 +81,7 @@ abstract class ManifestCreateAndUpdateTestCase extends TestCase
         ]);
     }
 
-    public function test_with_packageId(): void
+    public function test_with_package_id(): void
     {
         $endpoint = $this->getEndpoint();
 

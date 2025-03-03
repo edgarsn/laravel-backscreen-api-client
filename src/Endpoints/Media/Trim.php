@@ -19,15 +19,10 @@ class Trim extends AbstractEndpoint implements EndpointContract
     protected ?string $name = null;
 
     /**
-     * @param int $id
-     * @param string $start HH:mm:ss
-     * @param string $end HH:mm:ss
-     * @param TypeEnum $type
+     * @param  string  $start  HH:mm:ss
+     * @param  string  $end  HH:mm:ss
      */
-    public function __construct(protected int $id, protected string $start, protected string $end, protected TypeEnum $type)
-    {
-
-    }
+    public function __construct(protected int $id, protected string $start, protected string $end, protected TypeEnum $type) {}
 
     public function name(?string $name): static
     {
@@ -48,8 +43,6 @@ class Trim extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -58,8 +51,6 @@ class Trim extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -68,9 +59,6 @@ class Trim extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {

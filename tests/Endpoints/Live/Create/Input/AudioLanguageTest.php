@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Live\Create;
+
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Input\AudioLanguage;
 use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
 
@@ -10,7 +11,7 @@ class AudioLanguageTest extends TestCase
 {
     public function test(): void
     {
-        $language = new AudioLanguage();
+        $language = new AudioLanguage;
 
         try {
             $language->language('wrong');

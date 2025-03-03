@@ -21,11 +21,6 @@ abstract class AbstractEndpoint
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
-    public function prepareHttpRequest(PendingRequest $http): void
-    {
-    }
+    public function prepareHttpRequest(PendingRequest $http): void {}
 }

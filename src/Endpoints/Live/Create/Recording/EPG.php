@@ -11,7 +11,9 @@ class EPG
     use CompilesProperties;
 
     protected ?int $hours_before = null;
+
     protected ?int $hours_after = null;
+
     protected ?int $round = null;
 
     public function hoursBefore(int $hours_before): static
@@ -39,9 +41,9 @@ class EPG
     public function round(int $round): static
     {
         $allowedValues = [0, 1, 2, 3, 5, 10];
-       
-        if (!in_array($round, $allowedValues)) {
-            throw new \InvalidArgumentException('round must be one of: ' . implode(', ', $allowedValues));
+
+        if (! in_array($round, $allowedValues)) {
+            throw new \InvalidArgumentException('round must be one of: '.implode(', ', $allowedValues));
         }
 
         $this->round = $round;

@@ -22,7 +22,6 @@ class Off extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param int $id
      * @return $this
      */
     public function id(int $id): self
@@ -34,8 +33,6 @@ class Off extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -44,8 +41,6 @@ class Off extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -54,9 +49,6 @@ class Off extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {

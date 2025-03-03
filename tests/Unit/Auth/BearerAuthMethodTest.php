@@ -17,7 +17,7 @@ class BearerAuthMethodTest extends TestCase
     {
         $auth = new BearerAuthMethod('lorem');
 
-        $factory = new HttpFactory();
+        $factory = new HttpFactory;
         /** @var PendingRequest $request */
         $request = $factory->baseUrl('https://api.localhost');
 

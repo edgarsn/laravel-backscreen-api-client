@@ -19,7 +19,7 @@ class GenerateTest extends TestCase
         ]);
     }
 
-    public function test_with_allowedCountries(): void
+    public function test_with_allowed_countries(): void
     {
         $endpoint = new Generate(1, Generate\ItemTypeEnum::MEDIA);
 
@@ -32,7 +32,7 @@ class GenerateTest extends TestCase
         ]);
     }
 
-    public function test_with_allowedIp(): void
+    public function test_with_allowed_ip(): void
     {
         $endpoint = new Generate(1, Generate\ItemTypeEnum::MEDIA);
 
@@ -45,7 +45,7 @@ class GenerateTest extends TestCase
         ]);
     }
 
-    public function test_with_expireTime(): void
+    public function test_with_expire_time(): void
     {
         $endpoint = new Generate(1, Generate\ItemTypeEnum::MEDIA);
 
@@ -77,7 +77,7 @@ class GenerateTest extends TestCase
         ]);
     }
 
-    public function test_with_subitemId(): void
+    public function test_with_subitem_id(): void
     {
         $endpoint = new Generate(1, Generate\ItemTypeEnum::MEDIA);
 
@@ -90,7 +90,7 @@ class GenerateTest extends TestCase
         ]);
     }
 
-    public function test_with_subitemType(): void
+    public function test_with_subitem_type(): void
     {
         $endpoint = new Generate(1, Generate\ItemTypeEnum::MEDIA);
 

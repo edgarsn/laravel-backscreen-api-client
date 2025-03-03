@@ -13,7 +13,7 @@ class PendingRequestTest extends TestCase
 {
     public function test(): void
     {
-        $factory = new HttpFactory();
+        $factory = new HttpFactory;
         /** @var PendingRequest $request */
         $request = $factory->baseUrl('https://api.localhost');
 

@@ -17,7 +17,6 @@ use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
  */
 class Update extends AbstractEndpoint implements EndpointContract
 {
-
     protected ?string $name = null;
 
     protected ?string $description = null;
@@ -27,9 +26,7 @@ class Update extends AbstractEndpoint implements EndpointContract
     /** @var Callback[]|null */
     protected ?array $callback = null;
 
-    public function __construct(protected ByContract $by)
-    {
-    }
+    public function __construct(protected ByContract $by) {}
 
     public function name(?string $name): static
     {
@@ -62,8 +59,6 @@ class Update extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -72,8 +67,6 @@ class Update extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -82,9 +75,6 @@ class Update extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {
@@ -103,7 +93,7 @@ class Update extends AbstractEndpoint implements EndpointContract
         if ($this->images !== null) {
             $images = $this->images->compileAsArray();
 
-            if (!empty($images)) {
+            if (! empty($images)) {
                 $data['images'] = $images;
             }
         }
@@ -113,12 +103,12 @@ class Update extends AbstractEndpoint implements EndpointContract
 
             foreach ($this->callback as $value) {
                 $callback = $value->compileAsArray();
-                if (!empty($callback)) {
+                if (! empty($callback)) {
                     $callbacks[] = $callback;
                 }
             }
 
-            if (!empty($callbacks)) {
+            if (! empty($callbacks)) {
                 $data['callback'] = $callbacks;
             }
         }

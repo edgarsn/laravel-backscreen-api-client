@@ -21,26 +21,21 @@ class TmsApi implements TmsApiContract
      */
     protected array $clients = [];
 
-    public function __construct(protected Application $app)
-    {
-    }
+    public function __construct(protected Application $app) {}
 
     /**
      * Get instance of a client.
-     *
-     * @param string $name
-     * @return ClientContract
      */
     public function client(string $name): ClientContract
     {
-        if (!isset($this->clients[$name])) {
-            $clientConfig = Config::get('tms-api.clients.' . $name);
+        if (! isset($this->clients[$name])) {
+            $clientConfig = Config::get('tms-api.clients.'.$name);
 
-            if (!Config::has('tms-api.clients.' . $name) || !is_array($clientConfig)) {
+            if (! Config::has('tms-api.clients.'.$name) || ! is_array($clientConfig)) {
                 throw new InvalidTmsApiClientException('TMS Api client could\'nt be found.');
             }
 
-            if (!Arr::has($clientConfig, 'auth.username') || !Arr::has($clientConfig, 'auth.password')) {
+            if (! Arr::has($clientConfig, 'auth.username') || ! Arr::has($clientConfig, 'auth.password')) {
                 throw new InvalidTmsApiClientException('TMS Api client auth credentials are not provided.');
             }
 
@@ -50,11 +45,11 @@ class TmsApi implements TmsApiContract
 
             if (isset($clientConfig['http'])) {
                 if (isset($clientConfig['http']['timeout'])) {
-                    $this->clients[$name]->timeout((int)$clientConfig['http']['timeout']);
+                    $this->clients[$name]->timeout((int) $clientConfig['http']['timeout']);
                 }
 
                 if (isset($clientConfig['http']['connect_timeout'])) {
-                    $this->clients[$name]->connectTimeout((int)$clientConfig['http']['connect_timeout']);
+                    $this->clients[$name]->connectTimeout((int) $clientConfig['http']['connect_timeout']);
                 }
             }
         }
@@ -64,24 +59,18 @@ class TmsApi implements TmsApiContract
 
     /**
      * Get client for authentication by user login to retrieve Bearer token.
-     *
-     * @return ClientContract
      */
     public function nullClient(): ClientContract
     {
         if (isset($this->clients['null'])) {
             return $this->clients['null'];
         } else {
-            return $this->createClient('null', new NullAuthMethod());
+            return $this->createClient('null', new NullAuthMethod);
         }
     }
 
     /**
      * Create a new client dynamically.
-     *
-     * @param string $name
-     * @param AuthMethodContract $auth
-     * @return ClientContract
      */
     public function createClient(string $name, AuthMethodContract $auth): ClientContract
     {

@@ -16,7 +16,7 @@ class ApiKeyAuthMethodTest extends TestCase
     {
         $auth = new ApiKeyAuthMethod('12345');
 
-        $factory = new HttpFactory();
+        $factory = new HttpFactory;
         /** @var PendingRequest $request */
         $request = $factory->baseUrl('https://api.localhost');
 

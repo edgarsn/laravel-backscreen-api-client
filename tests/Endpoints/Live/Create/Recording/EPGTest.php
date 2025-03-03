@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Live\Create;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Input\AudioLanguage;
+
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Recording\EPG;
 use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
 
@@ -11,7 +11,7 @@ class EPGTest extends TestCase
 {
     public function test(): void
     {
-        $epg = new EPG();
+        $epg = new EPG;
 
         try {
             $epg->hoursBefore(0);

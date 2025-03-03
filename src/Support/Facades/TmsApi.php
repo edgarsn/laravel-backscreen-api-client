@@ -20,8 +20,6 @@ class TmsApi extends Facade
 {
     /**
      * Replace the bound instance with a fake.
-     *
-     * @return TmsApiFake
      */
     public static function fake(): TmsApiFake
     {

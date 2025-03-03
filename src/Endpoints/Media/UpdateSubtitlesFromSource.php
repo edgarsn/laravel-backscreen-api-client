@@ -15,11 +15,7 @@ use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
  */
 class UpdateSubtitlesFromSource extends AbstractEndpoint implements EndpointContract
 {
-
-    public function __construct(protected int $id)
-    {
-
-    }
+    public function __construct(protected int $id) {}
 
     /**
      * Define which authentication methods are allowed to call this endpoint.
@@ -33,8 +29,6 @@ class UpdateSubtitlesFromSource extends AbstractEndpoint implements EndpointCont
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -43,8 +37,6 @@ class UpdateSubtitlesFromSource extends AbstractEndpoint implements EndpointCont
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -53,9 +45,6 @@ class UpdateSubtitlesFromSource extends AbstractEndpoint implements EndpointCont
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {

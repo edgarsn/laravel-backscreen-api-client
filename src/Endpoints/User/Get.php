@@ -15,18 +15,15 @@ use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
  */
 class Get extends AbstractEndpoint implements EndpointContract
 {
-
     /**
      * @var array<string>|null
      */
     protected ?array $return = null;
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     /**
-     * @param array<string>|null $return
+     * @param  array<string>|null  $return
      * @return $this
      */
     public function return(?array $return): static
@@ -48,8 +45,6 @@ class Get extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -58,8 +53,6 @@ class Get extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -68,9 +61,6 @@ class Get extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {

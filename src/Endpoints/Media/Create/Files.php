@@ -47,7 +47,7 @@ class Files
 
         return $this;
     }
-    
+
     public function lang(string $lang): static
     {
         $this->lang = $lang;
