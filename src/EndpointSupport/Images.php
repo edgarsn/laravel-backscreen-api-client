@@ -10,25 +10,13 @@ class Images
 {
     use CompilesProperties;
 
-    /**
-     * @var string|null
-     */
-    protected $thumbnail = null;
+    protected ?string $thumbnail = null;
 
-    /**
-     * @var string|null
-     */
-    protected $placeholder = null;
+    protected ?string $placeholder = null;
 
-    /**
-     * @var string|null
-     */
-    protected $playbutton = null;
+    protected ?string $playbutton = null;
 
-    /**
-     * @var string|null
-     */
-    protected $logo = null;
+    protected ?string $logo = null;
 
     public function thumbnail(?string $imageBase64): static
     {
