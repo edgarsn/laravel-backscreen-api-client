@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Auth;
+namespace Newman\LaravelBackscreenApiClient\Auth;
 
-use Newman\LaravelTmsApiClient\Contracts\AuthMethodContract;
-use Newman\LaravelTmsApiClient\Enums\AuthMethodEnum;
-use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
+use Newman\LaravelBackscreenApiClient\Contracts\AuthMethodContract;
+use Newman\LaravelBackscreenApiClient\Enums\AuthMethodEnum;
+use Newman\LaravelBackscreenApiClient\HttpClient\PendingRequest;
 
 class BearerAuthMethod implements AuthMethodContract
 {

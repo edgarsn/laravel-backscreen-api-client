@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Unit\Concerns;
+namespace Newman\LaravelBackscreenApiClient\Tests\Unit\Concerns;
 
-use Newman\LaravelTmsApiClient\Endpoints\Media\MediaList\StatusEnum;
-use Newman\LaravelTmsApiClient\Tests\Support\TestClassWithProperties;
-use Newman\LaravelTmsApiClient\Tests\Support\TestClassWithPropertiesAndExceptProperties;
-use Newman\LaravelTmsApiClient\Tests\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\StatusEnum;
+use Newman\LaravelBackscreenApiClient\Tests\Support\TestClassWithProperties;
+use Newman\LaravelBackscreenApiClient\Tests\Support\TestClassWithPropertiesAndExceptProperties;
+use Newman\LaravelBackscreenApiClient\Tests\TestCase;
 
 class CompilesPropertiesConcernTest extends TestCase
 {

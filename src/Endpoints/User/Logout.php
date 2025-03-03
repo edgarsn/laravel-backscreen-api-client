@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\User;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\User;
 
-use Newman\LaravelTmsApiClient\AbstractEndpoint;
-use Newman\LaravelTmsApiClient\Contracts\EndpointContract;
-use Newman\LaravelTmsApiClient\Enums\AuthMethodEnum;
-use Newman\LaravelTmsApiClient\Enums\HttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\AbstractEndpoint;
+use Newman\LaravelBackscreenApiClient\Contracts\EndpointContract;
+use Newman\LaravelBackscreenApiClient\Enums\AuthMethodEnum;
+use Newman\LaravelBackscreenApiClient\Enums\HttpMethodEnum;
 
 /**
  * @link https://api.cloudycdn.services/api/v5/docs#/operations/User/Logout

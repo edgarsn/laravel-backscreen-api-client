@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Media;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Media;
 
 use Carbon\CarbonInterface;
-use Newman\LaravelTmsApiClient\AbstractEndpoint;
-use Newman\LaravelTmsApiClient\Contracts\EndpointContract;
-use Newman\LaravelTmsApiClient\Endpoints\Media\MediaList\OrderByEnum;
-use Newman\LaravelTmsApiClient\Endpoints\Media\MediaList\PublisherStatusEnum;
-use Newman\LaravelTmsApiClient\Endpoints\Media\MediaList\StatusEnum;
-use Newman\LaravelTmsApiClient\EndpointSupport\Enums\OrderDirectionEnum;
-use Newman\LaravelTmsApiClient\Enums\HttpMethodEnum;
-use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
+use Newman\LaravelBackscreenApiClient\AbstractEndpoint;
+use Newman\LaravelBackscreenApiClient\Contracts\EndpointContract;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\OrderByEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\PublisherStatusEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\StatusEnum;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\OrderDirectionEnum;
+use Newman\LaravelBackscreenApiClient\Enums\HttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\HttpClient\PendingRequest;
 use OutOfBoundsException;
 
 /**

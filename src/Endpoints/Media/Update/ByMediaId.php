@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Media\Update;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Media\Update;
 
 class ByMediaId implements ByContract
 {

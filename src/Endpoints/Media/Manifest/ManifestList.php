@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Media\Manifest;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Media\Manifest;
 
-use Newman\LaravelTmsApiClient\AbstractEndpoint;
-use Newman\LaravelTmsApiClient\Contracts\EndpointContract;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Manifest\List\OrderByEnum;
-use Newman\LaravelTmsApiClient\EndpointSupport\Enums\OrderDirectionEnum;
-use Newman\LaravelTmsApiClient\Enums\HttpMethodEnum;
-use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
+use Newman\LaravelBackscreenApiClient\AbstractEndpoint;
+use Newman\LaravelBackscreenApiClient\Contracts\EndpointContract;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Manifest\List\OrderByEnum;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\OrderDirectionEnum;
+use Newman\LaravelBackscreenApiClient\Enums\HttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\HttpClient\PendingRequest;
 
 /**
  * @link https://api.cloudycdn.services/api/v5/docs#/operations/Media/Manifest/List

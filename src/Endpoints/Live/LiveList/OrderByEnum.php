@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Live\LiveList;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Live\LiveList;
 
 enum OrderByEnum: string
 {

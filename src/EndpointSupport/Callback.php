@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\EndpointSupport;
+namespace Newman\LaravelBackscreenApiClient\EndpointSupport;
 
-use Newman\LaravelTmsApiClient\Concerns\CompilesProperties;
-use Newman\LaravelTmsApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\Concerns\CompilesProperties;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
 
 class Callback
 {

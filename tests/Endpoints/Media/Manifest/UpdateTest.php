@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Media\Manifest;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Media\Manifest;
 
-use Newman\LaravelTmsApiClient\Contracts\EndpointContract;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Manifest\Update;
+use Newman\LaravelBackscreenApiClient\Contracts\EndpointContract;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Manifest\Update;
 
 class UpdateTest extends ManifestCreateAndUpdateTestCase
 {

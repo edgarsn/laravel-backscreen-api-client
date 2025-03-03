@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Live;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Live;
 
 use Carbon\Carbon;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Availability;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Embed;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Enums\EncryptionMethodEnum;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Enums\ProtocolEnum;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Enums\TokenDurationEnum;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Input\AudioLanguage;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Input\Input;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Input\Packager;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Publish;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Recording\EPG;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Recording\Nimbus;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Recording\Recording;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Security;
-use Newman\LaravelTmsApiClient\EndpointSupport\Images;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Availability;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Embed;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Enums\EncryptionMethodEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Enums\ProtocolEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Enums\TokenDurationEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Input\AudioLanguage;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Input\Input;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Input\Packager;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Publish;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Recording\EPG;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Recording\Nimbus;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Recording\Recording;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Security;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Images;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class CreateTest extends TestCase
 {

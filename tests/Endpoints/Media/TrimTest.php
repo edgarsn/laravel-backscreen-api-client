@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Media;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Media;
 
-use Newman\LaravelTmsApiClient\Endpoints\Media\Trim;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Trim;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class TrimTest extends TestCase
 {

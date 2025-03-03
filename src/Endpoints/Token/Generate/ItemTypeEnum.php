@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Token\Generate;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Token\Generate;
 
 enum ItemTypeEnum: string
 {

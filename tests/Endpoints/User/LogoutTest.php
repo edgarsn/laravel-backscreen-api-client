@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\User;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\User;
 
-use Newman\LaravelTmsApiClient\Endpoints\User\Logout;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\User\Logout;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class LogoutTest extends TestCase
 {

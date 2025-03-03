@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Live\Create\Enums;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Enums;
 
 enum TokenDurationEnum: string
 {

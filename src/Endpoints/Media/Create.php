@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Media;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Media;
 
-use Newman\LaravelTmsApiClient\AbstractEndpoint;
-use Newman\LaravelTmsApiClient\Contracts\EndpointContract;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Create\Files;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Create\Tags;
-use Newman\LaravelTmsApiClient\EndpointSupport\Callback;
-use Newman\LaravelTmsApiClient\Enums\AuthMethodEnum;
-use Newman\LaravelTmsApiClient\Enums\HttpMethodEnum;
-use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
+use Newman\LaravelBackscreenApiClient\AbstractEndpoint;
+use Newman\LaravelBackscreenApiClient\Contracts\EndpointContract;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Files;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Tags;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Callback;
+use Newman\LaravelBackscreenApiClient\Enums\AuthMethodEnum;
+use Newman\LaravelBackscreenApiClient\Enums\HttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\HttpClient\PendingRequest;
 
 /**
  * @link https://api.cloudycdn.services/api/v5/docs#/operations/Media/Create

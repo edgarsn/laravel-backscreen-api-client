@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Live\Create;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Live\Create;
 
 use Carbon\CarbonInterface;
-use Newman\LaravelTmsApiClient\Concerns\CompilesProperties;
+use Newman\LaravelBackscreenApiClient\Concerns\CompilesProperties;
 
 class Availability
 {

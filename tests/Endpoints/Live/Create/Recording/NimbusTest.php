@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Live\Create;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Live\Create\Recording;
 
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Recording\Nimbus;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Recording\Nimbus;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class NimbusTest extends TestCase
 {

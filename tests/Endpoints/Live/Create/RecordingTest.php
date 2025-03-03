@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Live\Create;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Live\Create;
 
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Recording\EPG;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Recording\Nimbus;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Recording\Recording;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Recording\EPG;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Recording\Nimbus;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Recording\Recording;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class RecordingTest extends TestCase
 {

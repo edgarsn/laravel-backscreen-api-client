@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Live\Create\Input;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Live\Create\Input;
 
-use Newman\LaravelTmsApiClient\Concerns\CompilesProperties;
+use Newman\LaravelBackscreenApiClient\Concerns\CompilesProperties;
 
 class AudioLanguage
 {

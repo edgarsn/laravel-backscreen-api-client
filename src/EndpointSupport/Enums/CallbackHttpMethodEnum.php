@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\EndpointSupport\Enums;
+namespace Newman\LaravelBackscreenApiClient\EndpointSupport\Enums;
 
 enum CallbackHttpMethodEnum: string
 {

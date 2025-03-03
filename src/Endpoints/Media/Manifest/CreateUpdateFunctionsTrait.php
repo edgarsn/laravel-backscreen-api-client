@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Endpoints\Media\Manifest;
+namespace Newman\LaravelBackscreenApiClient\Endpoints\Media\Manifest;
 
 trait CreateUpdateFunctionsTrait
 {

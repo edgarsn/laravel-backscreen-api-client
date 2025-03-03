@@ -4,6 +4,10 @@ This package helps you to make API calls to Backscreen (a.k.a: Videosher, TET Me
 
 https://api.cloudycdn.services/api/v5/docs
 
+## Upgrade
+
+If you were using 1.x before, follow UPGRADE.md to update your code properly since it contains many breaking changes.
+
 ## Requirements
 - Laravel 11.0+, 12.0+
 - PHP 8.2+
@@ -14,22 +18,22 @@ For laravel versions 9.0, 10.0, see 1.x branch.
 Require the package via Composer:
 
 ```bash
-composer require newman/laravel-tms-api-client
+composer require newman/laravel-backscreen-api-client
 ```
 
 Copy config file to your `config` directory.
 ```bash
-php artisan vendor:publish --tag=tms-api-config
+php artisan vendor:publish --tag=backscreen-api-config
 ```
 
 Add environment variables to your `.env` file.
 
 ```dotenv
-TMS_DEFAULT_USERNAME="API Key"
-TMS_DEFAULT_PASSWORD="API Secret"
+BACKSCREEN_DEFAULT_USERNAME="API Key"
+BACKSCREEN_DEFAULT_PASSWORD="API Secret"
 ```
 
-At last, you can add extra client to your `tms-api.php` config file with other credentials or different default settings.
+At last, you can add extra client to your `backscreen-api.php` config file with other credentials or different default settings.
 
 # :book: Documentation & Usage
 
@@ -38,7 +42,7 @@ At last, you can add extra client to your `tms-api.php` config file with other c
 ### Access client from config
 
 ```php
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 TmsApi::client('default')->run(...);
 ```
@@ -48,8 +52,8 @@ TmsApi::client('default')->run(...);
 We recommend to do this on your `AppServiceProvider`, inside `boot` function.
 
 ```php
-use Newman\LaravelTmsApiClient\Auth\BasicAuthMethod;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Auth\BasicAuthMethod;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $client = TmsApi::createClient('live', new BasicAuthMethod('api key', 'api secret'));
 
@@ -62,8 +66,8 @@ $client = TmsApi::createClient('live', new BasicAuthMethod('api key', 'api secre
 There are some endpoints (e.g. `/User/Login`) which doesn't require any authentication at all.
 
 ```php
-use Newman\LaravelTmsApiClient\Auth\BearerAuthMethod;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Auth\BearerAuthMethod;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 // 1) Retrieve Bearer token without any authentication.
 $response = TmsApi::nullClient()->run(new Login('my@email.com', 'mypassword'));
@@ -86,7 +90,7 @@ TmsApi::createClient('default', new BearerAuthMethod($bearerToken));
 #### `timeout` and `connectTimeout`
 
 ```php
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 TmsApi::client('default')->timeout(30)->connectTimeout(45)->run(...);
 ```
@@ -99,7 +103,7 @@ https://laravel.com/docs/12.x/http-client#guzzle-middleware
 
 ```php
 use GuzzleHttp\Middleware;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 TmsApi::client('default')
     ->withMiddleware(
@@ -135,8 +139,8 @@ Generates a new token.
 **Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Token\Generate as TokenGenerate;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Token\Generate as TokenGenerate;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new TokenGenerate(123456, TokenGenerate\ItemTypeEnum::MEDIA);
 
@@ -165,9 +169,9 @@ Retrieve a list of media.
 **Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\MediaList;
-use Newman\LaravelTmsApiClient\EndpointSupport\Enums\OrderDirectionEnum;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\OrderDirectionEnum;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new MediaList();
 
@@ -221,12 +225,12 @@ Create media.
 **Accepted Auth Methods:** `Basic`, `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\Create as MediaCreate;
-use Newman\LaravelTmsApiClient\EndpointSupport\Callback;
-use Newman\LaravelTmsApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Create\Files;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Create\Tags;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create as MediaCreate;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Callback;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Files;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Tags;
 
 $endpoint = new MediaCreate('123');
 
@@ -270,12 +274,12 @@ Update media.
 **Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\Update as MediaUpdate;
-use Newman\LaravelTmsApiClient\EndpointSupport\Callback;
-use Newman\LaravelTmsApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Update\ByMediaId;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Update\ByAssetId;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update as MediaUpdate;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Callback;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\ByMediaId;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\ByAssetId;
 
 // Select by which identificator to update
 // by media ID
@@ -308,8 +312,8 @@ Delete media by ID/s.
 **Accepted Auth Methods:** `Basic`, `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\Delete as MediaDelete;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Delete as MediaDelete;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 // Multiple IDs.
 $endpoint = new MediaDelete([1234, 5678]);
@@ -331,8 +335,8 @@ Clone media by ID.
 **Accepted Auth Methods:** `Basic`, `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\CloneMedia;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\CloneMedia;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new CloneMedia(1234, 'asset_id_for_the_new_asset');
 
@@ -349,8 +353,8 @@ https://api.cloudycdn.services/api/v5/docs#/operations/Media/Trim
 **Accepted Auth Methods:** `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\Trim;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Trim;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new Trim(1234, '00:00:10', '00:59:59', Trim\TypeEnum::NEW);
 
@@ -367,8 +371,8 @@ https://api.cloudycdn.services/api/v5/docs#/operations/Media/Generateimage
 **Accepted Auth Methods:** `Basic`, `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\GenerateImage;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\GenerateImage;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new GenerateImage(1234);
 
@@ -387,8 +391,8 @@ https://api.cloudycdn.services/api/v5/docs#/operations/Media/Reset
 **Accepted Auth Methods:** `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\Reset;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Reset;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $response = TmsApi::client('default')->run(new Reset(1234));
 ```
@@ -400,8 +404,8 @@ https://api.cloudycdn.services/api/v5/docs#/operations/Media/Transcode
 **Accepted Auth Methods:** `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\Transcode;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Transcode;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $response = TmsApi::client('default')->run(new Transcode(1234));
 ```
@@ -413,8 +417,8 @@ https://api.cloudycdn.services/api/v5/docs#/operations/Media/Canceltranscode
 **Accepted Auth Methods:** `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\CancelTranscode;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\CancelTranscode;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $response = TmsApi::client('default')->run(new CancelTranscode(1234));
 ```
@@ -426,8 +430,8 @@ https://api.cloudycdn.services/api/v5/docs#/operations/Media/Updatesubtitlesfrom
 **Accepted Auth Methods:** `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\UpdateSubtitlesFromSource;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\UpdateSubtitlesFromSource;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $response = TmsApi::client('default')->run(new UpdateSubtitlesFromSource(1234));
 ```
@@ -439,8 +443,8 @@ https://api.cloudycdn.services/api/v5/docs#/operations/Media/Regeneratepackages
 **Accepted Auth Methods:** `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\RegeneratePackages;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\RegeneratePackages;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new RegeneratePackages(1234);
 
@@ -461,10 +465,10 @@ Retrieve list of manifests.
 **Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\Manifest\List\OrderByEnum;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Manifest\ManifestList;
-use Newman\LaravelTmsApiClient\EndpointSupport\Enums\OrderDirectionEnum;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Manifest\List\OrderByEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Manifest\ManifestList;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\OrderDirectionEnum;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new ManifestList();
 
@@ -488,8 +492,8 @@ Create a new media manifest.
 **Accepted Auth Methods:** `Basic`, `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\Manifest\Create as MediaManifestCreate;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Manifest\Create as MediaManifestCreate;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new MediaManifestCreate(1234); // media ID
 
@@ -513,8 +517,8 @@ Update media manifest by manifest ID.
 **Accepted Auth Methods:** `Basic`, `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\Manifest\Update as MediaManifestUpdate;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Manifest\Update as MediaManifestUpdate;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new MediaManifestUpdate(85291); // manifest ID
 
@@ -532,8 +536,8 @@ Delete media manifest by manifest ID.
 **Accepted Auth Methods:** `Basic`, `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Media\Manifest\Delete as MediaManifestDelete;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Manifest\Delete as MediaManifestDelete;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $response = TmsApi::client('default')->run(new MediaManifestDelete(85291)); // manifest ID
 ```
@@ -549,8 +553,8 @@ Return current user info. Returns the same values as login action, but without a
 **Accepted Auth Methods:** `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\User\Get as UserGet;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\User\Get as UserGet;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new UserGet();
 
@@ -569,8 +573,8 @@ Login user by email & password to retrieve Bearer token.
 **Accepted Auth Methods:** `Null`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\User\Login as UserLogin;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\User\Login as UserLogin;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new UserLogin('my@email.com', 'password');
 
@@ -590,8 +594,8 @@ Logout currently authenticated user.
 **Accepted Auth Methods:** `Bearer token`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\User\Logout as UserLogout;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\User\Logout as UserLogout;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $response = TmsApi::client('default')->run(new UserLogout());
 ```
@@ -607,9 +611,9 @@ Retrieve a list of livestream.
 **Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Live\LiveList;
-use Newman\LaravelTmsApiClient\EndpointSupport\Enums\OrderDirectionEnum;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\LiveList;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\OrderDirectionEnum;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new LiveList();
 
@@ -662,9 +666,9 @@ Create a livestream.
 **Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create;
-use Newman\LaravelTmsApiClient\EndpointSupport\Images;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Images;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new Create('New Livestream');
 
@@ -764,10 +768,10 @@ Update an existing livestream.
 **Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Live\Update;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create;
-use Newman\LaravelTmsApiClient\EndpointSupport\Images;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Update;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Create;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Images;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new Update(123);
 
@@ -868,8 +872,8 @@ Turn on an existing livestream.
 **Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Live\On;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\On;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new On(123);
 
@@ -887,8 +891,8 @@ Turn Off an existing livestream.
 **Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Live\Off;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Off;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new Off(123);
 
@@ -906,8 +910,8 @@ Start recording an existing livestream.
 **Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
 
 ```php
-use Newman\LaravelTmsApiClient\Endpoints\Live\Record;
-use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Live\Record;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new Record(123);
 

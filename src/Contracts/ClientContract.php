@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Contracts;
+namespace Newman\LaravelBackscreenApiClient\Contracts;
 
 use Illuminate\Http\Client\Response;
-use Newman\LaravelTmsApiClient\HttpClient\HttpFactory;
+use Newman\LaravelBackscreenApiClient\HttpClient\HttpFactory;
 
 interface ClientContract
 {

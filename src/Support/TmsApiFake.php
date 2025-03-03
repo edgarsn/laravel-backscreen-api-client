@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Support;
+namespace Newman\LaravelBackscreenApiClient\Support;
 
-use Newman\LaravelTmsApiClient\Contracts\TmsApiContract;
+use Newman\LaravelBackscreenApiClient\Contracts\TmsApiContract;
 
 class TmsApiFake
 {

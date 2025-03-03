@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Concerns;
+namespace Newman\LaravelBackscreenApiClient\Concerns;
 
 use Carbon\CarbonInterface;
 use ReflectionClass;

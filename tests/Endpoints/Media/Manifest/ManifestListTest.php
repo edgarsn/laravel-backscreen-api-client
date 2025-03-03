@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Media\Manifest;
+namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Media\Manifest;
 
-use Newman\LaravelTmsApiClient\Endpoints\Media\Manifest\List\OrderByEnum;
-use Newman\LaravelTmsApiClient\Endpoints\Media\Manifest\ManifestList;
-use Newman\LaravelTmsApiClient\EndpointSupport\Enums\OrderDirectionEnum;
-use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Manifest\List\OrderByEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Manifest\ManifestList;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\OrderDirectionEnum;
+use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class ManifestListTest extends TestCase
 {
