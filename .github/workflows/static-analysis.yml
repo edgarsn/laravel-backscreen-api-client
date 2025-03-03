@@ -30,7 +30,7 @@ jobs:
                 run: composer phpstan -- --no-progress
 
     style:
-        name: PHP-CS-Fixer Analysis
+        name: Lint Analysis
         runs-on: ubuntu-latest
         env:
             COMPOSER_NO_INTERACTION: 1
