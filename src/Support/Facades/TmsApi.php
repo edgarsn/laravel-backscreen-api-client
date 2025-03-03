@@ -14,7 +14,7 @@ use Newman\LaravelTmsApiClient\Support\TmsApiFake;
  * @method static ClientContract client(string $name)
  * @method static ClientContract nullClient()
  * @method static ClientContract createClient(string $name, AuthMethodContract $auth)
- * @method static array getClients()
+ * @method static array<string, ClientContract> getClients()
  */
 class TmsApi extends Facade
 {

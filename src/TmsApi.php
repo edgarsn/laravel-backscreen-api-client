@@ -39,17 +39,20 @@ class TmsApi implements TmsApiContract
                 throw new InvalidTmsApiClientException('TMS Api client auth credentials are not provided.');
             }
 
-            $basicAuth = new BasicAuthMethod($clientConfig['auth']['username'], $clientConfig['auth']['password']);
+            $clientUsername = Config::string('tms-api.clients.'.$name.'.auth.username');
+            $clientPassword = Config::string('tms-api.clients.'.$name.'.auth.password');
+
+            $basicAuth = new BasicAuthMethod($clientUsername, $clientPassword);
 
             $this->clients[$name] = $this->makeClient($basicAuth);
 
-            if (isset($clientConfig['http'])) {
-                if (isset($clientConfig['http']['timeout'])) {
-                    $this->clients[$name]->timeout((int) $clientConfig['http']['timeout']);
+            if (Arr::has($clientConfig, 'http')) {
+                if (Arr::has($clientConfig, 'http.timeout')) {
+                    $this->clients[$name]->timeout(Config::integer('tms-api.clients.'.$name.'.http.timeout'));
                 }
 
-                if (isset($clientConfig['http']['connect_timeout'])) {
-                    $this->clients[$name]->connectTimeout((int) $clientConfig['http']['connect_timeout']);
+                if (Arr::has($clientConfig, 'http.connect_timeout')) {
+                    $this->clients[$name]->connectTimeout(Config::integer('tms-api.clients.'.$name.'.http.connect_timeout'));
                 }
             }
         }
