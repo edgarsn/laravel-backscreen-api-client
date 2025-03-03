@@ -77,28 +77,37 @@ TmsApi::createClient('default', new BearerAuthMethod($bearerToken));
 // TmsApi::client('default')->run(...);
 ```
 
-### Configure Client
+### Configure request
 
-**Note:** This will override settings for upcoming requests on `default` client.
+**Note:** These parameters will be present only for a single (upcoming) request and then will reset to defaults.
 
 #### `timeout` and `connectTimeout`
 
 ```php
 use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
 
-TmsApi::client('default')->timeout(30)->connectTimeout(45);
+TmsApi::client('default')->timeout(30)->connectTimeout(45)->run(...);
 ```
 
 #### `withMiddleware`
 
 Append HTTP middleware to this client upcoming requests.
 
-https://laravel.com/docs/9.x/http-client#guzzle-middleware
+https://laravel.com/docs/12.x/http-client#guzzle-middleware
 
 ```php
+use GuzzleHttp\Middleware;
 use Newman\LaravelTmsApiClient\Support\Facades\TmsApi;
 
-TmsApi::client('default')->withMiddleware(...);
+TmsApi::client('default')
+    ->withMiddleware(
+        Middleware::mapRequest(function (RequestInterface $request) {
+            $request = $request->withHeader('X-Example', 'Value');
+
+            return $request;
+        })
+    )
+    ->run(....);
 ```
 
 ## Response

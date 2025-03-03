@@ -28,13 +28,13 @@ class TmsApi implements TmsApiContract
      */
     public function client(string $name): ClientContract
     {
+        $clientConfig = Config::get('tms-api.clients.'.$name);
+
+        if (! Config::has('tms-api.clients.'.$name) || ! is_array($clientConfig)) {
+            throw new InvalidTmsApiClientException('TMS Api client could\'nt be found.');
+        }
+
         if (! isset($this->clients[$name])) {
-            $clientConfig = Config::get('tms-api.clients.'.$name);
-
-            if (! Config::has('tms-api.clients.'.$name) || ! is_array($clientConfig)) {
-                throw new InvalidTmsApiClientException('TMS Api client could\'nt be found.');
-            }
-
             if (! Arr::has($clientConfig, 'auth.username') || ! Arr::has($clientConfig, 'auth.password')) {
                 throw new InvalidTmsApiClientException('TMS Api client auth credentials are not provided.');
             }
@@ -45,19 +45,21 @@ class TmsApi implements TmsApiContract
             $basicAuth = new BasicAuthMethod($clientUsername, $clientPassword);
 
             $this->clients[$name] = $this->makeClient($basicAuth);
+        }
 
-            if (Arr::has($clientConfig, 'http')) {
-                if (Arr::has($clientConfig, 'http.timeout')) {
-                    $this->clients[$name]->timeout(Config::integer('tms-api.clients.'.$name.'.http.timeout'));
-                }
+        $pendingClient = clone $this->clients[$name];
 
-                if (Arr::has($clientConfig, 'http.connect_timeout')) {
-                    $this->clients[$name]->connectTimeout(Config::integer('tms-api.clients.'.$name.'.http.connect_timeout'));
-                }
+        if (Arr::has($clientConfig, 'http')) {
+            if (Arr::has($clientConfig, 'http.timeout')) {
+                $this->clients[$name]->timeout(Config::integer('tms-api.clients.'.$name.'.http.timeout'));
+            }
+
+            if (Arr::has($clientConfig, 'http.connect_timeout')) {
+                $this->clients[$name]->connectTimeout(Config::integer('tms-api.clients.'.$name.'.http.connect_timeout'));
             }
         }
 
-        return $this->clients[$name];
+        return $pendingClient;
     }
 
     /**
