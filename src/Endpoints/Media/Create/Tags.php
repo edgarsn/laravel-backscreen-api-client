@@ -21,7 +21,7 @@ class Tags
     protected ?array $add = null;
 
     /**
-     * @param array<string> $set
+     * @param  array<string>  $set
      */
     public function set(array $set): static
     {
@@ -31,7 +31,7 @@ class Tags
     }
 
     /**
-     * @param array<string> $add
+     * @param  array<string>  $add
      */
     public function add(array $add): static
     {

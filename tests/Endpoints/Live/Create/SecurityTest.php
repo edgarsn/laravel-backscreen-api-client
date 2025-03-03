@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Newman\LaravelTmsApiClient\Tests\Endpoints\Live\Create;
+
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Enums\EncryptionMethodEnum;
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Enums\TokenDurationEnum;
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Security;
@@ -12,7 +13,7 @@ class SecurityTest extends TestCase
 {
     public function test(): void
     {
-        $security = new Security();
+        $security = new Security;
 
         $security->encryptionMethod(EncryptionMethodEnum::AES)
             ->useToken(true)

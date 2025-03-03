@@ -21,11 +21,11 @@ class Delete extends AbstractEndpoint implements EndpointContract
     protected array $mediaIds;
 
     /**
-     * @param int|array<int> $ids
+     * @param  int|array<int>  $ids
      */
     public function __construct(int|array $ids)
     {
-        $this->mediaIds = !is_array($ids) ? [$ids] : $ids;
+        $this->mediaIds = ! is_array($ids) ? [$ids] : $ids;
     }
 
     /**
@@ -40,8 +40,6 @@ class Delete extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -50,8 +48,6 @@ class Delete extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -60,9 +56,6 @@ class Delete extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {

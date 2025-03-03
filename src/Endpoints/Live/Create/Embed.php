@@ -11,7 +11,9 @@ class Embed
     use CompilesProperties;
 
     protected ?bool $enable_public = null;
+
     protected ?string $public_password = null;
+
     protected ?bool $enable_preview = null;
 
     public function enablePublic(bool $enable_public): static

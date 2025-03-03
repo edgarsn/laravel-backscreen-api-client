@@ -37,16 +37,16 @@ trait CompilesProperties
         foreach ($properties as $property) {
             $value = $property->getValue($this);
 
-            if ($value !== null && !in_array($property->name, $exceptProperties)) {
+            if ($value !== null && ! in_array($property->name, $exceptProperties)) {
                 if ($value instanceof \BackedEnum) {
                     $value = $value->value;
-                } else if (is_bool($value)) {
+                } elseif (is_bool($value)) {
                     $value = $value ? 1 : 0;
-                } else if ($value instanceof CarbonInterface) {
+                } elseif ($value instanceof CarbonInterface) {
                     $value = $value->toDateTimeString();
-                } else if (is_object($value) && method_exists($value, 'compileAsArray')) {
+                } elseif (is_object($value) && method_exists($value, 'compileAsArray')) {
                     $value = $value->compileAsArray();
-                } else if (is_array($value)) {
+                } elseif (is_array($value)) {
                     $formatted = [];
                     foreach ($value as $item) {
                         $formatted[] = is_object($item) && method_exists($item, 'compileAsArray') ? $item->compileAsArray() : $item;

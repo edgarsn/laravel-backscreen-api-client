@@ -30,12 +30,10 @@ class Generate extends AbstractEndpoint implements EndpointContract
 
     protected ?SubitemTypeEnum $subitem_type = null;
 
-    public function __construct(protected int $item_id, protected ItemTypeEnum $item_type)
-    {
-    }
+    public function __construct(protected int $item_id, protected ItemTypeEnum $item_type) {}
 
     /**
-     * @param array<string>|null $countries
+     * @param  array<string>|null  $countries
      * @return $this
      */
     public function allowedCountries(?array $countries): static
@@ -75,8 +73,6 @@ class Generate extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -85,8 +81,6 @@ class Generate extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -95,9 +89,6 @@ class Generate extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {

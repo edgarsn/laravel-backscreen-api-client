@@ -13,12 +13,12 @@ class ManifestListTest extends TestCase
 {
     public function test(): void
     {
-        $this->makeBasicAuthEndpointTest(new ManifestList());
+        $this->makeBasicAuthEndpointTest(new ManifestList);
     }
 
     public function test_with_ids(): void
     {
-        $endpoint = new ManifestList();
+        $endpoint = new ManifestList;
 
         $endpoint->ids([1, 2]);
 
@@ -29,7 +29,7 @@ class ManifestListTest extends TestCase
 
     public function test_with_limit(): void
     {
-        $endpoint = new ManifestList();
+        $endpoint = new ManifestList;
 
         $endpoint->limit(5);
 
@@ -38,9 +38,9 @@ class ManifestListTest extends TestCase
         ]);
     }
 
-    public function test_with_mediaIds(): void
+    public function test_with_media_ids(): void
     {
-        $endpoint = new ManifestList();
+        $endpoint = new ManifestList;
 
         $endpoint->mediaIds([123, 345]);
 
@@ -51,7 +51,7 @@ class ManifestListTest extends TestCase
 
     public function test_with_offset(): void
     {
-        $endpoint = new ManifestList();
+        $endpoint = new ManifestList;
 
         $endpoint->offset(15);
 
@@ -60,9 +60,9 @@ class ManifestListTest extends TestCase
         ]);
     }
 
-    public function test_with_orderBy(): void
+    public function test_with_order_by(): void
     {
-        $endpoint = new ManifestList();
+        $endpoint = new ManifestList;
 
         $endpoint->orderBy(OrderByEnum::MEDIA_ID);
 
@@ -71,9 +71,9 @@ class ManifestListTest extends TestCase
         ]);
     }
 
-    public function test_with_orderDir(): void
+    public function test_with_order_dir(): void
     {
-        $endpoint = new ManifestList();
+        $endpoint = new ManifestList;
 
         $endpoint->orderDir(OrderDirectionEnum::ASC);
 

@@ -43,17 +43,14 @@ class Create extends AbstractEndpoint implements EndpointContract
 
     protected ?string $timezone = null;
 
-    /** @var Files[]|null $files */
+    /** @var Files[]|null */
     protected ?array $files = null;
 
     protected ?Tags $tags = null;
 
-    /** @var Callback[]|null $callback */
+    /** @var Callback[]|null */
     protected ?array $callback = null;
 
-    /**
-     * @param string $asset_id
-     */
     public function __construct(string $asset_id)
     {
         $this->asset_id = $asset_id;
@@ -65,7 +62,7 @@ class Create extends AbstractEndpoint implements EndpointContract
 
         return $this;
     }
-    
+
     public function catId(?int $cat_id): static
     {
         $this->cat_id = $cat_id;
@@ -123,7 +120,7 @@ class Create extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param array<mixed>|null $metadata
+     * @param  array<mixed>|null  $metadata
      */
     public function metadata(?array $metadata): static
     {
@@ -140,7 +137,7 @@ class Create extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param Files[]|null $files
+     * @param  Files[]|null  $files
      */
     public function files(?array $files): static
     {
@@ -157,7 +154,7 @@ class Create extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param Callback[]|null $callback
+     * @param  Callback[]|null  $callback
      */
     public function callback(?array $callback): static
     {
@@ -178,8 +175,6 @@ class Create extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -188,8 +183,6 @@ class Create extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -198,9 +191,6 @@ class Create extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {
@@ -215,35 +205,35 @@ class Create extends AbstractEndpoint implements EndpointContract
         if ($this->name !== null) {
             $data['name'] = $this->name;
         }
-        
+
         if ($this->description !== null) {
             $data['description'] = $this->description;
         }
-        
+
         if ($this->pg_rating !== null) {
             $data['pg_rating'] = $this->pg_rating;
         }
-        
+
         if ($this->auto_transcode !== null) {
             $data['auto_transcode'] = $this->auto_transcode;
         }
-        
+
         if ($this->embed_player_id !== null) {
             $data['embed_player_id'] = $this->embed_player_id;
         }
-        
+
         if ($this->embed_ad_id !== null) {
             $data['embed_ad_id'] = $this->embed_ad_id;
         }
-        
+
         if ($this->embed_protection_id !== null) {
             $data['embed_protection_id'] = $this->embed_protection_id;
         }
-        
+
         if ($this->metadata !== null) {
             $data['metadata'] = $this->metadata;
         }
-        
+
         if ($this->timezone !== null) {
             $data['timezone'] = $this->timezone;
         }
@@ -253,12 +243,12 @@ class Create extends AbstractEndpoint implements EndpointContract
 
             foreach ($this->files as $value) {
                 $file = $value->compileAsArray();
-                if (!empty($file)) {
+                if (! empty($file)) {
                     $files[] = $file;
                 }
             }
 
-            if (!empty($files)) {
+            if (! empty($files)) {
                 $data['files'] = $files;
             }
         }
@@ -266,7 +256,7 @@ class Create extends AbstractEndpoint implements EndpointContract
         if ($this->tags !== null) {
             $tags = $this->tags->compileAsArray();
 
-            if (!empty($tags)) {
+            if (! empty($tags)) {
                 $data['tags'] = $tags;
             }
         }
@@ -276,12 +266,12 @@ class Create extends AbstractEndpoint implements EndpointContract
 
             foreach ($this->callback as $value) {
                 $callback = $value->compileAsArray();
-                if (!empty($callback)) {
+                if (! empty($callback)) {
                     $callbacks[] = $callback;
                 }
             }
 
-            if (!empty($callbacks)) {
+            if (! empty($callbacks)) {
                 $data['callback'] = $callbacks;
             }
         }

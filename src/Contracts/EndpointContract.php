@@ -19,23 +19,16 @@ interface EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum;
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string;
 
     /**
      * Prepares request specific to this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void;
 }

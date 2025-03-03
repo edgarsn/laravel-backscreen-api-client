@@ -6,13 +6,13 @@ namespace Newman\LaravelTmsApiClient\Endpoints\Live;
 
 use Newman\LaravelTmsApiClient\AbstractEndpoint;
 use Newman\LaravelTmsApiClient\Contracts\EndpointContract;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Embed;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Publish;
-use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Security;
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Availability;
-use Newman\LaravelTmsApiClient\EndpointSupport\Images;
+use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Embed;
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Input\Input;
+use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Publish;
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Recording\Recording;
+use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Security;
+use Newman\LaravelTmsApiClient\EndpointSupport\Images;
 use Newman\LaravelTmsApiClient\Enums\HttpMethodEnum;
 use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
 
@@ -22,41 +22,35 @@ use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
 class Update extends AbstractEndpoint implements EndpointContract
 {
     protected int $id;
+
     protected ?string $name = null;
+
     protected ?int $cat_id = null;
+
     protected ?bool $multi_languages = null;
+
     protected ?string $custom_origin = null;
-    /**
-     * @var Publish|null $publish 
-     */
+
     protected ?Publish $publish = null;
+
     protected ?int $embed_player_id = null;
+
     protected ?int $embed_ad_id = null;
+
     protected ?int $embed_protection_id = null;
-    /**
-     * @var Embed|null $embed
-     */
+
     protected ?Embed $embed = null;
-    /**
-     * @var Security|null $security
-     */
+
     protected ?Security $security = null;
-    /**
-     * @var Recording|null $recording
-     */
+
     protected ?Recording $recording = null;
-    /**
-     * @var Images|null $images
-     */
+
     protected ?Images $images = null;
-    /**
-     * @var Availability|null $availability
-     */
+
     protected ?Availability $availability = null;
-    /**
-     * @var Input|null $input
-     */
+
     protected ?Input $input = null;
+
     protected ?string $timezone = null;
 
     public function __construct(int $id)
@@ -65,7 +59,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param int $id
      * @return $this
      */
     public function id(int $id): self
@@ -76,7 +69,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param ?string $name
      * @return $this
      */
     public function name(?string $name): self
@@ -87,7 +79,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param ?int $cat_id
      * @return $this
      */
     public function catId(?int $cat_id): self
@@ -98,7 +89,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param ?bool $multi_languages
      * @return $this
      */
     public function multiLanguages(?bool $multi_languages): self
@@ -109,7 +99,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param ?string $custom_origin
      * @return $this
      */
     public function customOrigin(?string $custom_origin): self
@@ -120,7 +109,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param ?Publish $publish
      * @return $this
      */
     public function publish(?Publish $publish): self
@@ -131,7 +119,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param ?int $embed_player_id
      * @return $this
      */
     public function embedPlayerId(?int $embed_player_id): self
@@ -142,7 +129,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param ?int $embed_ad_id
      * @return $this
      */
     public function embedAdId(?int $embed_ad_id): self
@@ -153,7 +139,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param ?int $embed_protection_id
      * @return $this
      */
     public function embedProtectionId(?int $embed_protection_id): self
@@ -164,7 +149,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param ?Embed $embed
      * @return $this
      */
     public function embed(?Embed $embed): self
@@ -175,7 +159,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param Security|null $security
      * @return $this
      */
     public function security(?Security $security): self
@@ -186,7 +169,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param Recording|null $recording
      * @return $this
      */
     public function recording(?Recording $recording): self
@@ -197,7 +179,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param Images|null $images
      * @return $this
      */
     public function images(?Images $images): self
@@ -208,7 +189,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param Availability|null $availability
      * @return $this
      */
     public function availability(?Availability $availability): self
@@ -219,7 +199,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param Input|null $input
      * @return $this
      */
     public function input(?Input $input): self
@@ -230,7 +209,6 @@ class Update extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param string $timezone
      * @return $this
      */
     public function timezone(string $timezone): self
@@ -242,8 +220,6 @@ class Update extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -252,8 +228,6 @@ class Update extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -262,9 +236,6 @@ class Update extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {
@@ -291,7 +262,7 @@ class Update extends AbstractEndpoint implements EndpointContract
         if ($this->publish !== null) {
             $publish = $this->publish->compileAsArray();
 
-            if (!empty($publish)) {
+            if (! empty($publish)) {
                 $query['publish'] = $publish;
             }
         }
@@ -311,7 +282,7 @@ class Update extends AbstractEndpoint implements EndpointContract
         if ($this->embed !== null) {
             $embed = $this->embed->compileAsArray();
 
-            if (!empty($embed)) {
+            if (! empty($embed)) {
                 $query['embed'] = $embed;
             }
         }
@@ -319,7 +290,7 @@ class Update extends AbstractEndpoint implements EndpointContract
         if ($this->security !== null) {
             $security = $this->security->compileAsArray();
 
-            if (!empty($security)) {
+            if (! empty($security)) {
                 $query['security'] = $security;
             }
         }
@@ -327,7 +298,7 @@ class Update extends AbstractEndpoint implements EndpointContract
         if ($this->recording !== null) {
             $recording = $this->recording->compileAsArray();
 
-            if (!empty($recording)) {
+            if (! empty($recording)) {
                 $query['recording'] = $recording;
             }
         }
@@ -335,7 +306,7 @@ class Update extends AbstractEndpoint implements EndpointContract
         if ($this->images !== null) {
             $images = $this->images->compileAsArray();
 
-            if (!empty($images)) {
+            if (! empty($images)) {
                 $query['images'] = $images;
             }
         }
@@ -343,7 +314,7 @@ class Update extends AbstractEndpoint implements EndpointContract
         if ($this->availability !== null) {
             $availability = $this->availability->compileAsArray();
 
-            if (!empty($availability)) {
+            if (! empty($availability)) {
                 $query['availability'] = $availability;
             }
         }
@@ -351,7 +322,7 @@ class Update extends AbstractEndpoint implements EndpointContract
         if ($this->input !== null) {
             $input = $this->input->compileAsArray();
 
-            if (!empty($input)) {
+            if (! empty($input)) {
                 $query['input'] = $input;
             }
         }

@@ -11,7 +11,5 @@ class Callback
 {
     use CompilesProperties;
 
-    public function __construct(protected string $url, protected CallbackHttpMethodEnum $method)
-    {
-    }
+    public function __construct(protected string $url, protected CallbackHttpMethodEnum $method) {}
 }

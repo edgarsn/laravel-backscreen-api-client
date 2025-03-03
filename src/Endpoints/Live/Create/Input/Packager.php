@@ -11,6 +11,7 @@ class Packager
     use CompilesProperties;
 
     protected ?int $primary = null;
+
     protected ?int $backup = null;
 
     public function primary(int $primary): static

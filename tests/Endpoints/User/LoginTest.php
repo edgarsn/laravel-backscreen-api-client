@@ -13,11 +13,11 @@ class LoginTest extends TestCase
     {
         $this->makeNullAuthEndpointTest(new Login('my@email.com', 'pass'), [], [
             'email' => 'my@email.com',
-            'password' => 'pass'
+            'password' => 'pass',
         ]);
     }
 
-    public function test_with_twoFaCode(): void
+    public function test_with_two_fa_code(): void
     {
         $endpoint = new Login('my@email.com', 'pass');
 

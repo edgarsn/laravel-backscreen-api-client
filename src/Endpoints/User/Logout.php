@@ -8,17 +8,13 @@ use Newman\LaravelTmsApiClient\AbstractEndpoint;
 use Newman\LaravelTmsApiClient\Contracts\EndpointContract;
 use Newman\LaravelTmsApiClient\Enums\AuthMethodEnum;
 use Newman\LaravelTmsApiClient\Enums\HttpMethodEnum;
-use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
 
 /**
  * @link https://api.cloudycdn.services/api/v5/docs#/operations/User/Logout
  */
 class Logout extends AbstractEndpoint implements EndpointContract
 {
-
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     /**
      * Define which authentication methods are allowed to call this endpoint.
@@ -32,8 +28,6 @@ class Logout extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -42,8 +36,6 @@ class Logout extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {

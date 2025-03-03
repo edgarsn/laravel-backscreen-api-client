@@ -32,7 +32,7 @@ class Images
 
     public function thumbnail(?string $imageBase64): static
     {
-        if (!$this->verifyBase64Encoded($imageBase64)) {
+        if (! $this->verifyBase64Encoded($imageBase64)) {
             throw new \InvalidArgumentException('thumbnail must be a base64 encoded string');
         }
 
@@ -43,7 +43,7 @@ class Images
 
     public function placeholder(?string $imageBase64): static
     {
-        if (!$this->verifyBase64Encoded($imageBase64)) {
+        if (! $this->verifyBase64Encoded($imageBase64)) {
             throw new \InvalidArgumentException('placeholder must be a base64 encoded string');
         }
 
@@ -54,7 +54,7 @@ class Images
 
     public function playbutton(?string $imageBase64): static
     {
-        if (!$this->verifyBase64Encoded($imageBase64)) {
+        if (! $this->verifyBase64Encoded($imageBase64)) {
             throw new \InvalidArgumentException('playbutton must be a base64 encoded string');
         }
 
@@ -65,7 +65,7 @@ class Images
 
     public function logo(?string $imageBase64): static
     {
-        if (!$this->verifyBase64Encoded($imageBase64)) {
+        if (! $this->verifyBase64Encoded($imageBase64)) {
             throw new \InvalidArgumentException('logo must be a base64 encoded string');
         }
 
@@ -80,7 +80,7 @@ class Images
             return false;
         }
 
-        if (!str_contains($value, 'data:') || !str_contains($value, 'base64,')) {
+        if (! str_contains($value, 'data:') || ! str_contains($value, 'base64,')) {
             return false;
         }
 

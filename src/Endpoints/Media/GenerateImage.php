@@ -21,10 +21,7 @@ class GenerateImage extends AbstractEndpoint implements EndpointContract
 
     protected ?string $placeholder = null;
 
-    public function __construct(protected int $id)
-    {
-
-    }
+    public function __construct(protected int $id) {}
 
     public function mediaFileId(?int $media_file_id): static
     {
@@ -59,8 +56,6 @@ class GenerateImage extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -69,8 +64,6 @@ class GenerateImage extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -79,9 +72,6 @@ class GenerateImage extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {

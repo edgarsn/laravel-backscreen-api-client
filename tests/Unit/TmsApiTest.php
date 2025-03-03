@@ -58,7 +58,7 @@ class TmsApiTest extends TestCase
 
                 'http' => [
                     'timeout' => 10,
-                    'connect_timeout' => 20
+                    'connect_timeout' => 20,
                 ],
             ],
         ]);
@@ -101,7 +101,7 @@ class TmsApiTest extends TestCase
 
                 'http' => [
                     'timeout' => 10,
-                    'connect_timeout' => 20
+                    'connect_timeout' => 20,
                 ],
             ],
         ]);

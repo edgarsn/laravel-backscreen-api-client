@@ -11,7 +11,7 @@ class PublishTest extends TestCase
 {
     public function test(): void
     {
-        $publish = new Publish();
+        $publish = new Publish;
 
         $publish->prefix('prefix');
 

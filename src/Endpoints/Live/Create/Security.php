@@ -13,7 +13,9 @@ class Security
     use CompilesProperties;
 
     protected ?EncryptionMethodEnum $encryption_method = null;
+
     protected ?bool $use_token = null;
+
     protected ?TokenDurationEnum $token_duration = null;
 
     public function encryptionMethod(EncryptionMethodEnum $encryption_method): static

@@ -17,7 +17,7 @@ class BasicAuthMethodTest extends TestCase
     {
         $auth = new BasicAuthMethod('lorem', 'ipsum');
 
-        $factory = new HttpFactory();
+        $factory = new HttpFactory;
         /** @var PendingRequest $request */
         $request = $factory->baseUrl('https://api.localhost');
 

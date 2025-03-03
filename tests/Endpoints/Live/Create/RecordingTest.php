@@ -13,7 +13,7 @@ class RecordingTest extends TestCase
 {
     public function test(): void
     {
-        $recording = new Recording();
+        $recording = new Recording;
         $recording->autoDelete(true);
         $recording->autoDeleteMedia(true);
         $recording->savePassed(true);
@@ -22,12 +22,12 @@ class RecordingTest extends TestCase
         $recording->marginEndSeconds(10);
         $recording->fileNamingPattern('file_naming_pattern');
 
-        $nimbus = new Nimbus();
+        $nimbus = new Nimbus;
         $nimbus->syncInterval(1);
         $nimbus->channelId(1);
         $nimbus->manifestId(1);
 
-        $epg = new EPG();
+        $epg = new EPG;
         $epg->hoursBefore(1);
         $epg->hoursAfter(1);
         $epg->round(1);

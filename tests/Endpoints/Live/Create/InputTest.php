@@ -14,7 +14,7 @@ class InputTest extends TestCase
 {
     public function test(): void
     {
-        $input = new Input();
+        $input = new Input;
         $input->transcode(true);
         $input->transcoderId(1);
         $input->protocol(ProtocolEnum::SRT);
@@ -42,17 +42,17 @@ class InputTest extends TestCase
         }
         $input->videoPid('123');
 
-        $language = new AudioLanguage();
+        $language = new AudioLanguage;
         $language->language('lav');
         $language->pid('123');
         $language->languageName('Latvian');
 
-        $language2 = new AudioLanguage();
+        $language2 = new AudioLanguage;
         $language2->language('eng');
         $language2->pid('456');
         $language2->languageName('English');
 
-        $packager = new Packager();
+        $packager = new Packager;
         $packager->primary(1);
         $packager->backup(1);
 
@@ -90,7 +90,7 @@ class InputTest extends TestCase
 
     public function test_with_rtmp(): void
     {
-        $input = new Input();
+        $input = new Input;
         $input->transcode(true);
         $input->transcoderId(1);
         $input->protocol(ProtocolEnum::RTMP);
@@ -121,17 +121,17 @@ class InputTest extends TestCase
             $this->assertEquals('video_pid can only be set when using SRT protocol', $e->getMessage());
         }
 
-        $language = new AudioLanguage();
+        $language = new AudioLanguage;
         $language->language('lav');
         $language->pid('123');
         $language->languageName('Latvian');
 
-        $language2 = new AudioLanguage();
+        $language2 = new AudioLanguage;
         $language2->language('eng');
         $language2->pid('456');
         $language2->languageName('English');
 
-        $packager = new Packager();
+        $packager = new Packager;
         $packager->primary(1);
         $packager->backup(1);
 

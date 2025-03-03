@@ -14,7 +14,7 @@ class RegeneratePackagesTest extends TestCase
         $this->makeBearerAuthEndpointTest(new RegeneratePackages(123), [], ['id' => 123]);
     }
 
-    public function test_with_packageId(): void
+    public function test_with_package_id(): void
     {
         $endpoint = new RegeneratePackages(123);
 

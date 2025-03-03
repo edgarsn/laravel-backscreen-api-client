@@ -6,7 +6,6 @@ namespace Newman\LaravelTmsApiClient\Endpoints\Media\Manifest;
 
 trait CreateUpdateFunctionsTrait
 {
-
     protected ?string $name = null;
 
     protected ?bool $is_default = null;
@@ -21,7 +20,6 @@ trait CreateUpdateFunctionsTrait
     protected ?array $files = null;
 
     protected ?int $package_id = null;
-
 
     public function name(?string $name): static
     {
@@ -38,7 +36,7 @@ trait CreateUpdateFunctionsTrait
     }
 
     /**
-     * @param int|null $time Miliseconds
+     * @param  int|null  $time  Miliseconds
      * @return $this
      */
     public function startAt(?int $time): static
@@ -49,7 +47,7 @@ trait CreateUpdateFunctionsTrait
     }
 
     /**
-     * @param int|null $time Miliseconds
+     * @param  int|null  $time  Miliseconds
      * @return $this
      */
     public function endAt(?int $time): static
@@ -60,7 +58,7 @@ trait CreateUpdateFunctionsTrait
     }
 
     /**
-     * @param array<int>|null $files
+     * @param  array<int>|null  $files
      * @return $this
      */
     public function files(?array $files): static

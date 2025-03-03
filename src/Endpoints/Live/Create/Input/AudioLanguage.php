@@ -11,7 +11,9 @@ class AudioLanguage
     use CompilesProperties;
 
     protected ?string $language = null;
+
     protected ?string $pid = null;
+
     protected ?string $language_name = null;
 
     public function language(string $language): static
@@ -27,7 +29,7 @@ class AudioLanguage
 
     public function pid(string $pid): static
     {
-        if (!preg_match('/^[a-zA-Z0-9]+$/', $pid)) {
+        if (! preg_match('/^[a-zA-Z0-9]+$/', $pid)) {
             throw new \InvalidArgumentException('pid must be an alphanumeric string');
         }
 

@@ -6,9 +6,7 @@ namespace Newman\LaravelTmsApiClient\Endpoints\Media\Update;
 
 class ByMediaId implements ByContract
 {
-    public function __construct(protected int $media_id)
-    {
-    }
+    public function __construct(protected int $media_id) {}
 
     public function getFieldName(): string
     {

@@ -11,7 +11,6 @@ use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Embed;
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Enums\EncryptionMethodEnum;
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Enums\ProtocolEnum;
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Enums\TokenDurationEnum;
-use Newman\LaravelTmsApiClient\EndpointSupport\Images;
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Input\AudioLanguage;
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Input\Input;
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Input\Packager;
@@ -20,6 +19,7 @@ use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Recording\EPG;
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Recording\Nimbus;
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Recording\Recording;
 use Newman\LaravelTmsApiClient\Endpoints\Live\Create\Security;
+use Newman\LaravelTmsApiClient\EndpointSupport\Images;
 use Newman\LaravelTmsApiClient\Tests\Endpoints\TestCase;
 
 class CreateTest extends TestCase
@@ -82,11 +82,11 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('name');
 
-        $publish = new Publish();
+        $publish = new Publish;
         $publish->prefix('prefix');
         $endpoint->publish($publish);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
             'publish' => [
                 'prefix' => 'prefix',
@@ -98,10 +98,10 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('name');
 
-        $publish = new Publish();
+        $publish = new Publish;
         $endpoint->publish($publish);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
         ]);
     }
@@ -112,7 +112,7 @@ class CreateTest extends TestCase
 
         $endpoint->embedPlayerId(1);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
             'embed_player_id' => 1,
         ]);
@@ -124,7 +124,7 @@ class CreateTest extends TestCase
 
         $endpoint->embedAdId(1);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
             'embed_ad_id' => 1,
         ]);
@@ -136,7 +136,7 @@ class CreateTest extends TestCase
 
         $endpoint->embedProtectionId(1);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
             'embed_protection_id' => 1,
         ]);
@@ -146,14 +146,14 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('name');
 
-        $embed = new Embed();
+        $embed = new Embed;
         $embed->enablePublic(true);
         $embed->publicPassword('public_password');
         $embed->enablePreview(true);
 
         $endpoint->embed($embed);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
             'embed' => [
                 'enable_public' => 1,
@@ -167,10 +167,10 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('name');
 
-        $embed = new Embed();
+        $embed = new Embed;
         $endpoint->embed($embed);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
         ]);
     }
@@ -179,14 +179,14 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('name');
 
-        $security = new Security();
+        $security = new Security;
         $security->encryptionMethod(EncryptionMethodEnum::DRMAES);
         $security->useToken(true);
         $security->tokenDuration(TokenDurationEnum::DAY);
 
         $endpoint->security($security);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
             'security' => [
                 'encryption_method' => EncryptionMethodEnum::DRMAES->value,
@@ -200,10 +200,10 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('name');
 
-        $security = new Security();
+        $security = new Security;
         $endpoint->security($security);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
         ]);
     }
@@ -212,7 +212,7 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('name');
 
-        $recording = new Recording();
+        $recording = new Recording;
         $recording->autoDelete(true);
         $recording->autoDeleteMedia(true);
         $recording->savePassed(true);
@@ -221,12 +221,12 @@ class CreateTest extends TestCase
         $recording->marginEndSeconds(10);
         $recording->fileNamingPattern('file_naming_pattern');
 
-        $nimbus = new Nimbus();
+        $nimbus = new Nimbus;
         $nimbus->syncInterval(1);
         $nimbus->channelId(1);
         $nimbus->manifestId(1);
 
-        $epg = new EPG();
+        $epg = new EPG;
         $epg->hoursBefore(1);
         $epg->hoursAfter(1);
         $epg->round(1);
@@ -235,7 +235,7 @@ class CreateTest extends TestCase
         $recording->epg($epg);
         $endpoint->recording($recording);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
             'recording' => [
                 'auto_delete' => 1,
@@ -263,10 +263,10 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('name');
 
-        $recording = new Recording();
+        $recording = new Recording;
         $endpoint->recording($recording);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
         ]);
     }
@@ -275,21 +275,21 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('name');
 
-        $images = new Images();
-        $images->thumbnail('data:image/png;base64,' . base64_encode('thumbnail'));
-        $images->placeholder('data:image/png;base64,' . base64_encode('placeholder'));
-        $images->playbutton('data:image/png;base64,' . base64_encode('playbutton'));
-        $images->logo('data:image/png;base64,' . base64_encode('logo'));
+        $images = new Images;
+        $images->thumbnail('data:image/png;base64,'.base64_encode('thumbnail'));
+        $images->placeholder('data:image/png;base64,'.base64_encode('placeholder'));
+        $images->playbutton('data:image/png;base64,'.base64_encode('playbutton'));
+        $images->logo('data:image/png;base64,'.base64_encode('logo'));
 
         $endpoint->images($images);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
             'images' => [
-                'thumbnail' => 'data:image/png;base64,' . base64_encode('thumbnail'),
-                'placeholder' => 'data:image/png;base64,' . base64_encode('placeholder'),
-                'playbutton' => 'data:image/png;base64,' . base64_encode('playbutton'),
-                'logo' => 'data:image/png;base64,' . base64_encode('logo'),
+                'thumbnail' => 'data:image/png;base64,'.base64_encode('thumbnail'),
+                'placeholder' => 'data:image/png;base64,'.base64_encode('placeholder'),
+                'playbutton' => 'data:image/png;base64,'.base64_encode('playbutton'),
+                'logo' => 'data:image/png;base64,'.base64_encode('logo'),
             ],
         ]);
     }
@@ -298,10 +298,10 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('name');
 
-        $images = new Images();
+        $images = new Images;
         $endpoint->images($images);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
         ]);
     }
@@ -311,7 +311,7 @@ class CreateTest extends TestCase
         $endpoint = new Create('name');
 
         // unix
-        $availability = new Availability();
+        $availability = new Availability;
         $availability->scheduleStart(1674135633);
         $availability->scheduleEnd(1674135633);
 
@@ -326,13 +326,13 @@ class CreateTest extends TestCase
         ]);
 
         // string
-        $availability = new Availability();
+        $availability = new Availability;
         $availability->scheduleStart('2023-01-19 15:41:43');
         $availability->scheduleEnd('2023-01-19 15:41:43');
 
         $endpoint->availability($availability);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
             'availability' => [
                 'schedule_start' => '2023-01-19 15:41:43',
@@ -341,13 +341,13 @@ class CreateTest extends TestCase
         ]);
 
         // Carbon
-        $availability = new Availability();
+        $availability = new Availability;
         $availability->scheduleStart(Carbon::create(2023, 1, 19, 15, 41, 43));
         $availability->scheduleEnd(Carbon::create(2023, 1, 19, 15, 41, 43));
 
         $endpoint->availability($availability);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
             'availability' => [
                 'schedule_start' => '2023-01-19 15:41:43',
@@ -360,10 +360,10 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('name');
 
-        $availability = new Availability();
+        $availability = new Availability;
         $endpoint->availability($availability);
 
-        $this->makeBasicAuthEndpointTest($endpoint, [],  [
+        $this->makeBasicAuthEndpointTest($endpoint, [], [
             'name' => 'name',
         ]);
     }
@@ -372,7 +372,7 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('name');
 
-        $input = new Input();
+        $input = new Input;
         $input->transcode(true);
         $input->transcoderId(1);
         $input->protocol(ProtocolEnum::SRT);
@@ -383,12 +383,12 @@ class CreateTest extends TestCase
         $input->autoShutdown(1);
         $input->videoPid('123');
 
-        $language = new AudioLanguage();
+        $language = new AudioLanguage;
         $language->language('lav');
         $language->pid('123');
         $language->languageName('Latvian');
 
-        $packager = new Packager();
+        $packager = new Packager;
         $packager->primary(1);
         $packager->backup(1);
 
@@ -428,7 +428,7 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('name');
 
-        $input = new Input();
+        $input = new Input;
         $endpoint->input($input);
 
         $this->makeBasicAuthEndpointTest($endpoint, [], [

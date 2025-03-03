@@ -11,13 +11,21 @@ class Recording
     use CompilesProperties;
 
     protected ?bool $auto_delete = null;
+
     protected ?bool $auto_delete_media = null;
+
     protected ?bool $save_passed = null;
+
     protected ?int $delete_after_hours = null;
+
     protected ?int $margin_start_seconds = null;
+
     protected ?int $margin_end_seconds = null;
+
     protected ?string $file_naming_pattern = null;
+
     protected ?Nimbus $nimbus = null;
+
     protected ?EPG $epg = null;
 
     public function autoDelete(bool $auto_delete): static

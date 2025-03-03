@@ -11,17 +11,17 @@ class GetTest extends TestCase
 {
     public function test(): void
     {
-        $this->makeBearerAuthEndpointTest(new Get());
+        $this->makeBearerAuthEndpointTest(new Get);
     }
 
     public function test_with_return(): void
     {
-        $endpoint = new Get();
+        $endpoint = new Get;
 
         $endpoint->return(['client.limits']);
 
         $this->makeBearerAuthEndpointTest($endpoint, [
-            'return' => ['client.limits']
+            'return' => ['client.limits'],
         ]);
     }
 }

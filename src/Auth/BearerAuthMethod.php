@@ -10,9 +10,7 @@ use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
 
 class BearerAuthMethod implements AuthMethodContract
 {
-    public function __construct(private string $bearerToken)
-    {
-    }
+    public function __construct(private string $bearerToken) {}
 
     public function applyCredentials(PendingRequest $request): void
     {

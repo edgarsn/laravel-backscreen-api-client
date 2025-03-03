@@ -35,7 +35,7 @@ class ManifestList extends AbstractEndpoint implements EndpointContract
     protected ?OrderDirectionEnum $order_dir = null;
 
     /**
-     * @param array<int>|null $ids
+     * @param  array<int>|null  $ids
      * @return $this
      */
     public function ids(?array $ids): static
@@ -53,7 +53,7 @@ class ManifestList extends AbstractEndpoint implements EndpointContract
     }
 
     /**
-     * @param array<int>|null $ids
+     * @param  array<int>|null  $ids
      * @return $this
      */
     public function mediaIds(?array $ids): static
@@ -86,8 +86,6 @@ class ManifestList extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -96,8 +94,6 @@ class ManifestList extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -106,9 +102,6 @@ class ManifestList extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {

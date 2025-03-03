@@ -20,13 +20,10 @@ class RegeneratePackages extends AbstractEndpoint implements EndpointContract
      */
     protected ?array $package_ids = null;
 
-    public function __construct(protected int $id)
-    {
-
-    }
+    public function __construct(protected int $id) {}
 
     /**
-     * @param array<int>|null $package_ids
+     * @param  array<int>|null  $package_ids
      * @return $this
      */
     public function packageId(?array $package_ids): static
@@ -48,8 +45,6 @@ class RegeneratePackages extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -58,8 +53,6 @@ class RegeneratePackages extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -68,9 +61,6 @@ class RegeneratePackages extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {

@@ -16,12 +16,12 @@ class LiveListTest extends TestCase
 {
     public function test_without_parameters(): void
     {
-        $this->makeBasicAuthEndpointTest(new LiveList());
+        $this->makeBasicAuthEndpointTest(new LiveList);
     }
 
     public function test_with_created_from(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         // unix
         $endpoint->createdFrom(1674135633);
@@ -47,7 +47,7 @@ class LiveListTest extends TestCase
 
     public function test_with_created_period(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         $endpoint->createdPeriod(PeriodEnum::LAST_HOUR);
 
@@ -58,7 +58,7 @@ class LiveListTest extends TestCase
 
     public function test_with_created_to(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         // unix
         $endpoint->createdTo(1674135633);
@@ -84,7 +84,7 @@ class LiveListTest extends TestCase
 
     public function test_with_id(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         // string
         $endpoint->id('1,2,3');
@@ -110,7 +110,7 @@ class LiveListTest extends TestCase
 
     public function test_with_id_from(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         $endpoint->idFrom(1);
 
@@ -121,7 +121,7 @@ class LiveListTest extends TestCase
 
     public function test_with_id_to(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         $endpoint->idTo(1);
 
@@ -132,7 +132,7 @@ class LiveListTest extends TestCase
 
     public function test_with_images_fallback(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         $endpoint->imagesFallback(false);
 
@@ -143,7 +143,7 @@ class LiveListTest extends TestCase
 
     public function test_with_limit(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         $endpoint->limit(10);
 
@@ -154,7 +154,7 @@ class LiveListTest extends TestCase
 
     public function test_with_name(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         $endpoint->name('name');
 
@@ -165,7 +165,7 @@ class LiveListTest extends TestCase
 
     public function test_with_offset(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         $endpoint->offset(10);
 
@@ -176,7 +176,7 @@ class LiveListTest extends TestCase
 
     public function test_with_order_by(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         $endpoint->orderBy(OrderByEnum::ID);
 
@@ -187,7 +187,7 @@ class LiveListTest extends TestCase
 
     public function test_with_order_direction(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         $endpoint->orderDir(OrderDirectionEnum::DESC);
 
@@ -198,7 +198,7 @@ class LiveListTest extends TestCase
 
     public function test_with_return(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         $endpoint->return(ReturnEnum::CATEGORY);
 
@@ -215,7 +215,7 @@ class LiveListTest extends TestCase
 
     public function test_with_updated_from(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         // unix
         $endpoint->updatedFrom(1674135633);
@@ -241,7 +241,7 @@ class LiveListTest extends TestCase
 
     public function test_with_updated_period(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         $endpoint->updatedPeriod(PeriodEnum::LAST_HOUR);
 
@@ -252,7 +252,7 @@ class LiveListTest extends TestCase
 
     public function test_with_updated_to(): void
     {
-        $endpoint = new LiveList();
+        $endpoint = new LiveList;
 
         // unix
         $endpoint->updatedTo(1674135633);

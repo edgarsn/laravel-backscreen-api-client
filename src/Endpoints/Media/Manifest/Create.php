@@ -17,10 +17,7 @@ class Create extends AbstractEndpoint implements EndpointContract
 {
     use CreateUpdateFunctionsTrait;
 
-    public function __construct(protected int $media_id)
-    {
-
-    }
+    public function __construct(protected int $media_id) {}
 
     /**
      * Define which authentication methods are allowed to call this endpoint.
@@ -34,8 +31,6 @@ class Create extends AbstractEndpoint implements EndpointContract
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -44,8 +39,6 @@ class Create extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -54,15 +47,12 @@ class Create extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {
         $data = [
             'media_id' => $this->media_id,
-            ...$this->prepareData()
+            ...$this->prepareData(),
         ];
 
         $http->withData($data);

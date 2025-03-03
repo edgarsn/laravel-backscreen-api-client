@@ -37,7 +37,6 @@ class Client implements ClientContract
     /**
      * Customize HTTP timeout for client.
      *
-     * @param int $seconds
      * @return $this
      */
     public function timeout(int $seconds): static
@@ -50,7 +49,6 @@ class Client implements ClientContract
     /**
      * Customize HTTP connect timeout for client.
      *
-     * @param int $seconds
      * @return $this
      */
     public function connectTimeout(int $seconds): static
@@ -63,7 +61,6 @@ class Client implements ClientContract
     /**
      * Append HTTP Client middleware.
      *
-     * @param callable $middleware
      * @return $this
      */
     public function withMiddleware(callable $middleware): static
@@ -76,13 +73,11 @@ class Client implements ClientContract
     /**
      * Run Endpoint.
      *
-     * @param EndpointContract $endpoint
-     * @return Response
      * @throws Exception
      */
     public function run(EndpointContract $endpoint): Response
     {
-        if (!in_array($this->auth->getAuthMethod(), $endpoint->allowedAuthMethods())) {
+        if (! in_array($this->auth->getAuthMethod(), $endpoint->allowedAuthMethods())) {
             throw new TmsAuthMethodNotAllowed('This authentication method is not allowed to call given endpoint.');
         }
 
@@ -102,19 +97,14 @@ class Client implements ClientContract
 
     /**
      * Build & Get HTTP factory.
-     *
-     * @return HttpFactory
      */
     public function buildHttpFactory(): HttpFactory
     {
-        return $this->httpFactory = $this->httpFactory ?? new HttpFactory();
+        return $this->httpFactory = $this->httpFactory ?? new HttpFactory;
     }
 
     /**
      * Build base HTTP request.
-     *
-     * @param HttpFactory $factory
-     * @return PendingRequest
      */
     protected function buildBaseRequest(HttpFactory $factory): PendingRequest
     {
@@ -129,9 +119,6 @@ class Client implements ClientContract
 
     /**
      * Apply auth credentials to request.
-     *
-     * @param PendingRequest $request
-     * @return void
      */
     protected function applyAuthCredentials(PendingRequest $request): void
     {
@@ -140,9 +127,6 @@ class Client implements ClientContract
 
     /**
      * Applies HTTP middleware to request.
-     *
-     * @param PendingRequest $request
-     * @return void
      */
     protected function applyHttpMiddleware(PendingRequest $request): void
     {
@@ -153,10 +137,6 @@ class Client implements ClientContract
 
     /**
      * Apply endpoint defaults to request.
-     *
-     * @param PendingRequest $request
-     * @param EndpointContract $endpoint
-     * @return void
      */
     protected function applyEndpointDefaults(PendingRequest $request, EndpointContract $endpoint): void
     {
@@ -168,7 +148,6 @@ class Client implements ClientContract
     /**
      * Build HTTP request options.
      *
-     * @param PendingRequest $request
      * @return array<string, mixed>
      */
     protected function buildRequestOptions(PendingRequest $request): array
@@ -190,8 +169,6 @@ class Client implements ClientContract
 
     /**
      * Base URL.
-     *
-     * @return string
      */
     protected function getBaseUrl(): string
     {

@@ -11,9 +11,9 @@ class ImagesTest extends TestCase
 {
     public function test(): void
     {
-        $images = new Images();
+        $images = new Images;
 
-        $encodedImage = 'data:image/png;base64,' . base64_encode('imagebase64_1');
+        $encodedImage = 'data:image/png;base64,'.base64_encode('imagebase64_1');
 
         $images->thumbnail($encodedImage)
             ->placeholder($encodedImage)
@@ -30,7 +30,7 @@ class ImagesTest extends TestCase
 
     public function test_with_non_base64(): void
     {
-        $images = new Images();
+        $images = new Images;
 
         try {
             $images->thumbnail('data:image/png;base64,imagebase64_1');
@@ -59,7 +59,7 @@ class ImagesTest extends TestCase
 
     public function test_without_metadata(): void
     {
-        $images = new Images();
+        $images = new Images;
 
         try {
             $images->thumbnail('imagebase64_1');
@@ -88,7 +88,7 @@ class ImagesTest extends TestCase
 
     public function test_with_null(): void
     {
-        $images = new Images();
+        $images = new Images;
 
         try {
             $images->thumbnail(null);

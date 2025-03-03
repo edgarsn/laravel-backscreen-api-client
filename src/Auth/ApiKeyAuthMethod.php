@@ -10,9 +10,7 @@ use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
 
 class ApiKeyAuthMethod implements AuthMethodContract
 {
-    public function __construct(private string $apiKey)
-    {
-    }
+    public function __construct(private string $apiKey) {}
 
     public function applyCredentials(PendingRequest $request): void
     {

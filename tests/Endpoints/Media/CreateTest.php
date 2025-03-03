@@ -16,7 +16,7 @@ class CreateTest extends TestCase
     public function test_with_required_arguments(): void
     {
         $this->makeBearerAuthEndpointTest(new Create('123'), [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
         ]);
     }
 
@@ -27,7 +27,7 @@ class CreateTest extends TestCase
         $endpoint->assetId('1234');
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "1234",
+            'asset_id' => '1234',
         ]);
     }
 
@@ -38,7 +38,7 @@ class CreateTest extends TestCase
         $endpoint->catId(1735);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
             'cat_id' => 1735,
         ]);
     }
@@ -50,7 +50,7 @@ class CreateTest extends TestCase
         $endpoint->name('Test Media');
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
             'name' => 'Test Media',
         ]);
     }
@@ -62,7 +62,7 @@ class CreateTest extends TestCase
         $endpoint->description('Test description');
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
             'description' => 'Test description',
         ]);
     }
@@ -74,7 +74,7 @@ class CreateTest extends TestCase
         $endpoint->pgRating('PG-13');
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
             'pg_rating' => 'PG-13',
         ]);
     }
@@ -86,7 +86,7 @@ class CreateTest extends TestCase
         $endpoint->autoTranscode(1);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
             'auto_transcode' => 1,
         ]);
     }
@@ -98,7 +98,7 @@ class CreateTest extends TestCase
         $endpoint->embedPlayerId(456);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
             'embed_player_id' => 456,
         ]);
     }
@@ -110,7 +110,7 @@ class CreateTest extends TestCase
         $endpoint->embedAdId(789);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
             'embed_ad_id' => 789,
         ]);
     }
@@ -122,7 +122,7 @@ class CreateTest extends TestCase
         $endpoint->embedProtectionId(987);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
             'embed_protection_id' => 987,
         ]);
     }
@@ -134,7 +134,7 @@ class CreateTest extends TestCase
         $endpoint->metadata(['key' => 'value']);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
             'metadata' => ['key' => 'value'],
         ]);
     }
@@ -146,7 +146,7 @@ class CreateTest extends TestCase
         $endpoint->timezone('Europe/Riga');
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
             'timezone' => 'Europe/Riga',
         ]);
     }
@@ -155,7 +155,7 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('123');
 
-        $files = new Files();
+        $files = new Files;
         $files->url('https://mysite.com');
         $files->username('username');
         $files->password('password');
@@ -165,27 +165,28 @@ class CreateTest extends TestCase
         $endpoint->files([$files]);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
             'files' => [
                 [
                     'url' => 'https://mysite.com',
                     'username' => 'username',
-                    'password'=> 'password',
-                    'bitrate'=> 3000,
-                    'lang'=> 'lv',
-                ]
+                    'password' => 'password',
+                    'bitrate' => 3000,
+                    'lang' => 'lv',
+                ],
             ],
         ]);
     }
+
     public function test_with_empty_files(): void
     {
         $endpoint = new Create('123');
 
-        $files = new Files();
+        $files = new Files;
         $endpoint->files([$files]);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
         ]);
     }
 
@@ -193,18 +194,18 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('123');
 
-        $tags = new Tags();
+        $tags = new Tags;
         $tags->set(['tag1', 'tag2']);
         $tags->add(['tag3']);
 
         $endpoint->tags($tags);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
             'tags' => [
                 'set' => ['tag1', 'tag2'],
                 'add' => ['tag3'],
-            ]
+            ],
         ]);
     }
 
@@ -212,11 +213,11 @@ class CreateTest extends TestCase
     {
         $endpoint = new Create('123');
 
-        $tags = new Tags();
+        $tags = new Tags;
         $endpoint->tags($tags);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
-            'asset_id' => "123",
+            'asset_id' => '123',
         ]);
     }
 
@@ -225,7 +226,7 @@ class CreateTest extends TestCase
         $endpoint = new Create('123');
 
         $endpoint->callback([
-            new Callback('https://mysite.com', CallbackHttpMethodEnum::POST)
+            new Callback('https://mysite.com', CallbackHttpMethodEnum::POST),
         ]);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
@@ -234,7 +235,7 @@ class CreateTest extends TestCase
                 [
                     'url' => 'https://mysite.com',
                     'method' => CallbackHttpMethodEnum::POST->value,
-                ]
+                ],
             ],
         ]);
     }

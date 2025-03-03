@@ -38,17 +38,17 @@ abstract class TestCase extends \Newman\LaravelTmsApiClient\Tests\TestCase
 
     protected function makeNullAuthEndpointTest(EndpointContract $endpoint, array $query = [], array|string|null $body = null, ?array $fakeResponse = null): Response
     {
-        $client = new Client(new NullAuthMethod());
+        $client = new Client(new NullAuthMethod);
 
         return $this->makeEndpointTestWithCilent($client, $endpoint, $query, $body, $fakeResponse);
     }
 
     protected function makeEndpointTestWithCilent(ClientContract $client, EndpointContract $endpoint, array $query = [], array|string|null $body = null, ?array $fakeResponse = null): Response
     {
-        $fakeUrl = 'api.cloudycdn.services/api/v5' . $endpoint->endpointUrl();
+        $fakeUrl = 'api.cloudycdn.services/api/v5'.$endpoint->endpointUrl();
 
         if ($query) {
-            $fakeUrl .= '?' . http_build_query($query, '', null, PHP_QUERY_RFC3986);
+            $fakeUrl .= '?'.http_build_query($query, '', null, PHP_QUERY_RFC3986);
         }
 
         $fakeResponse = $fakeResponse !== null ? $fakeResponse : ['msg' => '', 'code' => 0];
@@ -56,13 +56,13 @@ abstract class TestCase extends \Newman\LaravelTmsApiClient\Tests\TestCase
         $factory = $client->buildHttpFactory();
         $factory->preventStrayRequests();
         $factory->fake([
-            $fakeUrl => $factory->response($fakeResponse)
+            $fakeUrl => $factory->response($fakeResponse),
         ]);
 
         $response = $client->run($endpoint);
 
         if ($body !== null) {
-            $this->assertEquals(is_array($body) ? json_encode($body) : $body, (string)$response->transferStats->getRequest()->getBody());
+            $this->assertEquals(is_array($body) ? json_encode($body) : $body, (string) $response->transferStats->getRequest()->getBody());
         }
 
         $this->assertEquals($fakeResponse, $response->json());

@@ -20,192 +20,207 @@ use Newman\LaravelTmsApiClient\HttpClient\PendingRequest;
 class LiveList extends AbstractEndpoint implements EndpointContract
 {
     protected string|int|CarbonInterface|null $created_from = null;
+
     protected ?PeriodEnum $created_period = null;
+
     protected string|int|CarbonInterface|null $created_to = null;
+
     /**
      * @var string|int|array<int>|null
      */
     protected string|int|array|null $id = null;
+
     protected ?int $id_from = null;
+
     protected ?int $id_to = null;
+
     protected ?bool $images_fallback = null;
+
     protected ?int $limit = null;
+
     protected ?string $name = null;
+
     protected ?int $offset = null;
+
     protected ?OrderByEnum $order_by = null;
+
     protected ?OrderDirectionEnum $order_dir = null;
+
     /**
-     *  @var array<ReturnEnum>|ReturnEnum|null
+     * @var array<ReturnEnum>|ReturnEnum|null
      */
     protected array|ReturnEnum|null $return = null;
+
     protected string|int|CarbonInterface|null $updated_from = null;
+
     protected ?PeriodEnum $updated_period = null;
+
     protected string|int|CarbonInterface|null $updated_to = null;
 
     /**
-     * @param string|int|CarbonInterface|null $created_from
      * @return $this
      */
     public function createdFrom(string|int|CarbonInterface|null $created_from): self
     {
         $this->created_from = $created_from;
+
         return $this;
     }
 
     /**
-     * @param PeriodEnum|null $created_period
      * @return $this
      */
     public function createdPeriod(?PeriodEnum $created_period): self
     {
         $this->created_period = $created_period;
+
         return $this;
     }
 
     /**
-     * @param string|int|CarbonInterface|null $created_to
      * @return $this
      */
     public function createdTo(string|int|CarbonInterface|null $created_to): self
     {
         $this->created_to = $created_to;
+
         return $this;
     }
 
     /**
-     * @param string|int|array<int>|null $id
+     * @param  string|int|array<int>|null  $id
      * @return $this
      */
     public function id(string|int|array|null $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
-     * @param int|null $id_from
      * @return $this
      */
     public function idFrom(?int $id_from): self
     {
         $this->id_from = $id_from;
+
         return $this;
     }
 
     /**
-     * @param int|null $id_to
      * @return $this
      */
     public function idTo(?int $id_to): self
     {
         $this->id_to = $id_to;
+
         return $this;
     }
 
     /**
-     * @param ?bool $images_fallback
      * @return $this
      */
     public function imagesFallback(?bool $images_fallback): self
     {
         $this->images_fallback = $images_fallback;
+
         return $this;
     }
 
     /**
-     * @param int|null $limit
      * @return $this
      */
     public function limit(?int $limit): self
     {
         $this->limit = $limit;
+
         return $this;
     }
 
     /**
-     * @param string|null $name
      * @return $this
      */
     public function name(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
     /**
-     * @param int|null $offset
      * @return $this
      */
     public function offset(?int $offset): self
     {
         $this->offset = $offset;
+
         return $this;
     }
 
     /**
-     * @param OrderByEnum|null $order_by
      * @return $this
      */
     public function orderBy(?OrderByEnum $order_by): self
     {
         $this->order_by = $order_by;
+
         return $this;
     }
 
     /**
-     * @param OrderDirectionEnum|null $order_dir
      * @return $this
      */
     public function orderDir(?OrderDirectionEnum $order_dir): self
     {
         $this->order_dir = $order_dir;
+
         return $this;
     }
 
     /**
-     * @param array<ReturnEnum>|ReturnEnum|null $return
+     * @param  array<ReturnEnum>|ReturnEnum|null  $return
      * @return $this
      */
     public function return(array|ReturnEnum|null $return): self
     {
         $this->return = $return;
+
         return $this;
     }
 
     /**
-     * @param string|int|CarbonInterface|null $updated_from
      * @return $this
      */
     public function updatedFrom(string|int|CarbonInterface|null $updated_from): self
     {
         $this->updated_from = $updated_from;
+
         return $this;
     }
 
     /**
-     * @param PeriodEnum|null $updated_period
      * @return $this
      */
     public function updatedPeriod(?PeriodEnum $updated_period): self
     {
         $this->updated_period = $updated_period;
+
         return $this;
     }
 
     /**
-     * @param string|int|CarbonInterface|null $updated_to
      * @return $this
      */
     public function updatedTo(string|int|CarbonInterface|null $updated_to): self
     {
         $this->updated_to = $updated_to;
+
         return $this;
     }
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -214,8 +229,6 @@ class LiveList extends AbstractEndpoint implements EndpointContract
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -224,9 +237,6 @@ class LiveList extends AbstractEndpoint implements EndpointContract
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {
@@ -282,7 +292,7 @@ class LiveList extends AbstractEndpoint implements EndpointContract
 
         if ($this->return !== null) {
             if (is_array($this->return)) {
-                $query['return'] = array_map(fn(ReturnEnum $value) => $value->value, $this->return);
+                $query['return'] = array_map(fn (ReturnEnum $value) => $value->value, $this->return);
             } else {
                 $query['return'] = $this->return->value;
             }

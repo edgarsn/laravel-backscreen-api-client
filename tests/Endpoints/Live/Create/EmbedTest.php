@@ -11,7 +11,7 @@ class EmbedTest extends TestCase
 {
     public function test(): void
     {
-        $embed = new Embed();
+        $embed = new Embed;
 
         $embed->enablePublic(true)
             ->publicPassword('password')

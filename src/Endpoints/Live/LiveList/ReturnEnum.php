@@ -20,7 +20,7 @@ enum ReturnEnum: string
     case ADS = 'ads';
     case BITRATES = 'bitrates';
     case BITRATES_CUSTOM = 'bitrates.custom';
-    CASE BITRATES_VIDEO = 'bitrates.video';
+    case BITRATES_VIDEO = 'bitrates.video';
     case BITRATES_AUDIO = 'bitrates.audio';
     case BITRATES_RESTREAMS = 'bitrates.restreams';
     case RECORDING = 'recording';

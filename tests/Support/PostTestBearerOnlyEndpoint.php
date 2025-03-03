@@ -24,8 +24,6 @@ class PostTestBearerOnlyEndpoint extends AbstractEndpoint implements EndpointCon
 
     /**
      * HTTP Method to use for request.
-     *
-     * @return HttpMethodEnum
      */
     public function useHttpMethod(): HttpMethodEnum
     {
@@ -34,8 +32,6 @@ class PostTestBearerOnlyEndpoint extends AbstractEndpoint implements EndpointCon
 
     /**
      * Endpoint url.
-     *
-     * @return string
      */
     public function endpointUrl(): string
     {
@@ -44,9 +40,6 @@ class PostTestBearerOnlyEndpoint extends AbstractEndpoint implements EndpointCon
 
     /**
      * Prepares HTTP request for this endpoint.
-     *
-     * @param PendingRequest $http
-     * @return void
      */
     public function prepareHttpRequest(PendingRequest $http): void
     {

@@ -6,9 +6,7 @@ namespace Newman\LaravelTmsApiClient\Endpoints\Media\Update;
 
 class ByAssetId implements ByContract
 {
-    public function __construct(protected string $asset_id)
-    {
-    }
+    public function __construct(protected string $asset_id) {}
 
     public function getFieldName(): string
     {

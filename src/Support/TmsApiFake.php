@@ -16,9 +16,7 @@ class TmsApiFake
     }
 
     /**
-     * @param string $method
-     * @param array<string, mixed> $args
-     * @return mixed
+     * @param  array<string, mixed>  $args
      */
     public function __call(string $method, array $args): mixed
     {
