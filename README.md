@@ -18,7 +18,7 @@ For laravel versions 9.0, 10.0, see 1.x branch.
 Require the package via Composer:
 
 ```bash
-composer require newman/laravel-backscreen-api-client
+composer require newman/laravel-tms-api-client
 ```
 
 Copy config file to your `config` directory.
