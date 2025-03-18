@@ -28,9 +28,9 @@ class TmsApi implements TmsApiContract
      */
     public function client(string $name): ClientContract
     {
-        $clientConfig = Config::get('tms-api.clients.'.$name);
+        $clientConfig = Config::get('backscreen-api.clients.'.$name);
 
-        if (! Config::has('tms-api.clients.'.$name) || ! is_array($clientConfig)) {
+        if (! Config::has('backscreen-api.clients.'.$name) || ! is_array($clientConfig)) {
             throw new InvalidTmsApiClientException('TMS Api client could\'nt be found.');
         }
 
@@ -39,8 +39,8 @@ class TmsApi implements TmsApiContract
                 throw new InvalidTmsApiClientException('TMS Api client auth credentials are not provided.');
             }
 
-            $clientUsername = Config::string('tms-api.clients.'.$name.'.auth.username');
-            $clientPassword = Config::string('tms-api.clients.'.$name.'.auth.password');
+            $clientUsername = Config::string('backscreen-api.clients.'.$name.'.auth.username');
+            $clientPassword = Config::string('backscreen-api.clients.'.$name.'.auth.password');
 
             $basicAuth = new BasicAuthMethod($clientUsername, $clientPassword);
 
@@ -51,11 +51,11 @@ class TmsApi implements TmsApiContract
 
         if (Arr::has($clientConfig, 'http')) {
             if (Arr::has($clientConfig, 'http.timeout')) {
-                $this->clients[$name]->timeout(Config::integer('tms-api.clients.'.$name.'.http.timeout'));
+                $this->clients[$name]->timeout(Config::integer('backscreen-api.clients.'.$name.'.http.timeout'));
             }
 
             if (Arr::has($clientConfig, 'http.connect_timeout')) {
-                $this->clients[$name]->connectTimeout(Config::integer('tms-api.clients.'.$name.'.http.connect_timeout'));
+                $this->clients[$name]->connectTimeout(Config::integer('backscreen-api.clients.'.$name.'.http.connect_timeout'));
             }
         }
 
