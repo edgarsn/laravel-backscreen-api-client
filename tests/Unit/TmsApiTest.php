@@ -53,7 +53,7 @@ class TmsApiTest extends TestCase
         /** @var ConfigRepository $config */
         $config = $this->app->make(ConfigRepository::class);
 
-        $config->set('tms-api.clients', [
+        $config->set('backscreen-api.clients', [
             'ipsum' => [
                 'auth' => [
                     'username' => 'lorem',
@@ -81,7 +81,7 @@ class TmsApiTest extends TestCase
         /** @var ConfigRepository $config */
         $config = $this->app->make(ConfigRepository::class);
 
-        $config->set('tms-api.clients', []);
+        $config->set('backscreen-apii.clients', []);
 
         $this->expectException(InvalidTmsApiClientException::class);
         $this->expectExceptionMessage('TMS Api client could\'nt be found.');
@@ -98,7 +98,7 @@ class TmsApiTest extends TestCase
         /** @var ConfigRepository $config */
         $config = $this->app->make(ConfigRepository::class);
 
-        $config->set('tms-api.clients', [
+        $config->set('backscreen-api.clients', [
             'ipsum' => [
                 'auth' => [
                 ],
@@ -123,7 +123,7 @@ class TmsApiTest extends TestCase
         /** @var ConfigRepository $config */
         $config = $this->app->make(ConfigRepository::class);
 
-        $config->set('tms-api.clients', [
+        $config->set('backscreen-api.clients', [
             'ipsum' => [
                 'auth' => [
                     'username' => 'lorem',
