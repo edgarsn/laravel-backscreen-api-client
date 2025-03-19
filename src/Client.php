@@ -27,7 +27,7 @@ class Client implements ClientContract
      */
     protected array $middlewares = [];
 
-    protected ?HttpFactory $httpFactory = null;
+    protected static ?HttpFactory $httpFactory = null;
 
     public function __construct(AuthMethodContract $auth)
     {
@@ -95,12 +95,17 @@ class Client implements ClientContract
         return $request->send($request->getHttpMethod()->value, $request->getEndpoint(), $requestOptions);
     }
 
+    public static function buildStaticHttpFactory(): HttpFactory
+    {
+        return self::$httpFactory = self::$httpFactory ?? new HttpFactory;
+    }
+
     /**
      * Build & Get HTTP factory.
      */
     public function buildHttpFactory(): HttpFactory
     {
-        return $this->httpFactory = $this->httpFactory ?? new HttpFactory;
+        return self::buildStaticHttpFactory();
     }
 
     /**
