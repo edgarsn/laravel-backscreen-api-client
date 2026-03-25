@@ -9,7 +9,7 @@ https://api.cloudycdn.services/api/v5/docs
 If you were using 1.x before, follow UPGRADE.md to update your code properly since it contains many breaking changes.
 
 ## Requirements
-- Laravel 11.0+, 12.0+
+- Laravel 11.0+, 12.0+, 13.0+
 - PHP 8.2+
 
 For laravel versions 9.0, 10.0, see 1.x branch.
