@@ -7,7 +7,11 @@ namespace Newman\LaravelBackscreenApiClient\Endpoints\Media;
 use Carbon\CarbonInterface;
 use Newman\LaravelBackscreenApiClient\AbstractEndpoint;
 use Newman\LaravelBackscreenApiClient\Contracts\EndpointContract;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\FileExtension;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\MediaInfo;
 use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\OrderByEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\PeriodEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\Popular;
 use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\PublisherStatusEnum;
 use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\StatusEnum;
 use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\OrderDirectionEnum;
@@ -25,6 +29,10 @@ class MediaList extends AbstractEndpoint implements EndpointContract
      */
     protected ?array $ids = null;
 
+    protected ?int $id_from = null;
+
+    protected ?int $id_to = null;
+
     /**
      * @var array<string>|null
      */
@@ -39,15 +47,34 @@ class MediaList extends AbstractEndpoint implements EndpointContract
 
     protected string|int|CarbonInterface|null $created_to = null;
 
+    protected ?PeriodEnum $created_period = null;
+
     protected string|int|CarbonInterface|null $updated_from = null;
 
     protected string|int|CarbonInterface|null $updated_to = null;
+
+    protected ?PeriodEnum $updated_period = null;
+
+    protected string|int|CarbonInterface|null $published_from = null;
+
+    protected string|int|CarbonInterface|null $published_to = null;
+
+    protected ?PeriodEnum $published_period = null;
 
     protected ?bool $published = null;
 
     protected ?PublisherStatusEnum $publisher_status = null;
 
     protected ?bool $only_available = null;
+
+    /**
+     * Wildcard. Can also be an array of string wildcards.
+     *
+     * @var array<string>|string|null
+     */
+    protected array|string|null $name = null;
+
+    protected ?string $pg_rating = null;
 
     protected ?string $search = null;
 
@@ -57,9 +84,41 @@ class MediaList extends AbstractEndpoint implements EndpointContract
     protected ?array $status = null;
 
     /**
+     * @var array<StatusEnum>|null
+     */
+    protected ?array $status_exclude = null;
+
+    /**
+     * Available values: warning, error, transcoded, multi_bitrate, published, expired, scheduled.
+     *
+     * @var array<string>|null
+     */
+    protected ?array $tech_status = null;
+
+    /**
+     * Available values: warning, error, transcoded, multi_bitrate, published, expired, scheduled.
+     *
+     * @var array<string>|null
+     */
+    protected ?array $tech_status_exclude = null;
+
+    /**
      * @var array<string>|null
      */
     protected ?array $tags = null;
+
+    /**
+     * Filter by errors/warnings. Requires search_index_ready.
+     *
+     * @var array<string>|null
+     */
+    protected ?array $errors_warnings = null;
+
+    protected ?FileExtension $file_extension = null;
+
+    protected ?MediaInfo $media_info = null;
+
+    protected ?Popular $popular = null;
 
     protected ?int $limit = null;
 
@@ -69,16 +128,27 @@ class MediaList extends AbstractEndpoint implements EndpointContract
 
     protected ?OrderDirectionEnum $order_dir = null;
 
+    /**
+     * @var array<int>|null
+     */
+    protected ?array $order_specific = null;
+
     protected ?bool $images_fallback = null;
+
+    /**
+     * @var array<mixed>|null
+     */
+    protected ?array $metadata = null;
 
     /**
      * @var array<string>|null
      */
     protected ?array $return = null;
 
+    protected ?string $timezone = null;
+
     /**
      * @param  array<int>|null  $ids
-     * @return $this
      */
     public function ids(?array $ids): static
     {
@@ -87,9 +157,22 @@ class MediaList extends AbstractEndpoint implements EndpointContract
         return $this;
     }
 
+    public function idFrom(?int $id_from): static
+    {
+        $this->id_from = $id_from;
+
+        return $this;
+    }
+
+    public function idTo(?int $id_to): static
+    {
+        $this->id_to = $id_to;
+
+        return $this;
+    }
+
     /**
      * @param  array<string>|null  $asset_ids
-     * @return $this
      */
     public function assetIds(?array $asset_ids): static
     {
@@ -100,7 +183,6 @@ class MediaList extends AbstractEndpoint implements EndpointContract
 
     /**
      * @param  array<int>|null  $ids
-     * @return $this
      */
     public function categoryIds(?array $ids): static
     {
@@ -123,6 +205,13 @@ class MediaList extends AbstractEndpoint implements EndpointContract
         return $this;
     }
 
+    public function createdPeriod(?PeriodEnum $created_period): static
+    {
+        $this->created_period = $created_period;
+
+        return $this;
+    }
+
     public function updatedFrom(string|int|CarbonInterface|null $updated_from): static
     {
         $this->updated_from = $updated_from;
@@ -133,6 +222,34 @@ class MediaList extends AbstractEndpoint implements EndpointContract
     public function updatedTo(string|int|CarbonInterface|null $updated_to): static
     {
         $this->updated_to = $updated_to;
+
+        return $this;
+    }
+
+    public function updatedPeriod(?PeriodEnum $updated_period): static
+    {
+        $this->updated_period = $updated_period;
+
+        return $this;
+    }
+
+    public function publishedFrom(string|int|CarbonInterface|null $published_from): static
+    {
+        $this->published_from = $published_from;
+
+        return $this;
+    }
+
+    public function publishedTo(string|int|CarbonInterface|null $published_to): static
+    {
+        $this->published_to = $published_to;
+
+        return $this;
+    }
+
+    public function publishedPeriod(?PeriodEnum $published_period): static
+    {
+        $this->published_period = $published_period;
 
         return $this;
     }
@@ -158,6 +275,23 @@ class MediaList extends AbstractEndpoint implements EndpointContract
         return $this;
     }
 
+    /**
+     * @param  array<string>|string|null  $name
+     */
+    public function name(array|string|null $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function pgRating(?string $pg_rating): static
+    {
+        $this->pg_rating = $pg_rating;
+
+        return $this;
+    }
+
     public function search(?string $phrase): static
     {
         $this->search = $phrase;
@@ -167,7 +301,6 @@ class MediaList extends AbstractEndpoint implements EndpointContract
 
     /**
      * @param  StatusEnum|array<StatusEnum>|null  $status
-     * @return $this
      */
     public function status(StatusEnum|array|null $status): static
     {
@@ -177,12 +310,76 @@ class MediaList extends AbstractEndpoint implements EndpointContract
     }
 
     /**
+     * @param  StatusEnum|array<StatusEnum>|null  $status_exclude
+     */
+    public function statusExclude(StatusEnum|array|null $status_exclude): static
+    {
+        $this->status_exclude = $status_exclude === null ? null : (! is_array($status_exclude) ? [$status_exclude] : $status_exclude);
+
+        return $this;
+    }
+
+    /**
+     * Available values: warning, error, transcoded, multi_bitrate, published, expired, scheduled.
+     *
+     * @param  array<string>|null  $tech_status
+     */
+    public function techStatus(?array $tech_status): static
+    {
+        $this->tech_status = $tech_status;
+
+        return $this;
+    }
+
+    /**
+     * Available values: warning, error, transcoded, multi_bitrate, published, expired, scheduled.
+     *
+     * @param  array<string>|null  $tech_status_exclude
+     */
+    public function techStatusExclude(?array $tech_status_exclude): static
+    {
+        $this->tech_status_exclude = $tech_status_exclude;
+
+        return $this;
+    }
+
+    /**
      * @param  array<string>|null  $tags
-     * @return $this
      */
     public function tags(?array $tags): static
     {
         $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * @param  array<string>|null  $errors_warnings
+     */
+    public function errorsWarnings(?array $errors_warnings): static
+    {
+        $this->errors_warnings = $errors_warnings;
+
+        return $this;
+    }
+
+    public function fileExtension(?FileExtension $file_extension): static
+    {
+        $this->file_extension = $file_extension;
+
+        return $this;
+    }
+
+    public function mediaInfo(?MediaInfo $media_info): static
+    {
+        $this->media_info = $media_info;
+
+        return $this;
+    }
+
+    public function popular(?Popular $popular): static
+    {
+        $this->popular = $popular;
 
         return $this;
     }
@@ -219,6 +416,16 @@ class MediaList extends AbstractEndpoint implements EndpointContract
         return $this;
     }
 
+    /**
+     * @param  array<int>|null  $order_specific
+     */
+    public function orderSpecific(?array $order_specific): static
+    {
+        $this->order_specific = $order_specific;
+
+        return $this;
+    }
+
     public function imagesFallback(?bool $fallback): static
     {
         $this->images_fallback = $fallback;
@@ -227,12 +434,28 @@ class MediaList extends AbstractEndpoint implements EndpointContract
     }
 
     /**
+     * @param  array<mixed>|null  $metadata
+     */
+    public function metadata(?array $metadata): static
+    {
+        $this->metadata = $metadata;
+
+        return $this;
+    }
+
+    /**
      * @param  array<string>|null  $return
-     * @return $this
      */
     public function return(?array $return): static
     {
         $this->return = $return;
+
+        return $this;
+    }
+
+    public function timezone(?string $timezone): static
+    {
+        $this->timezone = $timezone;
 
         return $this;
     }
@@ -264,6 +487,14 @@ class MediaList extends AbstractEndpoint implements EndpointContract
             $query['id'] = $this->ids;
         }
 
+        if ($this->id_from !== null) {
+            $query['id_from'] = $this->id_from;
+        }
+
+        if ($this->id_to !== null) {
+            $query['id_to'] = $this->id_to;
+        }
+
         if ($this->asset_ids !== null) {
             $query['asset_id'] = $this->asset_ids;
         }
@@ -280,12 +511,32 @@ class MediaList extends AbstractEndpoint implements EndpointContract
             $query['created_to'] = $this->created_to instanceof CarbonInterface ? $this->created_to->toDateTimeString() : $this->created_to;
         }
 
+        if ($this->created_period !== null) {
+            $query['created_period'] = $this->created_period->value;
+        }
+
         if ($this->updated_from !== null) {
             $query['updated_from'] = $this->updated_from instanceof CarbonInterface ? $this->updated_from->toDateTimeString() : $this->updated_from;
         }
 
         if ($this->updated_to !== null) {
             $query['updated_to'] = $this->updated_to instanceof CarbonInterface ? $this->updated_to->toDateTimeString() : $this->updated_to;
+        }
+
+        if ($this->updated_period !== null) {
+            $query['updated_period'] = $this->updated_period->value;
+        }
+
+        if ($this->published_from !== null) {
+            $query['published_from'] = $this->published_from instanceof CarbonInterface ? $this->published_from->toDateTimeString() : $this->published_from;
+        }
+
+        if ($this->published_to !== null) {
+            $query['published_to'] = $this->published_to instanceof CarbonInterface ? $this->published_to->toDateTimeString() : $this->published_to;
+        }
+
+        if ($this->published_period !== null) {
+            $query['published_period'] = $this->published_period->value;
         }
 
         if ($this->published !== null) {
@@ -300,6 +551,14 @@ class MediaList extends AbstractEndpoint implements EndpointContract
             $query['only_available'] = $this->only_available ? 1 : 0;
         }
 
+        if ($this->name !== null) {
+            $query['name'] = $this->name;
+        }
+
+        if ($this->pg_rating !== null) {
+            $query['pg_rating'] = $this->pg_rating;
+        }
+
         if ($this->search !== null) {
             $query['search'] = $this->search;
         }
@@ -308,8 +567,48 @@ class MediaList extends AbstractEndpoint implements EndpointContract
             $query['status'] = array_map(fn (StatusEnum $status) => $status->value, $this->status);
         }
 
+        if ($this->status_exclude !== null) {
+            $query['status_exclude'] = array_map(fn (StatusEnum $status) => $status->value, $this->status_exclude);
+        }
+
+        if ($this->tech_status !== null) {
+            $query['tech_status'] = $this->tech_status;
+        }
+
+        if ($this->tech_status_exclude !== null) {
+            $query['tech_status_exclude'] = $this->tech_status_exclude;
+        }
+
         if ($this->tags !== null) {
             $query['tags'] = $this->tags;
+        }
+
+        if ($this->errors_warnings !== null) {
+            $query['errors_warnings'] = $this->errors_warnings;
+        }
+
+        if ($this->file_extension !== null) {
+            $file_extension = $this->file_extension->compileAsArray();
+
+            if (! empty($file_extension)) {
+                $query['file_extension'] = $file_extension;
+            }
+        }
+
+        if ($this->media_info !== null) {
+            $media_info = $this->media_info->compileAsArray();
+
+            if (! empty($media_info)) {
+                $query['media_info'] = $media_info;
+            }
+        }
+
+        if ($this->popular !== null) {
+            $popular = $this->popular->compileAsArray();
+
+            if (! empty($popular)) {
+                $query['popular'] = $popular;
+            }
         }
 
         if ($this->limit !== null) {
@@ -328,12 +627,24 @@ class MediaList extends AbstractEndpoint implements EndpointContract
             $query['order_dir'] = $this->order_dir->value;
         }
 
+        if ($this->order_specific !== null) {
+            $query['order_specific'] = $this->order_specific;
+        }
+
         if ($this->images_fallback !== null) {
             $query['images_fallback'] = $this->images_fallback ? 1 : 0;
         }
 
+        if ($this->metadata !== null) {
+            $query['metadata'] = $this->metadata;
+        }
+
         if ($this->return !== null) {
             $query['return'] = $this->return;
+        }
+
+        if ($this->timezone !== null) {
+            $query['timezone'] = $this->timezone;
         }
 
         $http->withQuery($query);

@@ -16,15 +16,11 @@ class ImagesTest extends TestCase
         $encodedImage = 'data:image/png;base64,'.base64_encode('imagebase64_1');
 
         $images->thumbnail($encodedImage)
-            ->placeholder($encodedImage)
-            ->playbutton($encodedImage)
-            ->logo($encodedImage);
+            ->placeholder($encodedImage);
 
         $this->assertEquals([
             'thumbnail' => $encodedImage,
             'placeholder' => $encodedImage,
-            'playbutton' => $encodedImage,
-            'logo' => $encodedImage,
         ], $images->compileAsArray());
     }
 
@@ -43,18 +39,6 @@ class ImagesTest extends TestCase
         } catch (\InvalidArgumentException $e) {
             $this->assertEquals('placeholder must be a base64 encoded string', $e->getMessage());
         }
-
-        try {
-            $images->playbutton('data:image/png;base64,imagebase64_1');
-        } catch (\InvalidArgumentException $e) {
-            $this->assertEquals('playbutton must be a base64 encoded string', $e->getMessage());
-        }
-
-        try {
-            $images->logo('data:image/png;base64,imagebase64_1');
-        } catch (\InvalidArgumentException $e) {
-            $this->assertEquals('logo must be a base64 encoded string', $e->getMessage());
-        }
     }
 
     public function test_without_metadata(): void
@@ -72,18 +56,6 @@ class ImagesTest extends TestCase
         } catch (\InvalidArgumentException $e) {
             $this->assertEquals('placeholder must be a base64 encoded string', $e->getMessage());
         }
-
-        try {
-            $images->playbutton('imagebase64_1');
-        } catch (\InvalidArgumentException $e) {
-            $this->assertEquals('playbutton must be a base64 encoded string', $e->getMessage());
-        }
-
-        try {
-            $images->logo('imagebase64_1');
-        } catch (\InvalidArgumentException $e) {
-            $this->assertEquals('logo must be a base64 encoded string', $e->getMessage());
-        }
     }
 
     public function test_with_null(): void
@@ -100,18 +72,6 @@ class ImagesTest extends TestCase
             $images->placeholder(null);
         } catch (\InvalidArgumentException $e) {
             $this->assertEquals('placeholder must be a base64 encoded string', $e->getMessage());
-        }
-
-        try {
-            $images->playbutton(null);
-        } catch (\InvalidArgumentException $e) {
-            $this->assertEquals('playbutton must be a base64 encoded string', $e->getMessage());
-        }
-
-        try {
-            $images->logo(null);
-        } catch (\InvalidArgumentException $e) {
-            $this->assertEquals('logo must be a base64 encoded string', $e->getMessage());
         }
     }
 }

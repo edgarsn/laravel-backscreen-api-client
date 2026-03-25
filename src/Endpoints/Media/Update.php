@@ -6,9 +6,19 @@ namespace Newman\LaravelBackscreenApiClient\Endpoints\Media;
 
 use Newman\LaravelBackscreenApiClient\AbstractEndpoint;
 use Newman\LaravelBackscreenApiClient\Contracts\EndpointContract;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Availability;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Files;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Images;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Player;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Presentation;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Security;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\TranscodeInfo;
 use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\ByContract;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\Embed;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\Tags;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\UpdateManifest;
 use Newman\LaravelBackscreenApiClient\EndpointSupport\Callback;
-use Newman\LaravelBackscreenApiClient\EndpointSupport\Images;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Images as LegacyImages;
 use Newman\LaravelBackscreenApiClient\Enums\HttpMethodEnum;
 use Newman\LaravelBackscreenApiClient\HttpClient\PendingRequest;
 
@@ -17,16 +27,62 @@ use Newman\LaravelBackscreenApiClient\HttpClient\PendingRequest;
  */
 class Update extends AbstractEndpoint implements EndpointContract
 {
+    protected ?int $cat_id = null;
+
     protected ?string $name = null;
 
     protected ?string $description = null;
 
+    protected ?string $pg_rating = null;
+
+    protected ?int $auto_transcode = null;
+
+    protected ?int $embed_player_id = null;
+
+    protected ?int $embed_ad_id = null;
+
+    protected ?int $embed_protection_id = null;
+
+    protected ?TranscodeInfo $transcode_info = null;
+
     protected ?Images $images = null;
+
+    protected ?Embed $embed = null;
+
+    protected ?Presentation $presentation = null;
+
+    protected ?Player $player = null;
+
+    /** @var Files[]|null */
+    protected ?array $files = null;
+
+    protected ?Security $security = null;
+
+    protected ?Availability $availability = null;
+
+    /**
+     * @var array<mixed>|null
+     */
+    protected ?array $metadata = null;
+
+    protected ?string $timezone = null;
+
+    protected ?Tags $tags = null;
+
+    /** @var UpdateManifest[]|null */
+    protected ?array $update_manifests = null;
 
     /** @var Callback[]|null */
     protected ?array $callback = null;
 
     public function __construct(protected ByContract $by) {}
+
+    public function catId(?int $cat_id): static
+    {
+        $this->cat_id = $cat_id;
+
+        return $this;
+    }
 
     public function name(?string $name): static
     {
@@ -42,14 +98,174 @@ class Update extends AbstractEndpoint implements EndpointContract
         return $this;
     }
 
-    public function images(?Images $images): static
+    public function pgRating(?string $pg_rating): static
     {
+        $this->pg_rating = $pg_rating;
+
+        return $this;
+    }
+
+    /**
+     * Allowed values: 0 or 1.
+     */
+    public function autoTranscode(?int $auto_transcode): static
+    {
+        $this->auto_transcode = $auto_transcode;
+
+        return $this;
+    }
+
+    /**
+     * -1 = inherit, 0 = none, >0 = Specific ID
+     */
+    public function embedPlayerId(?int $embed_player_id): static
+    {
+        if ($embed_player_id !== null && $embed_player_id < -1) {
+            throw new \InvalidArgumentException('embed_player_id must be >= -1');
+        }
+
+        $this->embed_player_id = $embed_player_id;
+
+        return $this;
+    }
+
+    /**
+     * -1 = inherit, 0 = none, >0 = Specific ID
+     */
+    public function embedAdId(?int $embed_ad_id): static
+    {
+        if ($embed_ad_id !== null && $embed_ad_id < -1) {
+            throw new \InvalidArgumentException('embed_ad_id must be >= -1');
+        }
+
+        $this->embed_ad_id = $embed_ad_id;
+
+        return $this;
+    }
+
+    /**
+     * -1 = inherit, 0 = none, >0 = Specific ID
+     */
+    public function embedProtectionId(?int $embed_protection_id): static
+    {
+        if ($embed_protection_id !== null && $embed_protection_id < -1) {
+            throw new \InvalidArgumentException('embed_protection_id must be >= -1');
+        }
+
+        $this->embed_protection_id = $embed_protection_id;
+
+        return $this;
+    }
+
+    public function transcodeInfo(?TranscodeInfo $transcode_info): static
+    {
+        $this->transcode_info = $transcode_info;
+
+        return $this;
+    }
+
+    public function images(Images|LegacyImages|null $images): static
+    {
+        if ($images instanceof LegacyImages) {
+            /** @var array{thumbnail?: string, placeholder?: string} $compiled */
+            $compiled = $images->compileAsArray();
+
+            $images = new Images;
+            if (isset($compiled['thumbnail'])) {
+                $images->thumbnail($compiled['thumbnail']);
+            }
+            if (isset($compiled['placeholder'])) {
+                $images->placeholder($compiled['placeholder']);
+            }
+        }
+
         $this->images = $images;
 
         return $this;
     }
 
-    /** @param Callback[]|null $callback */
+    public function embed(?Embed $embed): static
+    {
+        $this->embed = $embed;
+
+        return $this;
+    }
+
+    public function presentation(?Presentation $presentation): static
+    {
+        $this->presentation = $presentation;
+
+        return $this;
+    }
+
+    public function player(?Player $player): static
+    {
+        $this->player = $player;
+
+        return $this;
+    }
+
+    /**
+     * @param  Files[]|null  $files
+     */
+    public function files(?array $files): static
+    {
+        $this->files = $files;
+
+        return $this;
+    }
+
+    public function security(?Security $security): static
+    {
+        $this->security = $security;
+
+        return $this;
+    }
+
+    public function availability(?Availability $availability): static
+    {
+        $this->availability = $availability;
+
+        return $this;
+    }
+
+    /**
+     * @param  array<mixed>|null  $metadata
+     */
+    public function metadata(?array $metadata): static
+    {
+        $this->metadata = $metadata;
+
+        return $this;
+    }
+
+    public function timezone(?string $timezone): static
+    {
+        $this->timezone = $timezone;
+
+        return $this;
+    }
+
+    public function tags(?Tags $tags): static
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * @param  UpdateManifest[]|null  $update_manifests
+     */
+    public function updateManifests(?array $update_manifests): static
+    {
+        $this->update_manifests = $update_manifests;
+
+        return $this;
+    }
+
+    /**
+     * @param  Callback[]|null  $callback
+     */
     public function callback(?array $callback): static
     {
         $this->callback = $callback;
@@ -82,6 +298,10 @@ class Update extends AbstractEndpoint implements EndpointContract
             $this->by->getFieldName() => $this->by->getValue(),
         ];
 
+        if ($this->cat_id !== null) {
+            $data['cat_id'] = $this->cat_id;
+        }
+
         if ($this->name !== null) {
             $data['name'] = $this->name;
         }
@@ -90,11 +310,125 @@ class Update extends AbstractEndpoint implements EndpointContract
             $data['description'] = $this->description;
         }
 
+        if ($this->pg_rating !== null) {
+            $data['pg_rating'] = $this->pg_rating;
+        }
+
+        if ($this->auto_transcode !== null) {
+            $data['auto_transcode'] = $this->auto_transcode;
+        }
+
+        if ($this->embed_player_id !== null) {
+            $data['embed_player_id'] = $this->embed_player_id;
+        }
+
+        if ($this->embed_ad_id !== null) {
+            $data['embed_ad_id'] = $this->embed_ad_id;
+        }
+
+        if ($this->embed_protection_id !== null) {
+            $data['embed_protection_id'] = $this->embed_protection_id;
+        }
+
+        if ($this->transcode_info !== null) {
+            $transcode_info = $this->transcode_info->compileAsArray();
+
+            if (! empty($transcode_info)) {
+                $data['transcode_info'] = $transcode_info;
+            }
+        }
+
         if ($this->images !== null) {
             $images = $this->images->compileAsArray();
 
             if (! empty($images)) {
                 $data['images'] = $images;
+            }
+        }
+
+        if ($this->embed !== null) {
+            $embed = $this->embed->compileAsArray();
+
+            if (! empty($embed)) {
+                $data['embed'] = $embed;
+            }
+        }
+
+        if ($this->presentation !== null) {
+            $presentation = $this->presentation->compileAsArray();
+
+            if (! empty($presentation)) {
+                $data['presentation'] = $presentation;
+            }
+        }
+
+        if ($this->player !== null) {
+            $player = $this->player->compileAsArray();
+
+            if (! empty($player)) {
+                $data['player'] = $player;
+            }
+        }
+
+        if ($this->files !== null) {
+            $files = [];
+
+            foreach ($this->files as $value) {
+                $file = $value->compileAsArray();
+                if (! empty($file)) {
+                    $files[] = $file;
+                }
+            }
+
+            if (! empty($files)) {
+                $data['files'] = $files;
+            }
+        }
+
+        if ($this->security !== null) {
+            $security = $this->security->compileAsArray();
+
+            if (! empty($security)) {
+                $data['security'] = $security;
+            }
+        }
+
+        if ($this->availability !== null) {
+            $availability = $this->availability->compileAsArray();
+
+            if (! empty($availability)) {
+                $data['availability'] = $availability;
+            }
+        }
+
+        if ($this->metadata !== null) {
+            $data['metadata'] = $this->metadata;
+        }
+
+        if ($this->timezone !== null) {
+            $data['timezone'] = $this->timezone;
+        }
+
+        if ($this->tags !== null) {
+            $tags = $this->tags->compileAsArray();
+
+            if (! empty($tags)) {
+                $data['tags'] = $tags;
+            }
+        }
+
+        if ($this->update_manifests !== null) {
+            $manifests = [];
+
+            foreach ($this->update_manifests as $value) {
+                $manifest = $value->compileAsArray();
+                if (! empty($manifest)) {
+                    $manifests[] = $manifest;
+                }
+            }
+
+            if (! empty($manifests)) {
+                $data['update_manifests'] = $manifests;
             }
         }
 
