@@ -226,11 +226,16 @@ Create media.
 
 ```php
 use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create as MediaCreate;
-use Newman\LaravelBackscreenApiClient\EndpointSupport\Callback;
-use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
-use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Availability;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Embed;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Enums\EncryptionMethodEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Enums\TokenDurationEnum;
 use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Files;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Images;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Security;
 use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Tags;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\TranscodeInfo;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
 $endpoint = new MediaCreate('123');
 
@@ -243,24 +248,47 @@ $endpoint->autoTranscode(1);
 $endpoint->embedPlayerId(123);
 $endpoint->embedAdId(234);
 $endpoint->embedProtectionId(345);
-$endpoint->metadata([
-    'key' => 'value'
-]);
+$endpoint->metadata(['key' => 'value']);
 $endpoint->timezone('Europe/Riga');
 
-$files = new MediaCreate\Files();
+$files = new Files();
 $files->url('https://mysite.com');
 $files->username('username');
 $files->password('secret');
 $files->bitrate(3000);
 $files->lang('LV');
-$endpoint->files($files);
+$endpoint->files([$files]); // accepts array of Files objects
 
-$tags = new MediaCreate\Tags();
+$tags = new Tags();
 $tags->set(['tag1', 'tag2']);
 $tags->add(['tag3']);
+$endpoint->tags($tags);
 
-$endpoint->callback(new Callback('https://mysite.com', CallbackHttpMethodEnum::POST));
+$images = new Images();
+$images->thumbnail(base64_encode('THUMBNAIL_CONTENTS'));
+$images->placeholder(base64_encode('PLACEHOLDER_CONTENTS'));
+$endpoint->images($images);
+
+$embed = new Embed();
+$embed->enablePublic(1);
+$embed->publicPassword('password');
+$embed->enablePreview(1);
+$endpoint->embed($embed);
+
+$security = new Security();
+$security->encryptionMethod(EncryptionMethodEnum::AES);
+$security->useToken(1);
+$security->tokenDuration(TokenDurationEnum::ONE_HOUR);
+$endpoint->security($security);
+
+$availability = new Availability();
+$availability->published(1);
+$availability->expireTime('2026-12-31 23:59:59');
+$endpoint->availability($availability);
+
+$transcodeInfo = new TranscodeInfo();
+$transcodeInfo->presetId(10);
+$endpoint->transcodeInfo($transcodeInfo);
 
 $response = TmsApi::client('default')->run($endpoint);
 ```
@@ -274,31 +302,86 @@ Update media.
 **Accepted Auth Methods:** `Basic`, `Bearer token`, `API Key`
 
 ```php
-use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update as MediaUpdate;
 use Newman\LaravelBackscreenApiClient\EndpointSupport\Callback;
 use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
-use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
-use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\ByMediaId;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Availability;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Enums\EncryptionMethodEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Files;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Security;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\TranscodeInfo;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update as MediaUpdate;
 use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\ByAssetId;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\ByMediaId;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\Embed;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\Images;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\Tags;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Update\UpdateManifest;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
 
-// Select by which identificator to update
+// Select by which identifier to update
 // by media ID
 $endpoint = new MediaUpdate(new ByMediaId(123));
 // by asset ID
 $endpoint = new MediaUpdate(new ByAssetId('99_asset_id'));
 
 // Optional
+$endpoint->catId(542);
 $endpoint->name('Name of media');
 $endpoint->description('Description of media');
+$endpoint->pgRating('PG-13');
+$endpoint->autoTranscode(1);
+$endpoint->embedPlayerId(123);
+$endpoint->embedAdId(234);
+$endpoint->embedProtectionId(345);
+$endpoint->metadata(['key' => 'value']);
+$endpoint->timezone('Europe/Riga');
 
-$images = new MediaUpdate\Images();
-$images->thumbnail('thumbnail base64');
-$images->placeholder('placeholder base64');
-$images->playbutton('playbutton base64');
-$images->logo('logo base64');
+$files = new Files();
+$files->url('https://mysite.com');
+$files->username('username');
+$files->password('secret');
+$files->bitrate(3000);
+$files->lang('LV');
+$endpoint->files([$files]); // accepts array of Files objects
+
+$images = new Images();
+$images->thumbnail(base64_encode('THUMBNAIL_CONTENTS'));
+$images->placeholder(base64_encode('PLACEHOLDER_CONTENTS'));
 $endpoint->images($images);
 
-$endpoint->callback(new Callback('https://mysite.com', CallbackHttpMethodEnum::POST));
+$embed = new Embed();
+$embed->enablePublic(1);
+$embed->publicPassword('password');
+$embed->enablePreview(1);
+$endpoint->embed($embed);
+
+$security = new Security();
+$security->encryptionMethod(EncryptionMethodEnum::AES);
+$security->useToken(1);
+$endpoint->security($security);
+
+$availability = new Availability();
+$availability->published(1);
+$availability->expireTime('2026-12-31 23:59:59');
+$endpoint->availability($availability);
+
+$transcodeInfo = new TranscodeInfo();
+$transcodeInfo->presetId(10);
+$endpoint->transcodeInfo($transcodeInfo);
+
+$tags = new Tags();
+$tags->set(['tag1', 'tag2']);
+$tags->add(['tag3']);
+$tags->remove(['tag4']);
+$endpoint->tags($tags);
+
+$manifest = new UpdateManifest();
+$manifest->id(85291);
+$manifest->startAt(1000);
+$manifest->endAt(60000);
+$endpoint->updateManifests([$manifest]);
+
+$endpoint->callback([new Callback('https://mysite.com', CallbackHttpMethodEnum::POST)]);
 
 $response = TmsApi::client('default')->run($endpoint);
 ```
@@ -450,6 +533,89 @@ $endpoint = new RegeneratePackages(1234);
 
 // Optional
 $endpoint->packageId([10, 15]);
+
+$response = TmsApi::client('default')->run($endpoint);
+```
+
+### Endpoint: `/Media/Publish`
+
+https://api.cloudycdn.services/api/v5/docs#/operations/Media/Publish
+
+Publish or unpublish media by ID/s.
+
+**Accepted Auth Methods:** `Bearer token`
+
+```php
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Publish as MediaPublish;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
+
+// Publish a single media item (1 = publish, 0 = unpublish)
+$endpoint = new MediaPublish(1234, 1);
+
+// Publish multiple media items
+$endpoint = new MediaPublish([1234, 5678], 1);
+
+$response = TmsApi::client('default')->run($endpoint);
+```
+
+### Endpoint: `/Media/Uploadtoexternal`
+
+https://api.cloudycdn.services/api/v5/docs#/operations/Media/Uploadtoexternal
+
+Upload media files to an external destination.
+
+**Accepted Auth Methods:** `Bearer token`
+
+```php
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\UploadToExternal as MediaUploadToExternal;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\UploadToExternal\CustomFile;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\UploadToExternal\PackageFile;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
+
+// Single media ID and upload destination ID
+$endpoint = new MediaUploadToExternal(1234, 10);
+
+// Multiple media IDs
+$endpoint = new MediaUploadToExternal([1234, 5678], 10);
+
+// Optional
+$endpoint->path('/uploads/');
+$endpoint->catDir(1);  // 0 or 1
+$endpoint->assetDir(1); // 0 or 1
+
+$endpoint->packageFiles([
+    new PackageFile(package_id: 4020, file_id: 582),
+]);
+
+$endpoint->customFiles([
+    new CustomFile(file_id: 900, filename: 'custom_file.mp4'),
+]);
+
+$response = TmsApi::client('default')->run($endpoint);
+```
+
+### Endpoint: `/Media/Validate`
+
+https://api.cloudycdn.services/api/v5/docs#/operations/Media/Validate
+
+Validate media by ID/s.
+
+**Accepted Auth Methods:** `Bearer token`
+
+```php
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Validate as MediaValidate;
+use Newman\LaravelBackscreenApiClient\Support\Facades\TmsApi;
+
+// Single ID
+$endpoint = new MediaValidate(1234);
+
+// Multiple IDs
+$endpoint = new MediaValidate([1234, 5678]);
+
+// Optional
+$endpoint->transcode(1);          // 0 or 1
+$endpoint->transcodePriority(1);  // 0 = normal, 1 = top priority
+$endpoint->transcodingPresetId(10);
 
 $response = TmsApi::client('default')->run($endpoint);
 ```

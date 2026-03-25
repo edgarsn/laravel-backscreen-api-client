@@ -6,9 +6,16 @@ namespace Newman\LaravelBackscreenApiClient\Endpoints\Media;
 
 use Newman\LaravelBackscreenApiClient\AbstractEndpoint;
 use Newman\LaravelBackscreenApiClient\Contracts\EndpointContract;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Availability;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Embed;
 use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Files;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Images;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Player;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Presentation;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Security;
 use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Tags;
-use Newman\LaravelBackscreenApiClient\EndpointSupport\Callback;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\TranscodeInfo;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Images as LegacyImages;
 use Newman\LaravelBackscreenApiClient\Enums\AuthMethodEnum;
 use Newman\LaravelBackscreenApiClient\Enums\HttpMethodEnum;
 use Newman\LaravelBackscreenApiClient\HttpClient\PendingRequest;
@@ -36,6 +43,23 @@ class Create extends AbstractEndpoint implements EndpointContract
 
     protected ?int $embed_protection_id = null;
 
+    protected ?TranscodeInfo $transcode_info = null;
+
+    protected ?Images $images = null;
+
+    protected ?Embed $embed = null;
+
+    protected ?Presentation $presentation = null;
+
+    protected ?Player $player = null;
+
+    /** @var Files[]|null */
+    protected ?array $files = null;
+
+    protected ?Security $security = null;
+
+    protected ?Availability $availability = null;
+
     /**
      * @var array<mixed>|null
      */
@@ -43,13 +67,7 @@ class Create extends AbstractEndpoint implements EndpointContract
 
     protected ?string $timezone = null;
 
-    /** @var Files[]|null */
-    protected ?array $files = null;
-
     protected ?Tags $tags = null;
-
-    /** @var Callback[]|null */
-    protected ?array $callback = null;
 
     public function __construct(string $asset_id)
     {
@@ -91,6 +109,9 @@ class Create extends AbstractEndpoint implements EndpointContract
         return $this;
     }
 
+    /**
+     * Allowed values: 0 or 1.
+     */
     public function autoTranscode(?int $auto_transcode): static
     {
         $this->auto_transcode = $auto_transcode;
@@ -98,6 +119,9 @@ class Create extends AbstractEndpoint implements EndpointContract
         return $this;
     }
 
+    /**
+     * -1 = inherit, 0 = none, >0 = Specific ID
+     */
     public function embedPlayerId(?int $embed_player_id): static
     {
         $this->embed_player_id = $embed_player_id;
@@ -105,6 +129,9 @@ class Create extends AbstractEndpoint implements EndpointContract
         return $this;
     }
 
+    /**
+     * -1 = inherit, 0 = none, >0 = Specific ID
+     */
     public function embedAdId(?int $embed_ad_id): static
     {
         $this->embed_ad_id = $embed_ad_id;
@@ -112,9 +139,73 @@ class Create extends AbstractEndpoint implements EndpointContract
         return $this;
     }
 
+    /**
+     * -1 = inherit, 0 = none, >0 = Specific ID
+     */
     public function embedProtectionId(?int $embed_protection_id): static
     {
         $this->embed_protection_id = $embed_protection_id;
+
+        return $this;
+    }
+
+    public function transcodeInfo(?TranscodeInfo $transcode_info): static
+    {
+        $this->transcode_info = $transcode_info;
+
+        return $this;
+    }
+
+    public function images(Images|LegacyImages|null $images): static
+    {
+        if ($images instanceof LegacyImages) {
+            /** @var array{thumbnail?: string, placeholder?: string} $compiled */
+            $compiled = $images->compileAsArray();
+            $images = new Images;
+            if (isset($compiled['thumbnail'])) {
+                $images->thumbnail($compiled['thumbnail']);
+            }
+            if (isset($compiled['placeholder'])) {
+                $images->placeholder($compiled['placeholder']);
+            }
+        }
+
+        $this->images = $images;
+
+        return $this;
+    }
+
+    public function embed(?Embed $embed): static
+    {
+        $this->embed = $embed;
+
+        return $this;
+    }
+
+    public function presentation(?Presentation $presentation): static
+    {
+        $this->presentation = $presentation;
+
+        return $this;
+    }
+
+    public function player(?Player $player): static
+    {
+        $this->player = $player;
+
+        return $this;
+    }
+
+    public function security(?Security $security): static
+    {
+        $this->security = $security;
+
+        return $this;
+    }
+
+    public function availability(?Availability $availability): static
+    {
+        $this->availability = $availability;
 
         return $this;
     }
@@ -149,16 +240,6 @@ class Create extends AbstractEndpoint implements EndpointContract
     public function tags(?Tags $tags): static
     {
         $this->tags = $tags;
-
-        return $this;
-    }
-
-    /**
-     * @param  Callback[]|null  $callback
-     */
-    public function callback(?array $callback): static
-    {
-        $this->callback = $callback;
 
         return $this;
     }
@@ -230,6 +311,62 @@ class Create extends AbstractEndpoint implements EndpointContract
             $data['embed_protection_id'] = $this->embed_protection_id;
         }
 
+        if ($this->transcode_info !== null) {
+            $transcode_info = $this->transcode_info->compileAsArray();
+
+            if (! empty($transcode_info)) {
+                $data['transcode_info'] = $transcode_info;
+            }
+        }
+
+        if ($this->images !== null) {
+            $images = $this->images->compileAsArray();
+
+            if (! empty($images)) {
+                $data['images'] = $images;
+            }
+        }
+
+        if ($this->embed !== null) {
+            $embed = $this->embed->compileAsArray();
+
+            if (! empty($embed)) {
+                $data['embed'] = $embed;
+            }
+        }
+
+        if ($this->presentation !== null) {
+            $presentation = $this->presentation->compileAsArray();
+
+            if (! empty($presentation)) {
+                $data['presentation'] = $presentation;
+            }
+        }
+
+        if ($this->player !== null) {
+            $player = $this->player->compileAsArray();
+
+            if (! empty($player)) {
+                $data['player'] = $player;
+            }
+        }
+
+        if ($this->security !== null) {
+            $security = $this->security->compileAsArray();
+
+            if (! empty($security)) {
+                $data['security'] = $security;
+            }
+        }
+
+        if ($this->availability !== null) {
+            $availability = $this->availability->compileAsArray();
+
+            if (! empty($availability)) {
+                $data['availability'] = $availability;
+            }
+        }
+
         if ($this->metadata !== null) {
             $data['metadata'] = $this->metadata;
         }
@@ -258,21 +395,6 @@ class Create extends AbstractEndpoint implements EndpointContract
 
             if (! empty($tags)) {
                 $data['tags'] = $tags;
-            }
-        }
-
-        if ($this->callback !== null) {
-            $callbacks = [];
-
-            foreach ($this->callback as $value) {
-                $callback = $value->compileAsArray();
-                if (! empty($callback)) {
-                    $callbacks[] = $callback;
-                }
-            }
-
-            if (! empty($callbacks)) {
-                $data['callback'] = $callbacks;
             }
         }
 

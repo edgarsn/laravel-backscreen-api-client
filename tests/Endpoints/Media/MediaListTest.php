@@ -6,6 +6,11 @@ namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Media;
 
 use Carbon\Carbon;
 use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\FileExtension;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\MediaInfo;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\PeriodEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\Popular;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\MediaList\PopularSourceEnum;
 use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\OrderDirectionEnum;
 use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
@@ -317,5 +322,243 @@ class MediaListTest extends TestCase
         $this->makeBasicAuthEndpointTest($endpoint, [
             'return' => ['actions', 'tech_status'],
         ]);
+    }
+
+    public function test_with_id_from(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->idFrom(100);
+
+        $this->makeBasicAuthEndpointTest($endpoint, ['id_from' => 100]);
+    }
+
+    public function test_with_id_to(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->idTo(500);
+
+        $this->makeBasicAuthEndpointTest($endpoint, ['id_to' => 500]);
+    }
+
+    public function test_with_created_period(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->createdPeriod(PeriodEnum::LAST_7_DAYS);
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'created_period' => PeriodEnum::LAST_7_DAYS->value,
+        ]);
+    }
+
+    public function test_with_updated_period(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->updatedPeriod(PeriodEnum::THIS_MONTH);
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'updated_period' => PeriodEnum::THIS_MONTH->value,
+        ]);
+    }
+
+    public function test_with_published_from(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->publishedFrom('2023-01-01 00:00:00');
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'published_from' => '2023-01-01 00:00:00',
+        ]);
+    }
+
+    public function test_with_published_to(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->publishedTo(Carbon::create(2023, 6, 30, 23, 59, 59));
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'published_to' => '2023-06-30 23:59:59',
+        ]);
+    }
+
+    public function test_with_published_period(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->publishedPeriod(PeriodEnum::LAST_30_DAYS);
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'published_period' => PeriodEnum::LAST_30_DAYS->value,
+        ]);
+    }
+
+    public function test_with_name_string(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->name('Test%');
+
+        $this->makeBasicAuthEndpointTest($endpoint, ['name' => 'Test%']);
+    }
+
+    public function test_with_name_array(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->name(['Test%', 'Demo%']);
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'name' => ['Test%', 'Demo%'],
+        ]);
+    }
+
+    public function test_with_pg_rating(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->pgRating('PG-13');
+
+        $this->makeBasicAuthEndpointTest($endpoint, ['pg_rating' => 'PG-13']);
+    }
+
+    public function test_with_status_exclude(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->statusExclude(MediaList\StatusEnum::ARCHIVED);
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'status_exclude' => [MediaList\StatusEnum::ARCHIVED->value],
+        ]);
+    }
+
+    public function test_with_tech_status(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->techStatus(['transcoded', 'published']);
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'tech_status' => ['transcoded', 'published'],
+        ]);
+    }
+
+    public function test_with_tech_status_exclude(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->techStatusExclude(['error', 'warning']);
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'tech_status_exclude' => ['error', 'warning'],
+        ]);
+    }
+
+    public function test_with_errors_warnings(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->errorsWarnings(['missing_thumbnail']);
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'errors_warnings' => ['missing_thumbnail'],
+        ]);
+    }
+
+    public function test_with_file_extension(): void
+    {
+        $endpoint = new MediaList;
+
+        $fileExtension = new FileExtension;
+        $fileExtension->source(['mp4', 'mov']);
+
+        $endpoint->fileExtension($fileExtension);
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'file_extension' => ['source' => ['mp4', 'mov']],
+        ]);
+    }
+
+    public function test_with_empty_file_extension(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->fileExtension(new FileExtension);
+
+        $this->makeBasicAuthEndpointTest($endpoint, []);
+    }
+
+    public function test_with_media_info(): void
+    {
+        $endpoint = new MediaList;
+
+        $mediaInfo = new MediaInfo;
+        $mediaInfo->resolution(['1920x1080'])->codec(['h264']);
+
+        $endpoint->mediaInfo($mediaInfo);
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'media_info' => [
+                'resolution' => ['1920x1080'],
+                'codec' => ['h264'],
+            ],
+        ]);
+    }
+
+    public function test_with_popular(): void
+    {
+        $endpoint = new MediaList;
+
+        $popular = new Popular;
+        $popular->source(PopularSourceEnum::YOUBORA)
+            ->dateFrom('2023-01-01')
+            ->dateTo('2023-12-31')
+            ->orderDir(OrderDirectionEnum::DESC);
+
+        $endpoint->popular($popular);
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'popular' => [
+                'source' => 'youbora',
+                'date_from' => '2023-01-01',
+                'date_to' => '2023-12-31',
+                'order_dir' => 'desc',
+            ],
+        ]);
+    }
+
+    public function test_with_popular_period(): void
+    {
+        $endpoint = new MediaList;
+
+        $popular = new Popular;
+        $popular->source(PopularSourceEnum::INTERNAL)->datePeriod(PeriodEnum::LAST_7_DAYS);
+
+        $endpoint->popular($popular);
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'popular' => [
+                'source' => 'internal',
+                'date_period' => 'last 7 days',
+            ],
+        ]);
+    }
+
+    public function test_with_order_specific(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->orderSpecific([3, 1, 2]);
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'order_specific' => [3, 1, 2],
+        ]);
+    }
+
+    public function test_with_metadata(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->metadata(['custom_field' => 'value']);
+
+        $this->makeBasicAuthEndpointTest($endpoint, [
+            'metadata' => ['custom_field' => 'value'],
+        ]);
+    }
+
+    public function test_with_timezone(): void
+    {
+        $endpoint = new MediaList;
+        $endpoint->timezone('Europe/Riga');
+
+        $this->makeBasicAuthEndpointTest($endpoint, ['timezone' => 'Europe/Riga']);
     }
 }

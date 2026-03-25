@@ -14,7 +14,14 @@ enum OrderByEnum: string
     case STATUS = 'status';
     case CREATED_AT = 'created_at';
     case UPDATED_AT = 'updated_at';
+    case DURATION = 'duration';
+    case STATUS_SIMPLE = 'status_simple';
+    case STATUS_ADVANCED = 'status_advanced';
+    case APPROVED_AT = 'approved_at';
+    case TRANSCODED_AT = 'transcoded_at';
+    case PUBLISHED_AT = 'published_at';
     case AVAILABILITY_EXPIRE_TIME = 'availability.expire_time';
     case AVAILABILITY_AVAILABLE_TIME = 'availability.available_time';
     case CATEGORY_NAME = 'category.name';
+    case TRANSCODING_ORDER = 'transcoding_order';
 }

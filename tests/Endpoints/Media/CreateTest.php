@@ -5,10 +5,19 @@ declare(strict_types=1);
 namespace Newman\LaravelBackscreenApiClient\Tests\Endpoints\Media;
 
 use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Availability;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Embed;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Enums\EncryptionMethodEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Enums\ProtocolEnum;
 use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Files;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Images;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Player;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Presentation;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\PresentationConfig;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Security;
 use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\Tags;
-use Newman\LaravelBackscreenApiClient\EndpointSupport\Callback;
-use Newman\LaravelBackscreenApiClient\EndpointSupport\Enums\CallbackHttpMethodEnum;
+use Newman\LaravelBackscreenApiClient\Endpoints\Media\Create\TranscodeInfo;
+use Newman\LaravelBackscreenApiClient\EndpointSupport\Images as LegacyImages;
 use Newman\LaravelBackscreenApiClient\Tests\Endpoints\TestCase;
 
 class CreateTest extends TestCase
@@ -221,22 +230,219 @@ class CreateTest extends TestCase
         ]);
     }
 
-    public function test_with_callback(): void
+    public function test_with_transcode_info(): void
     {
         $endpoint = new Create('123');
 
-        $endpoint->callback([
-            new Callback('https://mysite.com', CallbackHttpMethodEnum::POST),
-        ]);
+        $info = new TranscodeInfo;
+        $info->dvbLngOrder('lv,en')->presetId(5);
+
+        $endpoint->transcodeInfo($info);
 
         $this->makeBearerAuthEndpointTest($endpoint, [], [
             'asset_id' => '123',
-            'callback' => [
-                [
-                    'url' => 'https://mysite.com',
-                    'method' => CallbackHttpMethodEnum::POST->value,
-                ],
+            'transcode_info' => [
+                'dvb_lng_order' => 'lv,en',
+                'preset_id' => 5,
             ],
+        ]);
+    }
+
+    public function test_with_empty_transcode_info(): void
+    {
+        $endpoint = new Create('123');
+
+        $endpoint->transcodeInfo(new TranscodeInfo);
+
+        $this->makeBearerAuthEndpointTest($endpoint, [], [
+            'asset_id' => '123',
+        ]);
+    }
+
+    public function test_with_images(): void
+    {
+        $endpoint = new Create('123');
+
+        $encodedImage = 'data:image/png;base64,'.base64_encode('imagebase64_1');
+
+        $images = new Images;
+        $images->thumbnail($encodedImage);
+
+        $endpoint->images($images);
+
+        $this->makeBearerAuthEndpointTest($endpoint, [], [
+            'asset_id' => '123',
+            'images' => ['thumbnail' => $encodedImage],
+        ]);
+    }
+
+    public function test_with_legacy_images(): void
+    {
+        $endpoint = new Create('123');
+
+        $encodedImage = 'data:image/png;base64,'.base64_encode('imagebase64_1');
+
+        $images = new LegacyImages;
+        $images->thumbnail($encodedImage)->placeholder($encodedImage);
+
+        $endpoint->images($images);
+
+        $this->makeBearerAuthEndpointTest($endpoint, [], [
+            'asset_id' => '123',
+            'images' => ['thumbnail' => $encodedImage, 'placeholder' => $encodedImage],
+        ]);
+    }
+
+    public function test_with_empty_images(): void
+    {
+        $endpoint = new Create('123');
+        $endpoint->images(new Images);
+
+        $this->makeBearerAuthEndpointTest($endpoint, [], [
+            'asset_id' => '123',
+        ]);
+    }
+
+    public function test_with_embed(): void
+    {
+        $endpoint = new Create('123');
+
+        $embed = new Embed;
+        $embed->protocol(ProtocolEnum::HTTPS)->autoplay(1);
+
+        $endpoint->embed($embed);
+
+        $this->makeBearerAuthEndpointTest($endpoint, [], [
+            'asset_id' => '123',
+            'embed' => [
+                'protocol' => 'https',
+                'autoplay' => 1,
+            ],
+        ]);
+    }
+
+    public function test_with_empty_embed(): void
+    {
+        $endpoint = new Create('123');
+        $endpoint->embed(new Embed);
+
+        $this->makeBearerAuthEndpointTest($endpoint, [], [
+            'asset_id' => '123',
+        ]);
+    }
+
+    public function test_with_presentation(): void
+    {
+        $endpoint = new Create('123');
+
+        $config = new PresentationConfig;
+        $config->fileId(99);
+
+        $presentation = new Presentation;
+        $presentation->mode(1)->config($config);
+
+        $endpoint->presentation($presentation);
+
+        $this->makeBearerAuthEndpointTest($endpoint, [], [
+            'asset_id' => '123',
+            'presentation' => [
+                'mode' => 1,
+                'config' => ['file_id' => 99],
+            ],
+        ]);
+    }
+
+    public function test_with_empty_presentation(): void
+    {
+        $endpoint = new Create('123');
+        $endpoint->presentation(new Presentation);
+
+        $this->makeBearerAuthEndpointTest($endpoint, [], [
+            'asset_id' => '123',
+        ]);
+    }
+
+    public function test_with_player(): void
+    {
+        $endpoint = new Create('123');
+
+        $player = new Player;
+        $player->logoRedirect('https://example.com')->preloadContent(1);
+
+        $endpoint->player($player);
+
+        $this->makeBearerAuthEndpointTest($endpoint, [], [
+            'asset_id' => '123',
+            'player' => [
+                'logo_redirect' => 'https://example.com',
+                'preload_content' => 1,
+            ],
+        ]);
+    }
+
+    public function test_with_empty_player(): void
+    {
+        $endpoint = new Create('123');
+        $endpoint->player(new Player);
+
+        $this->makeBearerAuthEndpointTest($endpoint, [], [
+            'asset_id' => '123',
+        ]);
+    }
+
+    public function test_with_security(): void
+    {
+        $endpoint = new Create('123');
+
+        $security = new Security;
+        $security->encryptionMethod(EncryptionMethodEnum::AES)->useToken(1);
+
+        $endpoint->security($security);
+
+        $this->makeBearerAuthEndpointTest($endpoint, [], [
+            'asset_id' => '123',
+            'security' => [
+                'encryption_method' => 'aes',
+                'use_token' => 1,
+            ],
+        ]);
+    }
+
+    public function test_with_empty_security(): void
+    {
+        $endpoint = new Create('123');
+        $endpoint->security(new Security);
+
+        $this->makeBearerAuthEndpointTest($endpoint, [], [
+            'asset_id' => '123',
+        ]);
+    }
+
+    public function test_with_availability(): void
+    {
+        $endpoint = new Create('123');
+
+        $availability = new Availability;
+        $availability->published(1)->expireTime('2026-12-31 23:59:59');
+
+        $endpoint->availability($availability);
+
+        $this->makeBearerAuthEndpointTest($endpoint, [], [
+            'asset_id' => '123',
+            'availability' => [
+                'published' => 1,
+                'expire_time' => '2026-12-31 23:59:59',
+            ],
+        ]);
+    }
+
+    public function test_with_empty_availability(): void
+    {
+        $endpoint = new Create('123');
+        $endpoint->availability(new Availability);
+
+        $this->makeBearerAuthEndpointTest($endpoint, [], [
+            'asset_id' => '123',
         ]);
     }
 }
