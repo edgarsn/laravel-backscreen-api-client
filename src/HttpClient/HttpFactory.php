@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace Newman\LaravelBackscreenApiClient\HttpClient;
 
+use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Http\Client\Factory;
+use Illuminate\Http\Client\Request;
+use Illuminate\Http\Client\Response;
+use Illuminate\Http\Client\ResponseSequence;
 use Illuminate\Support\Collection;
 
 class HttpFactory extends Factory
@@ -22,7 +26,7 @@ class HttpFactory extends Factory
     /**
      * Register a stub callable that will intercept requests and be able to return stub responses.
      *
-     * @param  callable(\Illuminate\Http\Client\Request $request, array<string, mixed> $options): (\Closure|\GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response|null)|array<string, int|string|\Closure|\Illuminate\Http\Client\Response|\Illuminate\Http\Client\ResponseSequence|\GuzzleHttp\Promise\PromiseInterface>|null  $callback
+     * @param  callable(Request $request, array<string, mixed> $options): (\Closure|PromiseInterface|Response|null)|array<string, int|string|\Closure|Response|ResponseSequence|PromiseInterface>|null  $callback
      * @return $this
      */
     public function fake($callback = null)
